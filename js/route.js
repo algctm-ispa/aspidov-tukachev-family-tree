@@ -42,7 +42,10 @@ function renderRouteMap() {
   if (!el) return;
   if (typeof L === "undefined") { renderRouteFallback(el); return; }
 
-  const map = L.map(el, { scrollWheelZoom: false, zoomControl: true, attributionControl: true });
+  // Zoom sits top right, as in the design mockup: the legend panel occupies
+  // the top left corner and the default control would sit on top of it.
+  const map = L.map(el, { scrollWheelZoom: false, zoomControl: false, attributionControl: true });
+  L.control.zoom({ position: "topright" }).addTo(map);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 18,
     attribution: "© OpenStreetMap contributors"
