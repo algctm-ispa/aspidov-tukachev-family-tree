@@ -18,10 +18,10 @@ const SITE_CONFIG = {
   },
 
   layout: {
-    generationHeight: 190,
-    minNodeSpacing: 190,
-    spouseGap: 46,
-    nodeWidth: 168,
-    nodeHeight: 74
+    generationHeight: 220,
+    minNodeSpacing: 232,
+    spouseGap: 16,
+    nodeWidth: 212,
+    nodeHeight: 92
   }
 };

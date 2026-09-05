@@ -160,19 +160,42 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 .tree-toolbar-actions { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
 .legend { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-right: var(--space-2); }
 
-.tree-canvas-wrap { border-top: 2px solid var(--color-divider); border-bottom: 2px solid var(--color-divider); padding: var(--space-6) 0; }
-.tree-canvas { position: relative; width: 100%; height: min(70vh, 720px); min-height: 420px; background: var(--color-bg); }
-.tree-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); font-size: 0.95rem; }
-#tree-svg { display: block; }
+.tree-canvas-wrap {
+  position: relative;
+  border-top: 2px solid var(--color-divider); border-bottom: 2px solid var(--color-divider);
+  padding: var(--space-6) 0;
+  height: min(85vh, 900px); min-height: 520px;
+  overflow: auto;
+  background: var(--color-bg);
+}
+.tree-inner { position: relative; }
+.tree-links-svg, .tree-cards { position: absolute; top: 0; left: 0; }
+.tree-links-svg { pointer-events: none; }
+.tree-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); font-size: 0.95rem; background: var(--color-bg); }
 
-.node rect { fill: var(--color-bg); stroke-width: 1.5px; }
-.node.tier-confirmed rect { stroke: var(--color-confirmed); }
-.node.tier-hypothesis rect { stroke: var(--color-hypothesis); stroke-dasharray: 5 3; }
-.node.tier-unknown rect { stroke: var(--color-unknown); stroke-dasharray: 2 3; }
-.node text { font-family: var(--font-family); pointer-events: none; text-anchor: middle; }
-.node-name { font-size: 13px; font-weight: 700; fill: var(--color-text); }
-.node-dates { font-size: 10.5px; fill: var(--color-text-muted); }
-.node:hover rect { fill: var(--color-surface); }
+.person-card {
+  position: absolute; display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg); cursor: pointer;
+  border: 1.5px solid var(--color-confirmed);
+}
+.person-card.tier-hypothesis { border-color: var(--color-hypothesis); border-style: dashed; }
+.person-card.tier-unknown { border-color: var(--color-unknown); border-style: dotted; }
+.person-card:hover, .person-card:focus-visible { background: var(--color-surface); }
+.person-card.is-anchor { border-width: 2px; padding: var(--space-3); background: var(--color-accent-100); }
+
+.person-photo {
+  flex: none; width: 44px; height: 44px; overflow: hidden;
+  background: var(--color-surface);
+  display: flex; align-items: center; justify-content: center;
+}
+.person-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.person-photo-placeholder { font-family: var(--font-family); font-weight: 800; font-size: 16px; color: var(--color-text-muted); }
+.person-photo-lg { width: 64px; height: 76px; }
+
+.person-info { min-width: 0; }
+.person-name { font-size: 13.5px; font-weight: 700; line-height: 1.24; }
+.person-meta { font-size: 11px; color: var(--color-text-muted); margin-top: 2px; }
 
 .parent-link, .spouse-link { fill: none; stroke-width: 1.5px; }
 .tier-confirmed.parent-link, .tier-confirmed.spouse-link { stroke: var(--color-confirmed); opacity: 0.8; }

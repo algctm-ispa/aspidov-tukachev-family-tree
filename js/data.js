@@ -184,6 +184,22 @@ async function loadFamilyData() {
     }
   }
 
+  // The research data records ancestors' marriages, but not the anchor
+  // couple's own — they're the reason the site exists, so pair them up
+  // even without a formal relationship edge.
+  const [anchorA, anchorB] = SITE_CONFIG.anchorPersonIds;
+  if (people.has(anchorA) && people.has(anchorB)) {
+    const alreadyPaired = (spouseEdgesByPerson.get(anchorA) || []).some(e => e.spouseId === anchorB);
+    if (!alreadyPaired) {
+      const addAnchorPair = (a, b) => {
+        if (!spouseEdgesByPerson.has(a)) spouseEdgesByPerson.set(a, []);
+        spouseEdgesByPerson.get(a).push({ spouseId: b, status: "CONFIRMED", tier: "confirmed" });
+      };
+      addAnchorPair(anchorA, anchorB);
+      addAnchorPair(anchorB, anchorA);
+    }
+  }
+
   return {
     people,
     parentEdgesByChild,

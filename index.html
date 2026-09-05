@@ -61,11 +61,12 @@
       </div>
     </div>
 
-    <div class="tree-canvas-wrap">
-      <div id="tree-canvas" class="tree-canvas">
-        <svg id="tree-svg"></svg>
-        <div id="tree-loading" class="tree-loading">Загружаем древо…</div>
+    <div class="tree-canvas-wrap" id="tree-canvas">
+      <div id="tree-inner" class="tree-inner">
+        <svg id="tree-links-svg" class="tree-links-svg"></svg>
+        <div id="tree-cards" class="tree-cards"></div>
       </div>
+      <div id="tree-loading" class="tree-loading">Загружаем древо…</div>
     </div>
 
     <div id="unlinked-panel" class="unlinked-panel" hidden>
@@ -187,7 +188,6 @@
   </div>
 </div>
 
-<script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="js/config.js"></script>
 <script src="js/photos.js"></script>
 <script src="js/data.js"></script>

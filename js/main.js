@@ -47,16 +47,10 @@ async function main() {
       document.getElementById("hero-photo").textContent = "Фотография Владимира и Людмилы";
     }
 
-    renderTree(familyData, openPerson);
+    renderTree(familyData, openPerson, kinship, photoAvailability);
     renderChronicle(familyData);
     renderGapStats(familyData);
     loading.style.display = "none";
-
-    let resizeTimer;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => renderTree(familyData, openPerson), 200);
-    });
   } catch (err) {
     console.error(err);
     loading.textContent = "Не удалось загрузить данные древа. Попробуйте обновить страницу.";
