@@ -143,7 +143,7 @@ function renderPersonDetail(person, familyData, kinshipLabel, hasPhoto) {
     : "";
 
   const photoHtml = hasPhoto
-    ? `<div class="dialog-photo grayscale"><img src="${personPhotoUrl(person.id)}" alt="${escapeHtml(person.displayName)}"></div>`
+    ? `<div class="dialog-photo"><img src="${personPhotoUrl(person.id)}" alt="${escapeHtml(person.displayName)}"></div>`
     : "";
 
   return `

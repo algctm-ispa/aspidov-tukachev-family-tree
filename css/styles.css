@@ -52,7 +52,6 @@ p { margin: 0 0 var(--space-3); }
 a { color: var(--color-accent); text-underline-offset: 3px; }
 .text-muted { color: var(--color-text-muted); }
 .kicker { margin: 0 0 var(--space-6); color: var(--color-accent); }
-.grayscale { filter: grayscale(1) contrast(1.08); }
 
 /* ---------- shared components ---------- */
 
