@@ -10,7 +10,7 @@
     "./ui-labels-ru.json"
   ],
   "allowed_visible_fields": {
-    "people": ["names.display", "names.native", "notes", "birth.date", "birth.year", "birth.before", "birth.estimated_range", "birth.approximate", "birth.place_id", "birth.place_as_recorded", "death.date", "death.year", "death.date_unknown", "death.date_variants", "death.approximate", "death.cause", "death.place_as_recorded", "residence.as_recorded", "residence_history.event", "residence_history.from_place_id", "residence_history.to_place_id", "residence_history.date_unknown", "military.call_up_date", "military.call_up_year", "military.call_up_authority", "military.call_up_place", "military.rank", "military.role_as_recorded", "military.unit", "military.loss_date", "military.war", "attributes.patronymic.document_text", "attributes.patronymic.full_form", "attributes.rejected_alternative.value"],
+    "people": ["names.display", "names.native", "notes", "birth.date", "birth.year", "birth.before", "birth.estimated_range", "birth.approximate", "birth.place_id", "birth.place_as_recorded", "death.date", "death.year", "death.date_unknown", "death.date_variants", "death.approximate", "death.cause", "death.place_as_recorded", "residence.as_recorded", "residence_history.event", "residence_history.from_place_id", "residence_history.to_place_id", "residence_history.date_unknown", "education.institution", "education.graduation_period", "education.graduation_year_unknown", "education.specialty_unknown", "military.call_up_date", "military.call_up_year", "military.call_up_authority", "military.call_up_place", "military.rank", "military.role_as_recorded", "military.unit", "military.loss_date", "military.war", "attributes.patronymic.document_text", "attributes.patronymic.full_form", "attributes.rejected_alternative.value"],
     "places": ["names.name", "names.native", "historical_administration.description", "parish_history.period", "parish_history.parish", "historical_notes"],
     "sources": ["title", "repository", "archive_reference", "archive_references", "notes", "url", "document_urls.url", "document_urls.note"],
     "hypotheses": ["claim", "supports", "conflicts", "unresolved"]
@@ -29,6 +29,15 @@
     "loss_date_precision"
   ],
   "localization_rule": "Для каждого технического значения сначала искать русский перевод в ui-labels-ru.json. Если перевода нет, не показывать значение посетителю.",
+  "typography": {
+    "rule": "Во всём видимом тексте различать дефис, тире и знак диапазона.",
+    "year_and_date_ranges": "Использовать короткое тире без пробелов: 1900–1978, 1800–1840.",
+    "sentence_dash": "Использовать длинное тире с пробелами: Родство — гипотеза.",
+    "hyphen": "Дефис использовать только внутри слов и обозначений, где он необходим по правилам русского языка: 1990-е, 46-я, Иоанно-Предтеченская.",
+    "missing_value": "Не использовать одиночный дефис или тире вместо отсутствующих сведений. Писать «Неизвестно», «Сведения пока не найдены» либо не показывать поле.",
+    "metadata_separator": "Между независимыми краткими характеристиками использовать среднюю точку: 1901–1953 · дед.",
+    "protected_values": "Не изменять URL, технические идентификаторы и машинные даты ISO вида 1935-01-03."
+  },
   "excluded_from_website": [
     "research/",
     "evidence/transcriptions/",

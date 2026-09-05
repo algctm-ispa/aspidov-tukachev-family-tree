@@ -2,6 +2,13 @@
   "locale": "ru-RU",
   "language_name": "Русский",
   "fallback_rule": "Не показывать посетителю техническое значение, если для него отсутствует русский перевод.",
+  "formatting": {
+    "unknown_value": "Неизвестно",
+    "no_information": "Сведения пока не найдены",
+    "range_separator": "–",
+    "sentence_dash": "—",
+    "metadata_separator": "·"
+  },
   "status": {
     "CONFIRMED": "Подтверждено семьёй",
     "CONFIRMED_BY_FAMILY": "Подтверждено семьёй",

@@ -49,6 +49,8 @@ async function main() {
 
     renderTree(familyData, openPerson, kinship, photoAvailability);
     renderChronicle(familyData);
+    if (typeof renderNews === "function") renderNews("news-list", 3);
+    if (typeof renderRouteMap === "function") renderRouteMap();
     loading.style.display = "none";
   } catch (err) {
     console.error(err);

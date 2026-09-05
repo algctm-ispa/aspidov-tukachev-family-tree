@@ -14,7 +14,7 @@ function tierBadge(tier) {
 function buildPersonFormUrl(person) {
   const cfg = SITE_CONFIG.correctionForm;
   if (!cfg.ready || !cfg.baseUrl || !cfg.personEntryId) return null;
-  const label = `${person.displayName} — id: ${person.id}`;
+  const label = `${person.displayName} · id: ${person.id}`;
   const url = new URL(cfg.baseUrl);
   url.searchParams.set("usp", "pp_url");
   url.searchParams.set(cfg.personEntryId, label);
@@ -117,7 +117,7 @@ function renderPersonDetail(person, familyData, kinshipLabel, hasPhoto) {
   if (person.birthDisplay) {
     dates.push(`<div><span class="date-label">Родился(ась)</span> ${escapeHtml(person.birthDisplay)}${person.birthPlace ? `, ${escapeHtml(person.birthPlace)}` : ""}${person.birthStatusLabel ? ` <span class="tag tag-outline">${escapeHtml(person.birthStatusLabel)}</span>` : ""}</div>`);
   }
-  if (person.living && person.birthDisplay) dates.push(`<p class="privacy-note">Показан только год рождения — из уважения к приватности.</p>`);
+  if (person.living && person.birthDisplay) dates.push(`<p class="privacy-note">Показан только год рождения, из уважения к приватности.</p>`);
   if (person.deathDisplay) {
     const variantNote = person.deathStatusLabel ? ` <span class="tag tag-hypothesis">${escapeHtml(person.deathStatusLabel)}</span>` : "";
     dates.push(`<div><span class="date-label">Умер(ла)</span> ${escapeHtml(person.deathDisplay)}${person.deathPlace ? `, ${escapeHtml(person.deathPlace)}` : ""}${person.deathCause ? `, ${escapeHtml(person.deathCause)}` : ""}${variantNote}</div>`);
@@ -183,8 +183,8 @@ function renderNewRelativeDialog() {
     </div>
     <div class="hr"></div>
     <div class="dialog-dates">
-      <div>Имя, отчество, годы жизни — всё, что знаете.</div>
-      <div>Где родился, где жил, чья это линия — Владимира или Людмилы.</div>
+      <div>Имя, отчество, годы жизни: всё, что знаете.</div>
+      <div>Где родился, где жил, чья это линия: Владимира или Людмилы.</div>
     </div>
     <div class="dialog-actions">
       <a class="btn btn-primary btn-block" href="${escapeHtml(url || "#")}" target="_blank" rel="noopener">Открыть форму</a>

@@ -31,6 +31,24 @@
       "evidence_source_ids": ["src_family_testimony_aspidov", "src_family_testimony_vitaly_birth_1935"]
     },
     {
+      "id": "alexander_vitalievich_aspidov_1966",
+      "names": [{"type": "primary", "display": "Аспидов Александр Витальевич", "native": "Аспидов Александр Витальевич"}],
+      "sex": "male",
+      "birth": {"year": 1966, "status": "CONFIRMED_BY_FAMILY"},
+      "education": [
+        {
+          "institution": "Пермский государственный политехнический институт",
+          "graduation_period": "1990-е годы",
+          "graduation_year_unknown": true,
+          "specialty_unknown": true,
+          "status": "CONFIRMED_BY_FAMILY"
+        }
+      ],
+      "identity_status": "CONFIRMED",
+      "notes": ["Сын Виталия Михайловича Аспидова и Анны Фёдоровны Политовой; родной брат Владимира Витальевича и дядя Аллы Владимировны. Окончил Пермский государственный политехнический институт в 1990-х годах; точный год и специальность пока неизвестны."],
+      "evidence_source_ids": ["src_family_testimony_alexander_vitalievich_aspidov_1966"]
+    },
+    {
       "id": "anna_fedorovna_politova",
       "names": [
         {"type": "married", "display": "Аспидова Анна Фёдоровна", "native": "Аспидова Анна Фёдоровна"},

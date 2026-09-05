@@ -2,11 +2,20 @@
 // (births, deaths, military losses) plus the fixed anniversary — instead of
 // a hand-picked list, so it grows on its own as Codex confirms more dates.
 
-const ANNIVERSARY_EVENT = {
-  year: 2026,
-  tier: "confirmed",
-  text: "6 сентября — рубиновая свадьба, 40 лет вместе"
-};
+// Fixed events the family confirms directly, kept alongside the dated events
+// the renderer derives from the genealogy data itself.
+const FIXED_EVENTS = [
+  {
+    year: 1986,
+    tier: "confirmed",
+    text: "6 сентября в Перми поженились Владимир Витальевич Аспидов и Людмила Михайловна Тукачёва"
+  },
+  {
+    year: 2026,
+    tier: "confirmed",
+    text: "6 сентября рубиновая свадьба, сорок лет вместе"
+  }
+];
 
 function buildChronicleEvents(familyData) {
   const events = [];
@@ -16,7 +25,7 @@ function buildChronicleEvents(familyData) {
       events.push({
         year: person.birthYear,
         tier: person.statusTier,
-        text: `Родился(ась) ${person.displayName}${person.birthPlace ? ` — ${person.birthPlace}` : ""}`
+        text: `Родился(ась) ${person.displayName}${person.birthPlace ? `, ${person.birthPlace}` : ""}`
       });
     }
     if (person.deathYear != null) {
@@ -35,7 +44,7 @@ function buildChronicleEvents(familyData) {
     }
   }
 
-  events.push(ANNIVERSARY_EVENT);
+  events.push(...FIXED_EVENTS);
   events.sort((a, b) => a.year - b.year);
   return events;
 }

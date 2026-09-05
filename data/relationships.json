@@ -25,6 +25,22 @@
       "evidence_source_ids": ["src_family_testimony_alla_aspidova_1987"]
     },
     {
+      "id": "rel_vitaly_father_alexander_1966",
+      "type": "biological_parent",
+      "parent_id": "vitaly_mikhailovich_aspidov",
+      "child_id": "alexander_vitalievich_aspidov_1966",
+      "status": "CONFIRMED",
+      "evidence_source_ids": ["src_family_testimony_alexander_vitalievich_aspidov_1966"]
+    },
+    {
+      "id": "rel_anna_mother_alexander_1966",
+      "type": "biological_parent",
+      "parent_id": "anna_fedorovna_politova",
+      "child_id": "alexander_vitalievich_aspidov_1966",
+      "status": "CONFIRMED",
+      "evidence_source_ids": ["src_family_testimony_alexander_vitalievich_aspidov_1966"]
+    },
+    {
       "id": "rel_vitaly_anna_spouses",
       "type": "spouse",
       "person_1_id": "vitaly_mikhailovich_aspidov",

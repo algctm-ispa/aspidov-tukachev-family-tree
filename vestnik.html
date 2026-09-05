@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Вестник нашей семьи · Аспидовы и Тукачёвы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-brand" href="index.html">Аспидовы · Тукачёвы</a>
+  <a href="index.html#tree">Древо</a>
+  <a href="vestnik.html" aria-current="page">Вестник нашей семьи</a>
+  <a href="index.html#chronicle">Хроника</a>
+  <a href="index.html#places">Места</a>
+  <a href="index.html#route">Путь рода</a>
+  <a class="btn btn-primary nav-cta" href="index.html#contribute">Добавить своё</a>
+</nav>
+
+<div id="top" class="page">
+
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <h2>Вестник нашей семьи</h2>
+        <p>Все записи, от новых к старым. Даты, документы и находки: каждая запись опирается на источник, а если два документа расходятся, мы оставляем оба чтения.</p>
+      </div>
+      <a class="btn btn-secondary" href="index.html">На главную</a>
+    </div>
+    <div id="news-list" class="news-list is-full"></div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <span class="text-muted">Семейный проект · данные уточняются постоянно</span>
+  <span class="text-muted">Аспидовы · Тукачёвы · с 1986 по 2026 год</span>
+</footer>
+
+<script src="js/news.js"></script>
+<script>
+  function escapeHtml(value) {
+    return String(value == null ? "" : value).replace(/[&<>"']/g, ch => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[ch]);
+  }
+  renderNews("news-list");
+</script>
+</body>
+</html>

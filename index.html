@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Родословное древо Аспидовых — Тукачёвых · 40 лет вместе</title>
+<title>Родословное древо Аспидовых и Тукачёвых · 40 лет вместе</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -15,9 +16,10 @@
 <nav class="nav">
   <a class="nav-brand" href="#top">Аспидовы · Тукачёвы</a>
   <a href="#tree" aria-current="page">Древо</a>
-  <a href="#story">Наши предки</a>
+  <a href="#news">Вестник нашей семьи</a>
   <a href="#chronicle">Хроника</a>
   <a href="#places">Места</a>
+  <a href="#route">Путь рода</a>
   <a class="btn btn-primary nav-cta" href="#contribute">Добавить своё</a>
 </nav>
 
@@ -25,16 +27,16 @@
 
   <header class="hero">
     <div class="hero-copy">
-      <h6 class="kicker">Рубиновая свадьба · 6 сентября 2026</h6>
+      <h6 class="kicker">Рубиновая свадьба · 6 сентября 2026 года</h6>
       <h1 class="hero-title">40 лет<br>вместе</h1>
       <div class="hero-couple">
         <div class="hero-couple-name" id="hero-name-a">Аспидов Владимир Витальевич</div>
         <div class="hero-couple-name" id="hero-name-b">Тукачёва Людмила Михайловна</div>
       </div>
-      <p class="hero-lede">Это древо наша семья собирает по крупицам — архивные записи, воспоминания, находки родственников. Нашли неточность или есть фотография — нажмите на человека в древе и отправьте нам правку.</p>
+      <p class="hero-lede">Это древо наша семья собирает по крупицам: архивные записи, воспоминания, находки родственников. Нашли неточность или есть фотография? Нажмите на человека в древе и отправьте нам правку.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#tree">Смотреть древо</a>
-        <a class="btn btn-secondary" href="#story">Наши предки</a>
+        <a class="btn btn-secondary" href="#news">Вестник нашей семьи</a>
       </div>
     </div>
     <div class="hero-photo-wrap">
@@ -47,7 +49,7 @@
     <div class="section-header">
       <div>
         <h2>Родословное древо</h2>
-        <p>Слева — линия Владимира, справа — линия Людмилы. Нажмите на любого человека: там даты, места и кнопка «изменить данные».</p>
+        <p>Слева линия Владимира, справа линия Людмилы. Нажмите на любого человека: там даты, места и кнопка «изменить данные».</p>
       </div>
       <div class="tree-toolbar-actions">
         <div class="legend">
@@ -67,7 +69,7 @@
       </div>
       <div id="tree-loading" class="tree-loading">Загружаем древо…</div>
     </div>
-    <p class="tree-hint">Древо можно двигать: тяните его мышью или прокручивайте вбок. Кнопки «+» и «−» меняют масштаб.</p>
+    <p class="tree-hint">Древо можно двигать: тяните его мышью или прокручивайте вбок. Кнопки «плюс» и «минус» меняют масштаб.</p>
 
     <div id="unlinked-panel" class="unlinked-panel" hidden>
       <h6>Другие версии · родство пока не установлено</h6>
@@ -76,35 +78,17 @@
     </div>
   </section>
 
-  <section id="story" class="section">
-    <div class="story-layout">
-      <div class="story-intro">
-        <h2>Наши предки</h2>
-        <p>Только то, что подтверждено документами и семейной памятью. Каждая запись помечена: чья это линия и чего в ней ещё не хватает.</p>
-        <button class="btn btn-ghost" id="story-add">Дополнить историю предка</button>
+  <section id="news" class="section">
+    <div class="section-header">
+      <div>
+        <h2>Вестник нашей семьи</h2>
+        <p>Даты, документы и находки. Каждая запись опирается на источник; если два документа расходятся, мы оставляем оба чтения.</p>
       </div>
-      <div class="story-cards">
-        <article class="story-card">
-          <h6 class="story-kicker">Линия Владимира · д. Тюремка, 1899—1943</h6>
-          <div class="story-headline">Связист Аспидов Михаил Николаевич — призван Осинским РВК 13 января 1942 года, пропал без вести в июне 1943-го.</div>
-          <p class="story-body">Прадед Владимира. Найден в документах ОБД «Мемориал» и в Книге памяти Пермского края; жена в записи названа как «Аспидова Мария Владимир.».</p>
-        </article>
-        <article class="story-card">
-          <h6 class="story-kicker">Линия Владимира · Политовы</h6>
-          <div class="story-headline">Фёдор Кириллович и Агафья Васильевна Политовы вырастили шестерых детей — одна из них, Анна, стала матерью Владимира.</div>
-          <p class="story-body">Прадед и прабабушка Владимира: ок. 1901—1953 и 1900—1978. Даты по семейному дереву — их ещё нужно сверить с записями.</p>
-        </article>
-        <article class="story-card">
-          <h6 class="story-kicker">Линия Людмилы · Чёрмоз</h6>
-          <div class="story-headline">Тукачёвы жили в заводском Чёрмозе — там 25 сентября 1959 года родилась Людмила.</div>
-          <p class="story-body">Её родители — Михаил Тукачёв и Вера Николаевна Жданова; отчество и даты деда пока не установлены. Брат Валерий родился в 1964-м, сестра Татьяна — тоже в Чёрмозе.</p>
-        </article>
-        <article class="story-card story-card-last">
-          <h6 class="story-kicker">Линия Людмилы · Сырчиковы и Миковы <span class="tag tag-outline">Гипотеза</span></h6>
-          <div class="story-headline">За Марией Степановной Сырчиковой — бабушкой Людмилы по матери — начинается след в деревне Сырчики под Ивановским.</div>
-          <p class="story-body">Отсюда фамилии Сырчиковых и Миковых в древе. Родство ещё не подтверждено: ближайшая цель — метрические книги Иоанно-Предтеченской церкви села Ивановского за 1898 год.</p>
-        </article>
-      </div>
+      <a class="btn btn-secondary" href="vestnik.html">Смотреть все</a>
+    </div>
+    <div id="news-list" class="news-list"></div>
+    <div class="news-more">
+      <a class="btn btn-ghost" href="vestnik.html">Смотреть все записи вестника</a>
     </div>
   </section>
 
@@ -120,20 +104,49 @@
     </div>
     <div class="places-grid">
       <div class="card">
-        <span class="card-kicker">линия Владимира · с 1962 — Красные Горки</span>
+        <span class="card-kicker">линия Владимира · с 1962 года Красные Горки</span>
         <span class="card-title">Тюремка</span>
-        <p class="card-body">Родина Аспидовых, основана в 1827 году. Осинский уезд, Устиновская волость; приход — Вознесенская церковь села Устиновского.</p>
+        <p class="card-body">Родина Аспидовых, основана в 1827 году. Осинский уезд, Устиновская волость; приход Вознесенской церкви села Устиновского.</p>
       </div>
       <div class="card">
-        <span class="card-kicker">линия Людмилы · завод с 1763, закрыт в 1956</span>
+        <span class="card-kicker">линия Людмилы · завод основан в 1763 году, закрыт в 1956</span>
         <span class="card-title">Чёрмоз</span>
         <p class="card-body">Город Тукачёвых, где родилась Людмила. Часть старого города ушла под воду при создании Камского водохранилища.</p>
       </div>
       <div class="card">
-        <span class="card-kicker">линия Людмилы · Нижняя и Верхняя, 16 дворов в 1869</span>
+        <span class="card-kicker">линия Людмилы · Нижняя и Верхняя, 16 дворов в 1869 году</span>
         <span class="card-title">Сырчики</span>
-        <p class="card-body">Деревня Сырчиковых и Миковых — предков Людмилы по матери. Название, возможно, от коми-пермяцкого «сырчик» — трясогузка.</p>
+        <p class="card-body">Деревня Сырчиковых и Миковых, предков Людмилы по матери. Название, возможно, происходит от коми-пермяцкого слова «сырчик», то есть трясогузка.</p>
       </div>
+      <div class="card">
+        <span class="card-kicker">линия Владимира и линия Людмилы · здесь они встретились</span>
+        <span class="card-title">Пермь</span>
+        <p class="card-body">Город на Каме, где в 1986 году поженились Владимир и Людмила и где через год родилась Алла. Отсюда и из окрестных деревень тянутся обе ветви рода: Аспидовы шли сюда из Осинского уезда, а Тукачёвы и Сырчиковы из Чёрмоза и Ильинского района.</p>
+      </div>
+      <div class="card">
+        <span class="card-kicker">куда переехала семья</span>
+        <span class="card-title">Москва</span>
+        <p class="card-body">Владимир, Людмила и Алла переехали в Москву из Перми. Точная дата переезда пока не установлена, поэтому в древе она отмечена как неизвестная.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="route" class="section">
+    <div class="section-header">
+      <div>
+        <h2>Путь рода</h2>
+        <p class="route-intro">Линия Владимира идёт из деревни Тюремка в Пермь. Линия Людмилы идёт из деревни Сырчики в Чёрмоз, а затем тоже в Пермь. В Перми линии встречаются: оттуда Владимир и Людмила переехали в Москву.</p>
+      </div>
+    </div>
+    <div class="route-panel">
+      <div class="route-legend">
+        <h6>Путь рода</h6>
+        <div class="route-legend-row"><span class="route-legend-line"></span> линия Владимира</div>
+        <div class="route-legend-row"><span class="route-legend-line is-dashed"></span> линия Людмилы</div>
+        <div class="route-legend-row"><span class="route-legend-line is-thick"></span> Владимир и Людмила в Москву</div>
+      </div>
+      <div id="route-map" class="route-map"></div>
+      <p class="route-note">Приблизьте карту у Перми, чтобы разглядеть Тюремку, Сырчики и Чёрмоз по отдельности. Положение деревень показано примерно.</p>
     </div>
   </section>
 
@@ -141,7 +154,7 @@
     <div class="contribute-inner">
       <div>
         <div class="kicker" style="color:inherit">Это древо растёт вместе с нами</div>
-        <div class="contribute-headline">Добавьте фотографию, дату или нового родственника — и род станет полнее</div>
+        <div class="contribute-headline">Добавьте фотографию, дату или нового родственника, и род станет полнее</div>
         <p class="contribute-lede">Любая мелочь важна: подпись на обороте снимка, название деревни, имя, которое помнит только бабушка.</p>
       </div>
       <div class="contribute-actions">
@@ -156,7 +169,7 @@
 
 <footer class="site-footer">
   <span class="text-muted">Семейный проект · данные уточняются постоянно</span>
-  <span class="text-muted">Аспидовы · Тукачёвы · 1986—2026</span>
+  <span class="text-muted">Аспидовы · Тукачёвы · с 1986 по 2026 год</span>
 </footer>
 
 <div id="detail-overlay" class="dialog-backdrop" hidden>
@@ -165,6 +178,7 @@
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="js/config.js"></script>
 <script src="js/photos.js"></script>
 <script src="js/labels.js"></script>
@@ -173,6 +187,8 @@
 <script src="js/kinship.js"></script>
 <script src="js/detail.js"></script>
 <script src="js/tree.js"></script>
-<script src="js/chronicle.js"></script><script src="js/main.js"></script>
+<script src="js/chronicle.js"></script>
+<script src="js/news.js"></script>
+<script src="js/route.js"></script><script src="js/main.js"></script>
 </body>
 </html>

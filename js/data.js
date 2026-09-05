@@ -70,7 +70,7 @@ function normalizeDateFields(obj) {
     display = formatted.length ? `${formatted.join(" или ")}${oldStyleSuffix}` : null;
     year = parseInt(String(obj.date_variants[0]).slice(0, 4), 10) || null;
   } else if (obj.estimated_range) {
-    display = `ориентировочно ${obj.estimated_range}`;
+    display = `ориентировочно с ${String(obj.estimated_range).replace(/[\u2010-\u2015-]/, " по ")}`;
   } else if (typeof obj.date === "string") {
     display = formatOneDate(obj.date);
     year = parseInt(obj.date.slice(0, 4), 10) || null;
