@@ -70,7 +70,7 @@ function normalizeDateFields(obj) {
     display = formatted.length ? `${formatted.join(" или ")}${oldStyleSuffix}` : null;
     year = parseInt(String(obj.date_variants[0]).slice(0, 4), 10) || null;
   } else if (obj.estimated_range) {
-    display = `ориентировочно с ${String(obj.estimated_range).replace(/[\u2010-\u2015-]/, " по ")}`;
+    display = `ориентировочно ${obj.estimated_range}`;
   } else if (typeof obj.date === "string") {
     display = formatOneDate(obj.date);
     year = parseInt(obj.date.slice(0, 4), 10) || null;
@@ -215,12 +215,16 @@ function buildMilitary(raw) {
 }
 
 async function loadFamilyData() {
+  // normalizeRuStrings strips hyphens and dashes out of every piece of prose the
+  // pipeline sends, at the point it arrives — so the rule holds for future
+  // data packs without anyone editing the JSON by hand.
+  const load = name => fetch(`data/${name}.json`).then(r => r.json()).then(json => normalizeRuStrings(json));
   const [peopleRaw, relationshipsRaw, placesRaw, sourcesRaw, hypothesesRaw] = await Promise.all([
-    fetch("data/people.json").then(r => r.json()),
-    fetch("data/relationships.json").then(r => r.json()),
-    fetch("data/places.json").then(r => r.json()),
-    fetch("data/sources.json").then(r => r.json()),
-    fetch("data/hypotheses.json").then(r => r.json()),
+    load("people"),
+    load("relationships"),
+    load("places"),
+    load("sources"),
+    load("hypotheses"),
     loadUiLabels()
   ]);
 
