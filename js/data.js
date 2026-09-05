@@ -144,7 +144,8 @@ function buildResidenceHistory(history, placesById) {
       event: event || "Переезд",
       from,
       to,
-      dateUnknown: !!entry.date_unknown,
+      year: typeof entry.year === "number" ? entry.year : null,
+      dateUnknown: !entry.year && !!entry.date_unknown,
       statusLabel: translateStatusLike(entry.status)
     });
   }
@@ -219,6 +220,12 @@ async function loadFamilyData() {
   // pipeline sends, at the point it arrives — so the rule holds for future
   // data packs without anyone editing the JSON by hand.
   const load = name => fetch(`data/${name}.json`).then(r => r.json()).then(json => normalizeRuStrings(json));
+  // Owner confirmed facts the pipeline has not caught up with yet. Kept in a
+  // file the pipeline never writes, so a new data pack cannot undo them.
+  const corrections = await fetch("data/site-corrections.json")
+    .then(r => (r.ok ? r.json() : null))
+    .then(json => (json ? normalizeRuStrings(json) : null))
+    .catch(() => null);
   const [peopleRaw, relationshipsRaw, placesRaw, sourcesRaw, hypothesesRaw] = await Promise.all([
     load("people"),
     load("relationships"),
@@ -227,6 +234,13 @@ async function loadFamilyData() {
     load("hypotheses"),
     loadUiLabels()
   ]);
+
+  if (corrections && corrections.people) {
+    for (const raw of peopleRaw.people || []) {
+      const patch = corrections.people[raw.id];
+      if (patch) Object.assign(raw, patch);
+    }
+  }
 
   const placesById = new Map((placesRaw.places || []).map(p => [p.id, p]));
   const sourcesById = new Map((sourcesRaw.sources || []).map(s => [s.id, s]));

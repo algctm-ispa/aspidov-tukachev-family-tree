@@ -129,7 +129,9 @@ function renderPersonDetail(person, familyData, kinshipLabel, hasPhoto) {
 
   for (const move of person.moves || []) {
     const route = move.from && move.to ? `${move.from} → ${move.to}` : (move.to || move.from);
-    const when = move.dateUnknown ? ` <span class="text-muted">(дата неизвестна)</span>` : "";
+    const when = move.year
+      ? `, ${move.year} год`
+      : (move.dateUnknown ? ` <span class="text-muted">(дата неизвестна)</span>` : "");
     const label = move.event.charAt(0).toUpperCase() + move.event.slice(1);
     dates.push(`<div><span class="date-label">${escapeHtml(label)}</span> ${escapeHtml(route)}${when}</div>`);
   }
