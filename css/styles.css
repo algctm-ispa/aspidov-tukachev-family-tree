@@ -329,13 +329,27 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 
 .dialog-section { margin-top: var(--space-4); border-top: 1px solid var(--color-divider); padding-top: var(--space-3); }
 .dialog-section h6 { color: var(--color-text-muted); }
-.variant-list, .source-list { list-style: none; margin: 0; padding: 0; font-size: 13px; }
-.variant-list li, .source-list li { margin-bottom: var(--space-2); display: flex; gap: var(--space-2); flex-wrap: wrap; align-items: baseline; }
-.source-quality { font-size: 11px; color: var(--color-text-muted); }
+.variant-list { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+.variant-list li { margin-bottom: var(--space-2); display: flex; gap: var(--space-2); flex-wrap: wrap; align-items: baseline; }
+.variant-type { font-size: 11px; color: var(--color-text-muted); font-style: italic; }
 .kv-list { display: grid; grid-template-columns: auto 1fr; gap: var(--space-1) var(--space-3); font-size: 13px; margin: 0; }
 .kv-list dt { font-weight: 800; color: var(--color-text-muted); }
 .kv-list dd { margin: 0; }
+.military-status { margin-top: var(--space-2); }
 .research-note { font-size: 13px; color: var(--color-text-muted); margin: 0 0 var(--space-2); }
+
+.conflict-card { background: var(--color-surface); border: 1px dashed var(--color-hypothesis); padding: var(--space-3); margin-bottom: var(--space-2); }
+.conflict-title { font-weight: 700; font-size: 13px; margin-bottom: var(--space-1); }
+.conflict-line { font-size: 13px; margin-top: 2px; }
+.conflict-label { color: var(--color-text-muted); }
+
+.source-list { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+.source-list li { margin-bottom: var(--space-3); padding-bottom: var(--space-3); border-bottom: 1px solid var(--color-divider); }
+.source-list li:last-child { border-bottom: 0; }
+.source-title { font-weight: 700; }
+.source-tags { display: flex; gap: var(--space-1); flex-wrap: wrap; margin: var(--space-1) 0; }
+.source-links { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-1); }
+.source-link { font-size: 12px; font-weight: 700; }
 
 .dialog-actions { display: grid; gap: var(--space-2); margin-top: var(--space-6); }
 .dialog-footnote { font-size: 11px; margin-top: var(--space-2); }

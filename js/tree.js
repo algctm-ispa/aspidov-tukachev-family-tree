@@ -144,6 +144,15 @@ function siblingsRowHtml(siblingIds, familyData, kinship, photoAvailability) {
     </div>`;
 }
 
+function leadCardHtml(id, familyData, kinship) {
+  const p = familyData.people.get(id);
+  return `
+    <div class="tree-lead tier-${p.statusTier}" data-id="${escapeHtml(id)}" role="button" tabindex="0">
+      <div class="tree-lead-name">${escapeHtml(p.displayName)}</div>
+      <div class="tree-lead-meta">${escapeHtml((kinship.get(id) || "").replace(" · ", " — "))}</div>
+    </div>`;
+}
+
 function earlyLeadsHtml(leadIds, familyData, kinship) {
   if (!leadIds.length) return "";
   return `
@@ -153,14 +162,7 @@ function earlyLeadsHtml(leadIds, familyData, kinship) {
         <span class="text-muted">имена из архивных подсказок, родство пока не подтверждено документом</span>
       </div>
       <div class="tree-leads-list">
-        ${leadIds.map(id => {
-          const p = familyData.people.get(id);
-          return `
-            <div class="tree-lead tier-${p.statusTier}" data-id="${escapeHtml(id)}" role="button" tabindex="0">
-              <div class="tree-lead-name">${escapeHtml(p.displayName)}</div>
-              <div class="tree-lead-meta">${escapeHtml((kinship.get(id) || "").replace(" · ", " — "))}</div>
-            </div>`;
-        }).join("")}
+        ${leadIds.map(id => leadCardHtml(id, familyData, kinship)).join("")}
       </div>
     </div>`;
 }
@@ -203,20 +205,19 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
   document.getElementById("zoom-out").onclick = () => { zoom = Math.max(0.5, zoom - 0.15); applyZoom(); };
   document.getElementById("zoom-reset").onclick = () => { zoom = 1; applyZoom(); };
 
-  renderUnlinked(unlinked, familyData);
+  renderUnlinked(unlinked, familyData, onPersonClick, kinship);
 }
 
-function renderUnlinked(unlinked, familyData) {
+function renderUnlinked(unlinked, familyData, onPersonClick, kinship) {
   const panel = document.getElementById("unlinked-panel");
   const list = document.getElementById("unlinked-list");
-  list.innerHTML = "";
   if (!unlinked.length) { panel.hidden = true; return; }
   panel.hidden = false;
-  for (const id of unlinked) {
-    const person = familyData.people.get(id);
-    if (!person) continue;
-    const li = document.createElement("li");
-    li.textContent = person.displayName;
-    list.appendChild(li);
-  }
+  list.innerHTML = unlinked.map(id => leadCardHtml(id, familyData, kinship)).join("");
+  list.onclick = (e) => {
+    const el = e.target.closest("[data-id]");
+    if (!el) return;
+    const person = familyData.people.get(el.dataset.id);
+    if (person) onPersonClick(person);
+  };
 }

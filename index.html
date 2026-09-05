@@ -51,8 +51,8 @@
       </div>
       <div class="tree-toolbar-actions">
         <div class="legend">
-          <span class="tag tag-confirmed">Подтверждено</span>
-          <span class="tag tag-outline">Предположение</span>
+          <span class="tag tag-confirmed">Подтверждено семьёй</span>
+          <span class="tag tag-outline">Гипотеза</span>
         </div>
         <button class="btn btn-secondary btn-icon" id="zoom-out" title="Отдалить" aria-label="Отдалить">−</button>
         <button class="btn btn-secondary btn-icon" id="zoom-in" title="Приблизить" aria-label="Приблизить">+</button>
@@ -67,9 +67,9 @@
     </div>
 
     <div id="unlinked-panel" class="unlinked-panel" hidden>
-      <h6>Пока не удалось разместить на древе</h6>
-      <p class="text-muted">Эти записи ещё не связаны с остальным древом — возможно, потребуется больше исследований.</p>
-      <ul id="unlinked-list"></ul>
+      <h6>Другие версии · родство пока не установлено</h6>
+      <p class="text-muted">Эти люди упомянуты в источниках как возможные родственники, но связь с деревом ещё не подтверждена документом или семьёй.</p>
+      <div id="unlinked-list" class="tree-leads-list"></div>
     </div>
 
     <div class="gaps-block">
@@ -85,7 +85,7 @@
         </div>
         <div class="question-item question-item-last">
           <div class="question-title">Линия Сырчиковых до 1898 года — приход Ивановского</div>
-          <div class="text-muted question-meta">предположение · требует записи</div>
+          <div class="text-muted question-meta">гипотеза · требует записи</div>
         </div>
       </div>
       <div class="gaps-stats">
@@ -117,10 +117,10 @@
         <article class="story-card">
           <h6 class="story-kicker">Линия Людмилы · Чёрмоз</h6>
           <div class="story-headline">Тукачёвы жили в заводском Чёрмозе — там 25 сентября 1959 года родилась Людмила.</div>
-          <p class="story-body">Её родители — Михаил Тукачёв и Вера Николаевна Жданкова; отчество и даты деда пока не установлены. Брат Валерий родился в 1964-м, сестра Татьяна — тоже в Чёрмозе.</p>
+          <p class="story-body">Её родители — Михаил Тукачёв и Вера Николаевна Жданова; отчество и даты деда пока не установлены. Брат Валерий родился в 1964-м, сестра Татьяна — тоже в Чёрмозе.</p>
         </article>
         <article class="story-card story-card-last">
-          <h6 class="story-kicker">Линия Людмилы · Сырчиковы и Миковы <span class="tag tag-outline">предположение</span></h6>
+          <h6 class="story-kicker">Линия Людмилы · Сырчиковы и Миковы <span class="tag tag-outline">Гипотеза</span></h6>
           <div class="story-headline">За Марией Степановной Сырчиковой — бабушкой Людмилы по матери — начинается след в деревне Сырчики под Ивановским.</div>
           <p class="story-body">Отсюда фамилии Сырчиковых и Миковых в древе. Родство ещё не подтверждено: ближайшая цель — метрические книги Иоанно-Предтеченской церкви села Ивановского за 1898 год.</p>
         </article>
@@ -187,6 +187,7 @@
 
 <script src="js/config.js"></script>
 <script src="js/photos.js"></script>
+<script src="js/labels.js"></script>
 <script src="js/data.js"></script>
 <script src="js/layout.js"></script>
 <script src="js/kinship.js"></script>

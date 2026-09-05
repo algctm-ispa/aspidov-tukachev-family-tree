@@ -1,6 +1,8 @@
 // Loads and normalizes the genealogy dataset (people/relationships/places/sources/hypotheses)
 // into a shape the tree/layout/detail modules can rely on, tolerating the
-// pipeline's loosely-typed, evolving JSON.
+// pipeline's loosely-typed, evolving JSON. Every technical value is routed
+// through js/labels.js for Russian translation; nothing untranslatable is
+// ever shown to a visitor (see web-content-manifest-ru.json's rule).
 
 const MONTHS_RU = [
   "января", "февраля", "марта", "апреля", "мая", "июня",
@@ -17,52 +19,69 @@ function statusTier(status) {
   return "confirmed";
 }
 
+// Fixed two-category system per the pipeline's own README: a hypothesis
+// must never be visually merged with a confirmed identity.
 function statusLabel(tier) {
   switch (tier) {
-    case "confirmed": return "Подтверждено";
-    case "hypothesis": return "Предположение";
+    case "confirmed": return "Подтверждено семьёй";
+    case "hypothesis": return "Гипотеза";
     case "unknown": return "Не установлено";
-    case "rejected": return "Отклонено";
+    case "rejected": return "Отвергнуто";
     default: return "";
   }
 }
 
-// Normalizes the many birth/death object shapes into {year, month, day, approximate, dateUnknown, oldStyle, raw}
-function normalizeDateFields(obj) {
-  if (!obj || typeof obj !== "object") return null;
-  const out = {
-    year: null, month: null, day: null,
-    approximate: !!obj.approximate,
-    dateUnknown: !!obj.date_unknown,
-    oldStyle: obj.calendar === "old_style",
-    raw: obj
-  };
-  if (typeof obj.year === "number") out.year = obj.year;
-  if (typeof obj.date === "string") {
-    const parts = obj.date.split("-").map(Number);
-    if (parts[0]) out.year = parts[0];
-    if (parts[1]) out.month = parts[1];
-    if (parts[2]) out.day = parts[2];
+function formatOneDate(dateStr, { day, month, year } = {}) {
+  if (dateStr) {
+    const parts = dateStr.split("-").map(Number);
+    year = parts[0]; month = parts[1]; day = parts[2];
   }
-  return out;
+  if (!year) return null;
+  if (!month) return `${year}`;
+  const monthName = MONTHS_RU[month - 1];
+  return day ? `${day} ${monthName} ${year}` : `${monthName} ${year}`;
 }
 
-function formatDate(normalized, { yearOnly = false } = {}) {
-  if (!normalized) return null;
-  if (normalized.dateUnknown) return null;
-  if (normalized.year == null) return null;
+// Normalizes the many birth/death object shapes (date, year, estimated_range,
+// date_unknown, date_variants, approximate, calendar, cause, place_as_recorded,
+// status) into one structure the detail view can render in full, plus a
+// best-effort single-line summary for compact contexts (tree cards, chronicle).
+function normalizeDateFields(obj) {
+  if (!obj || typeof obj !== "object") return null;
+  const approxPrefix = obj.approximate ? "ок. " : "";
+  const oldStyleSuffix = obj.calendar === "old_style" ? " (ст. ст.)" : "";
+  let year = null, display = null;
 
-  const approxPrefix = normalized.approximate ? "ок. " : "";
-  const oldStyleSuffix = normalized.oldStyle ? " (ст. ст.)" : "";
+  if (obj.date_unknown) {
+    display = null;
+  } else if (Array.isArray(obj.date_variants) && obj.date_variants.length) {
+    const formatted = obj.date_variants.map(d => formatOneDate(d)).filter(Boolean);
+    display = formatted.length ? `${formatted.join(" или ")}${oldStyleSuffix}` : null;
+    year = parseInt(String(obj.date_variants[0]).slice(0, 4), 10) || null;
+  } else if (obj.estimated_range) {
+    display = `ориентировочно ${obj.estimated_range}`;
+  } else if (typeof obj.date === "string") {
+    display = formatOneDate(obj.date);
+    year = parseInt(obj.date.slice(0, 4), 10) || null;
+    if (display) display = `${approxPrefix}${display}${oldStyleSuffix}`;
+  } else if (typeof obj.year === "number") {
+    year = obj.year;
+    display = `${approxPrefix}${obj.year}${oldStyleSuffix}`;
+  }
 
-  if (yearOnly || normalized.month == null) {
-    return `${approxPrefix}${normalized.year}${oldStyleSuffix}`;
-  }
-  const monthName = MONTHS_RU[normalized.month - 1];
-  if (normalized.day) {
-    return `${approxPrefix}${normalized.day} ${monthName} ${normalized.year}${oldStyleSuffix}`;
-  }
-  return `${approxPrefix}${monthName} ${normalized.year}${oldStyleSuffix}`;
+  return {
+    year,
+    display,
+    hasVariants: Array.isArray(obj.date_variants) && obj.date_variants.length > 1,
+    statusLabel: translateStatusLike(obj.status),
+    cause: obj.cause || null,
+    raw: obj
+  };
+}
+
+function yearOnlyDisplay(normalized) {
+  if (!normalized || normalized.year == null) return normalized ? normalized.display : null;
+  return `${normalized.year}`;
 }
 
 function isLikelyLiving(hasDeathRecord, hasMilitaryLoss, normalizedBirth) {
@@ -98,13 +117,66 @@ function buildPlaceLabel(placeId, placesById) {
   return chain.join(", ") || null;
 }
 
+function resolvePlace(placeId, placeAsRecorded, placesById) {
+  if (placeId) return buildPlaceLabel(placeId, placesById);
+  return placeAsRecorded || null;
+}
+
+// Renders the "attributes" bag (patronymic conflicts, alternative family
+// recollections, etc.) as a list of {label, lines} conflict cards, so a
+// documented disagreement is shown in full rather than silently resolved.
+function buildAttributeConflicts(attributes) {
+  if (!attributes) return [];
+  const titles = { patronymic: "Отчество", alternative_family_recollection: "По семейной памяти" };
+  const conflicts = [];
+  for (const [key, value] of Object.entries(attributes)) {
+    if (!value || typeof value !== "object") continue;
+    const lines = [];
+    if (value.document_text) lines.push({ label: "В документе", text: value.document_text });
+    if (value.probable_expansion) lines.push({ label: "Предполагаемая полная форма", text: value.probable_expansion });
+    if (value.value) lines.push({ label: "Указано", text: value.value });
+    if (!lines.length) continue;
+    conflicts.push({
+      title: titles[key] || key.replace(/_/g, " "),
+      lines,
+      statusLabel: translateStatusLike(value.status)
+    });
+  }
+  return conflicts;
+}
+
+function buildMilitary(raw) {
+  if (!raw) return null;
+  const fieldOrder = [
+    ["call_up_date", v => formatOneDate(v)],
+    ["call_up_year", v => String(v)],
+    ["call_up_authority", v => v],
+    ["call_up_place", v => v],
+    ["rank", v => v],
+    ["unit", v => v],
+    ["war", v => v],
+    ["role_as_recorded", v => v],
+    ["loss_date", v => formatOneDate(v)]
+  ];
+  const rows = [];
+  for (const [key, fmt] of fieldOrder) {
+    if (raw[key] == null) continue;
+    const label = translate("military", key);
+    if (!label) continue;
+    rows.push([label, fmt(raw[key])]);
+  }
+  const statusLabel = translateStatusLike(raw.status);
+  return { rows, statusLabel };
+}
+
 async function loadFamilyData() {
   const [peopleRaw, relationshipsRaw, placesRaw, sourcesRaw, hypothesesRaw] = await Promise.all([
     fetch("data/people.json").then(r => r.json()),
     fetch("data/relationships.json").then(r => r.json()),
     fetch("data/places.json").then(r => r.json()),
     fetch("data/sources.json").then(r => r.json()),
-    fetch("data/hypotheses.json").then(r => r.json())
+    fetch("data/hypotheses.json").then(r => r.json()),
+    loadUiLabels()
   ]);
 
   const placesById = new Map((placesRaw.places || []).map(p => [p.id, p]));
@@ -118,7 +190,8 @@ async function loadFamilyData() {
     const primaryName = choosePrimaryName(raw.names);
     const nameVariants = (raw.names || []).map(n => ({
       ...n,
-      tier: statusTier(n.status)
+      tier: statusTier(n.status),
+      typeLabel: translate("name_type", n.type)
     }));
 
     const birthNorm = normalizeDateFields(raw.birth);
@@ -128,12 +201,14 @@ async function loadFamilyData() {
 
     const living = isLikelyLiving(hasDeathRecord, hasMilitaryLoss, birthNorm);
 
-    const birthDisplay = birthNorm ? formatDate(birthNorm, { yearOnly: living }) : null;
-    const deathDisplay = deathNorm ? formatDate(deathNorm, { yearOnly: false }) : null;
+    const birthDisplay = birthNorm ? (living ? yearOnlyDisplay(birthNorm) : birthNorm.display) : null;
+    const deathDisplay = deathNorm ? deathNorm.display : null;
 
-    const birthPlace = raw.birth && raw.birth.place_id ? buildPlaceLabel(raw.birth.place_id, placesById) : null;
+    const birthPlace = raw.birth ? resolvePlace(raw.birth.place_id, raw.birth.place_as_recorded, placesById) : null;
+    const deathPlace = raw.death ? resolvePlace(raw.death.place_id, raw.death.place_as_recorded, placesById) : null;
     const residencePlace = raw.residence && raw.residence.place_id ? buildPlaceLabel(raw.residence.place_id, placesById) : null;
-    const militaryLossYear = hasMilitaryLoss ? parseInt(raw.military.loss_date.slice(0, 4), 10) : null;
+    const residenceAsRecorded = raw.residence && raw.residence.as_recorded && raw.residence.as_recorded !== residencePlace ? raw.residence.as_recorded : null;
+    const militaryLossYear = hasMilitaryLoss ? parseInt(String(raw.military.loss_date).slice(0, 4), 10) : null;
 
     people.set(raw.id, {
       id: raw.id,
@@ -142,17 +217,23 @@ async function loadFamilyData() {
       nameVariants,
       identityStatus: raw.identity_status || null,
       statusTier: tier,
-      candidateRole: raw.candidate_role || null,
+      candidateRole: translate("candidate_role", raw.candidate_role),
       living,
       birthDisplay,
       birthYear: birthNorm && birthNorm.year != null ? birthNorm.year : null,
       birthPlace,
-      residence: raw.residence ? { placeName: residencePlace, asRecorded: raw.residence.as_recorded || null } : null,
+      birthStatusLabel: birthNorm ? birthNorm.statusLabel : null,
+      birthHasVariants: !!(birthNorm && birthNorm.hasVariants),
+      residence: raw.residence ? { placeName: residencePlace || raw.residence.as_recorded || null, asRecorded: residenceAsRecorded } : null,
       deathDisplay,
       deathYear: deathNorm && deathNorm.year != null ? deathNorm.year : null,
+      deathPlace,
+      deathCause: deathNorm ? deathNorm.cause : null,
+      deathStatusLabel: deathNorm ? deathNorm.statusLabel : null,
+      deathHasVariants: !!(deathNorm && deathNorm.hasVariants),
       militaryLossYear,
-      military: raw.military || null,
-      attributes: raw.attributes || null,
+      military: buildMilitary(raw.military),
+      attributeConflicts: buildAttributeConflicts(raw.attributes),
       notes: raw.notes || [],
       sourceIds: raw.evidence_source_ids || []
     });

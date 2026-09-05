@@ -4,58 +4,58 @@
     {
       "id": "tyuremka",
       "names": [
-        {"name": "Tyuremka", "native": "Тюремка", "type": "historical"},
-        {"name": "Krasnye Gorki", "native": "Красные Горки", "type": "modern", "from_year": 1962}
+        {"name": "Тюремка", "native": "Тюремка", "type": "historical"},
+        {"name": "Красные Горки", "native": "Красные Горки", "type": "modern", "from_year": 1962}
       ],
       "settlement_type": "village_or_pochinok",
       "founded_year": 1827,
       "parent_place_ids": ["osinsky_district", "perm_region"],
       "historical_administration": [
-        {"year": 1834, "description": "Perm appanage estate, Ustinovsky appanage administration"},
-        {"year": 1850, "description": "Perm appanage estate, Ustinovsky appanage administration"},
-        {"year": 1858, "description": "Perm appanage estate, Ustinovsky appanage administration"},
-        {"year": 1904, "description": "Perm Governorate, Osinsky Uyezd, Ustinovskaya Volost, Paklinskoye rural society"},
-        {"year": 1981, "description": "Ustinovsky village council, Osinsky District"}
+        {"year": 1834, "description": "Пермское удельное имение, Устиновское удельное управление"},
+        {"year": 1850, "description": "Пермское удельное имение, Устиновское удельное управление"},
+        {"year": 1858, "description": "Пермское удельное имение, Устиновское удельное управление"},
+        {"year": 1904, "description": "Пермская губерния, Осинский уезд, Устиновская волость, Паклинское сельское общество"},
+        {"year": 1981, "description": "Устиновский сельсовет, Осинский район"}
       ],
       "parish_history": [
-        {"period": "19th–early 20th century", "parish": "Ascension Church, Ustinovskoye (Ustinovo)", "status": "supported_by_locality_and_parish_finding_aids"}
+        {"period": "XIX — начало XX века", "parish": "Вознесенская церковь села Устиновского (Устиново)", "status": "supported_by_locality_and_parish_finding_aids"}
       ]
     },
-    {"id": "shchelkanovka", "names": [{"name": "Shchelkanovka", "native": "Щелкановка"}], "parent_place_ids": ["osinsky_district", "perm_region"]},
+    {"id": "shchelkanovka", "names": [{"name": "Щелкановка", "native": "Щелкановка"}], "parent_place_ids": ["osinsky_district", "perm_region"]},
     {
       "id": "chyormoz",
-      "names": [{"name": "Chyormoz", "native": "Чёрмоз"}, {"name": "Chermoz", "native": "Чермоз", "type": "search_variant"}],
+      "names": [{"name": "Чёрмоз", "native": "Чёрмоз"}, {"name": "Чермоз", "native": "Чермоз", "type": "search_variant"}],
       "settlement_type": "city",
       "parent_place_ids": ["ilyinsky_district", "perm_region"],
-      "historical_notes": ["Developed around the Chyormoz metallurgical works, founded in 1763 and once one of the major Ural ironworks.", "The old plant and part of the city were removed or inundated during creation of the Kama Reservoir; the plant closed in 1956.", "Before 1917, events for residents of the factory settlement were recorded in the Nativity of the Mother of God parish registers; surrounding villages must be matched to their own parish boundaries. Factory personnel files may provide occupations and household details."]
+      "historical_notes": ["Город развивался вокруг Чёрмозского металлургического завода, основанного в 1763 году и некогда входившего в число крупных уральских железоделательных предприятий.", "Старый завод и часть города были снесены или затоплены при создании Камского водохранилища; завод закрыли в 1956 году.", "До 1917 года события жителей заводского посёлка фиксировались в метрических книгах Рождество-Богородицкой церкви; для окрестных деревень необходимо учитывать границы их приходов. Кадровые документы завода могут содержать сведения о профессиях и составе семей."]
     },
     {
       "id": "syrchiki",
       "names": [
-        {"name": "Syrchiki", "native": "Сырчики", "type": "modern"},
-        {"name": "Nizhnyaya Syrchikova", "native": "Сырчикова Нижняя", "type": "historical"},
-        {"name": "Verkhnyaya Syrchikova", "native": "Сырчикова Верхняя", "type": "historical"}
+        {"name": "Сырчики", "native": "Сырчики", "type": "modern"},
+        {"name": "Сырчикова Нижняя", "native": "Сырчикова Нижняя", "type": "historical"},
+        {"name": "Сырчикова Верхняя", "native": "Сырчикова Верхняя", "type": "historical"}
       ],
       "settlement_type": "village",
       "parent_place_ids": ["ilyinsky_district", "perm_region"],
       "historical_administration": [
-        {"period": "late 19th–early 20th century", "description": "Ivanovskaya Volost, Solikamsky Uyezd, Perm Governorate"}
+        {"period": "конец XIX — начало XX века", "description": "Ивановская волость, Соликамский уезд, Пермская губерния"}
       ],
       "parish_history": [
-        {"period": "late 19th–early 20th century", "parish": "St John the Baptist Church, Ivanovskoye", "status": "probable_route_to_verify_in_clerical_or_metric_records"}
+        {"period": "конец XIX — начало XX века", "parish": "Иоанно-Предтеченская церковь села Ивановского", "status": "probable_route_to_verify_in_clerical_or_metric_records"}
       ],
-      "historical_notes": ["The locality was historically two small villages: Lower Syrchikova (10 households in 1869) and Upper Syrchikova (6 households in 1869).", "The name may derive from the Komi-Permyak word syrchik, meaning wagtail.", "Because Syrchiki lay near Ivanovskoye in Ivanovskaya Volost, the Ivanovskoye parish is the first search target; this parish assignment is not yet proven by a surviving parish list."]
+      "historical_notes": ["Исторически населённый пункт состоял из двух небольших деревень: Нижней Сырчиковой (10 дворов в 1869 году) и Верхней Сырчиковой (6 дворов в 1869 году).", "Название могло произойти от коми-пермяцкого слова «сырчик», означающего трясогузку.", "Поскольку Сырчики находились рядом с Ивановским в Ивановской волости, Ивановский приход считается первым направлением поиска; принадлежность к этому приходу пока не подтверждена сохранившимся приходским списком."]
     },
     {
       "id": "ivanovskoye_ilyinsky",
-      "names": [{"name": "Ivanovskoye", "native": "Ивановское"}],
+      "names": [{"name": "Ивановское", "native": "Ивановское"}],
       "settlement_type": "village_or_selo",
       "parent_place_ids": ["ilyinsky_district", "perm_region"],
-      "historical_administration": [{"period": "from 1861", "description": "Administrative center of Ivanovskaya Volost, Solikamsky Uyezd, Perm Governorate"}],
-      "historical_notes": ["The St John the Baptist Church was built and consecrated in 1851.", "Nearby villages include Syrchiki."]
+      "historical_administration": [{"period": "с 1861 года", "description": "Административный центр Ивановской волости Соликамского уезда Пермской губернии"}],
+      "historical_notes": ["Иоанно-Предтеченская церковь была построена и освящена в 1851 году.", "Среди соседних деревень указаны Сырчики."]
     },
-    {"id": "ilyinsky_district", "names": [{"name": "Ilyinsky District", "native": "Ильинский район"}], "parent_place_ids": ["perm_region"]},
-    {"id": "osinsky_district", "names": [{"name": "Osinsky District", "native": "Осинский район"}], "parent_place_ids": ["perm_region"]},
-    {"id": "perm_region", "names": [{"name": "Perm Region", "native": "Пермский край"}, {"name": "Molotov Region", "native": "Молотовская область", "type": "historical"}]}
+    {"id": "ilyinsky_district", "names": [{"name": "Ильинский район", "native": "Ильинский район"}], "parent_place_ids": ["perm_region"]},
+    {"id": "osinsky_district", "names": [{"name": "Осинский район", "native": "Осинский район"}], "parent_place_ids": ["perm_region"]},
+    {"id": "perm_region", "names": [{"name": "Пермский край", "native": "Пермский край"}, {"name": "Молотовская область", "native": "Молотовская область", "type": "historical"}]}
   ]
 }

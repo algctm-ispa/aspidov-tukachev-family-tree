@@ -7,11 +7,6 @@ function escapeHtml(str) {
     .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
-function humanizeCandidateRole(role) {
-  if (!role) return "";
-  return role.replace(/_/g, " ");
-}
-
 function tierBadge(tier) {
   return `<span class="tag tag-${tier}">${statusLabel(tier)}</span>`;
 }
@@ -40,6 +35,7 @@ function renderNameVariants(person) {
   const items = person.nameVariants.map(n => `
     <li>
       <span class="variant-name">${escapeHtml(n.native || n.display)}</span>
+      ${n.typeLabel ? `<span class="variant-type">${escapeHtml(n.typeLabel)}</span>` : ""}
       ${n.tier && n.tier !== "confirmed" ? tierBadge(n.tier) : ""}
     </li>`).join("");
   return `
@@ -49,21 +45,32 @@ function renderNameVariants(person) {
     </section>`;
 }
 
+// Documented conflicts (patronymic disagreements, alternative family
+// recollections) are shown side by side rather than silently resolved.
+function renderAttributeConflicts(person) {
+  if (!person.attributeConflicts || !person.attributeConflicts.length) return "";
+  const cards = person.attributeConflicts.map(c => `
+    <div class="conflict-card">
+      <div class="conflict-title">${escapeHtml(c.title)}${c.statusLabel ? ` <span class="tag tag-hypothesis">${escapeHtml(c.statusLabel)}</span>` : ""}</div>
+      ${c.lines.map(l => `<div class="conflict-line"><span class="conflict-label">${escapeHtml(l.label)}:</span> «${escapeHtml(l.text)}»</div>`).join("")}
+    </div>`).join("");
+  return `
+    <section class="dialog-section">
+      <h6>Противоречивые сведения</h6>
+      ${cards}
+    </section>`;
+}
+
 function renderMilitary(person) {
   const m = person.military;
-  if (!m) return "";
-  const rows = [
-    m.call_up_date ? ["Призван", `${escapeHtml(m.call_up_date)}${m.call_up_authority ? ` (${escapeHtml(m.call_up_authority)})` : ""}`] : null,
-    m.role_as_recorded ? ["Должность", escapeHtml(m.role_as_recorded)] : null,
-    m.status ? ["Судьба", escapeHtml(m.status === "missing_in_action" ? "пропал без вести" : m.status)] : null,
-    m.loss_date ? ["Дата потери", escapeHtml(m.loss_date)] : null
-  ].filter(Boolean);
+  if (!m || !m.rows.length) return "";
   return `
     <section class="dialog-section">
       <h6>Военная служба</h6>
       <dl class="kv-list">
-        ${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}
+        ${m.rows.map(([k, v]) => `<dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd>`).join("")}
       </dl>
+      ${m.statusLabel ? `<div class="military-status tag tag-hypothesis">${escapeHtml(m.statusLabel)}</div>` : ""}
     </section>`;
 }
 
@@ -72,11 +79,29 @@ function renderSources(person, familyData) {
   const items = person.sourceIds
     .map(id => familyData.sourcesById.get(id))
     .filter(Boolean)
-    .map(src => `
-      <li>
-        ${src.url ? `<a href="${escapeHtml(src.url)}" target="_blank" rel="noopener">${escapeHtml(src.title)}</a>` : escapeHtml(src.title)}
-        <span class="source-quality">${escapeHtml(src.source_quality || "")}</span>
-      </li>`).join("");
+    .map(src => {
+      const category = translate("source_category", src.category);
+      const quality = translate("source_quality", src.source_quality);
+      const extraLinks = (src.document_urls || [])
+        .filter(d => d.url)
+        .map(d => {
+          const typeLabel = translate("source_link_type", d.type);
+          return `<a class="source-link" href="${escapeHtml(d.url)}" target="_blank" rel="noopener">${escapeHtml(typeLabel || d.note || "Открыть источник")}</a>`;
+        }).join("");
+      return `
+        <li>
+          <div class="source-title">${escapeHtml(src.title)}</div>
+          <div class="source-tags">
+            ${category ? `<span class="tag tag-outline">${escapeHtml(category)}</span>` : ""}
+            ${quality ? `<span class="tag tag-outline">${escapeHtml(quality)}</span>` : ""}
+          </div>
+          ${(src.notes || []).map(n => `<p class="research-note">${escapeHtml(n)}</p>`).join("")}
+          <div class="source-links">
+            ${src.url ? `<a class="source-link" href="${escapeHtml(src.url)}" target="_blank" rel="noopener">Открыть источник</a>` : ""}
+            ${extraLinks}
+          </div>
+        </li>`;
+    }).join("");
   return `
     <section class="dialog-section">
       <h6>Источники</h6>
@@ -89,17 +114,25 @@ function renderPersonDetail(person, familyData, kinshipLabel, hasPhoto) {
   const newRelativeUrl = buildNewRelativeFormUrl();
 
   const dates = [];
-  if (person.birthDisplay) dates.push(`<div><span class="date-label">Родился(ась)</span> ${escapeHtml(person.birthDisplay)}${person.birthPlace ? `, ${escapeHtml(person.birthPlace)}` : ""}</div>`);
+  if (person.birthDisplay) {
+    dates.push(`<div><span class="date-label">Родился(ась)</span> ${escapeHtml(person.birthDisplay)}${person.birthPlace ? `, ${escapeHtml(person.birthPlace)}` : ""}${person.birthStatusLabel ? ` <span class="tag tag-outline">${escapeHtml(person.birthStatusLabel)}</span>` : ""}</div>`);
+  }
   if (person.living && person.birthDisplay) dates.push(`<p class="privacy-note">Показан только год рождения — из уважения к приватности.</p>`);
-  if (person.deathDisplay) dates.push(`<div><span class="date-label">Умер(ла)</span> ${escapeHtml(person.deathDisplay)}</div>`);
-  if (person.residence && person.residence.placeName) dates.push(`<div><span class="date-label">Проживал(а)</span> ${escapeHtml(person.residence.placeName)}</div>`);
+  if (person.deathDisplay) {
+    const variantNote = person.deathStatusLabel ? ` <span class="tag tag-hypothesis">${escapeHtml(person.deathStatusLabel)}</span>` : "";
+    dates.push(`<div><span class="date-label">Умер(ла)</span> ${escapeHtml(person.deathDisplay)}${person.deathPlace ? `, ${escapeHtml(person.deathPlace)}` : ""}${person.deathCause ? `, ${escapeHtml(person.deathCause)}` : ""}${variantNote}</div>`);
+  }
+  if (person.residence && person.residence.placeName) {
+    const asRecordedNote = person.residence.asRecorded ? ` <span class="text-muted">(в документе: «${escapeHtml(person.residence.asRecorded)}»)</span>` : "";
+    dates.push(`<div><span class="date-label">Проживал(а)</span> ${escapeHtml(person.residence.placeName)}${asRecordedNote}</div>`);
+  }
 
   const notesHtml = person.notes && person.notes.length
     ? `<section class="dialog-section"><h6>Заметки исследования</h6>${person.notes.map(n => `<p class="research-note">${escapeHtml(n)}</p>`).join("")}</section>`
     : "";
 
   const candidateHtml = person.candidateRole
-    ? `<p class="candidate-role">Предполагаемая роль в древе: ${escapeHtml(humanizeCandidateRole(person.candidateRole))}</p>`
+    ? `<p class="candidate-role">${escapeHtml(person.candidateRole)}</p>`
     : "";
 
   const photoHtml = hasPhoto
@@ -118,6 +151,7 @@ function renderPersonDetail(person, familyData, kinshipLabel, hasPhoto) {
     ${photoHtml}
     ${candidateHtml}
     <div class="dialog-dates">${dates.join("")}</div>
+    ${renderAttributeConflicts(person)}
     ${renderMilitary(person)}
     ${renderNameVariants(person)}
     ${notesHtml}

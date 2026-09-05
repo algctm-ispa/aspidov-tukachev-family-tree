@@ -1,0 +1,43 @@
+{
+  "locale": "ru-RU",
+  "rule": "На сайте разрешён только русскоязычный пользовательский текст.",
+  "content_files": [
+    "../../data/people.json",
+    "../../data/relationships.json",
+    "../../data/places.json",
+    "../../data/sources.json",
+    "../../data/hypotheses.json",
+    "./ui-labels-ru.json"
+  ],
+  "allowed_visible_fields": {
+    "people": ["names.display", "names.native", "notes", "birth.date", "birth.year", "birth.estimated_range", "birth.approximate", "birth.place_id", "birth.place_as_recorded", "death.date", "death.year", "death.date_variants", "death.approximate", "death.cause", "death.place_as_recorded", "residence.as_recorded", "military.call_up_date", "military.call_up_year", "military.call_up_authority", "military.call_up_place", "military.rank", "military.role_as_recorded", "military.unit", "military.loss_date", "military.war", "attributes.patronymic.document_text", "attributes.patronymic.probable_expansion", "attributes.alternative_family_recollection.value"],
+    "places": ["names.name", "names.native", "historical_administration.description", "parish_history.period", "parish_history.parish", "historical_notes"],
+    "sources": ["title", "repository", "archive_reference", "archive_references", "notes", "url", "document_urls.url", "document_urls.note"],
+    "hypotheses": ["claim", "supports", "conflicts", "unresolved"]
+  },
+  "technical_fields_never_visible": [
+    "id",
+    "*_id",
+    "*_ids",
+    "schema_version",
+    "type",
+    "status",
+    "sex",
+    "category",
+    "source_quality",
+    "candidate_role",
+    "loss_date_precision"
+  ],
+  "localization_rule": "Для каждого технического значения сначала искать русский перевод в ui-labels-ru.json. Если перевода нет, не показывать значение посетителю.",
+  "excluded_from_website": [
+    "research/",
+    "evidence/transcriptions/",
+    "старые промежуточные отчёты на английском языке"
+  ],
+  "allowed_non_russian_exceptions": [
+    "URL-адреса",
+    "невидимые идентификаторы в коде",
+    "HTML, CSS и JavaScript",
+    "названия внешних сервисов, например Familio"
+  ]
+}

@@ -73,7 +73,7 @@ function buildKinship(familyData, generations, sides, directAncestors) {
     } else {
       role = person.sex === "male" ? "брат" : "сестра";
     }
-    const tierSuffix = person.statusTier === "hypothesis" ? " · предположение" : person.statusTier === "unknown" ? " · не установлено" : "";
+    const tierSuffix = person.statusTier !== "confirmed" ? ` · ${statusLabel(person.statusTier)}` : "";
     kinship.set(id, `${sideLabel} · ${role}${tierSuffix}`);
   }
   return kinship;
