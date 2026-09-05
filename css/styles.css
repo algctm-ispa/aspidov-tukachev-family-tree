@@ -164,43 +164,81 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
   position: relative;
   border-top: 2px solid var(--color-divider); border-bottom: 2px solid var(--color-divider);
   padding: var(--space-6) 0;
-  height: min(85vh, 900px); min-height: 520px;
+  max-height: min(85vh, 1000px);
   overflow: auto;
   background: var(--color-bg);
 }
-.tree-inner { position: relative; }
-.tree-links-svg, .tree-cards { position: absolute; top: 0; left: 0; }
-.tree-links-svg { pointer-events: none; }
 .tree-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); font-size: 0.95rem; background: var(--color-bg); }
 
-.person-card {
-  position: absolute; display: flex; align-items: center; gap: var(--space-3);
-  padding: var(--space-2) var(--space-3);
-  background: var(--color-bg); cursor: pointer;
-  border: 1.5px solid var(--color-confirmed);
+.tree-grid { min-width: 900px; transform-origin: 0 0; }
+
+.tree-row-label {
+  margin: 0 0 var(--space-3); padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-divider); color: var(--color-text-muted);
 }
-.person-card.tier-hypothesis { border-color: var(--color-hypothesis); border-style: dashed; }
-.person-card.tier-unknown { border-color: var(--color-unknown); border-style: dotted; }
-.person-card:hover, .person-card:focus-visible { background: var(--color-surface); }
-.person-card.is-anchor { border-width: 2px; padding: var(--space-3); background: var(--color-accent-100); }
+.tree-row-columns { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: start; }
+.tree-side-label { margin: 0 0 var(--space-2); color: var(--color-accent); }
+.tree-side-boxes { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+.tree-box {
+  border: 1.5px solid var(--color-confirmed); background: var(--color-surface);
+  display: flex; align-items: stretch;
+}
+.tree-box.single { display: block; }
+.tree-box.hypothesis, .tree-box.tier-hypothesis { border-color: var(--color-hypothesis); border-style: dashed; background: var(--color-accent-100); }
+.tree-box.tier-unknown { border-color: var(--color-unknown); border-style: dotted; }
+.tree-box.empty {
+  border: 1px dashed var(--color-divider); background: none; color: var(--color-text-muted);
+  font-size: 13px; padding: var(--space-4); display: flex; align-items: center;
+}
+.tree-box-divider { width: 1px; background: var(--color-divider); flex: none; align-self: stretch; }
+
+.tree-person { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); cursor: pointer; }
+.tree-person:hover, .tree-person:focus-visible { background: rgba(32,30,29,0.05); }
 
 .person-photo {
-  flex: none; width: 44px; height: 44px; overflow: hidden;
-  background: var(--color-surface);
+  flex: none; overflow: hidden; background: var(--color-bg);
   display: flex; align-items: center; justify-content: center;
 }
 .person-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .person-photo-placeholder { font-family: var(--font-family); font-weight: 800; font-size: 16px; color: var(--color-text-muted); }
-.person-photo-lg { width: 64px; height: 76px; }
 
 .person-info { min-width: 0; }
 .person-name { font-size: 13.5px; font-weight: 700; line-height: 1.24; }
 .person-meta { font-size: 11px; color: var(--color-text-muted); margin-top: 2px; }
 
-.parent-link, .spouse-link { fill: none; stroke-width: 1.5px; }
-.tier-confirmed.parent-link, .tier-confirmed.spouse-link { stroke: var(--color-confirmed); opacity: 0.8; }
-.tier-hypothesis.parent-link, .tier-hypothesis.spouse-link { stroke: var(--color-hypothesis); stroke-dasharray: 6 4; opacity: 0.85; }
-.tier-unknown.parent-link, .tier-unknown.spouse-link { stroke: var(--color-unknown); stroke-dasharray: 2 4; opacity: 0.8; }
+.tree-connector { display: grid; grid-template-columns: 1fr 1fr; height: 28px; margin: var(--space-1) 0; }
+.tree-connector span { justify-self: center; width: 2px; height: 100%; background: var(--color-divider); }
+
+.tree-anchor-row { margin: var(--space-6) 0; }
+.tree-anchor-ribbon {
+  background: var(--color-accent); color: var(--color-bg);
+  padding: var(--space-2) var(--space-4); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+}
+.tree-anchor-box {
+  border: 2px solid var(--color-accent); background: var(--color-accent-100);
+  display: flex; align-items: stretch;
+}
+.tree-anchor-box .tree-person { padding: var(--space-4) var(--space-6); }
+.tree-anchor-box .person-name { font-family: var(--font-family); font-weight: 800; font-size: 19px; color: var(--color-accent); }
+
+.tree-siblings-row { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--color-divider); }
+.tree-siblings-row h6 { margin: 0 0 var(--space-3); }
+.tree-siblings-list { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.tree-box.small .tree-person { padding: var(--space-2) var(--space-4) var(--space-2) var(--space-2); }
+
+.tree-leads-row { margin-top: var(--space-8); padding-top: var(--space-4); border-top: 1px solid var(--color-divider); }
+.tree-leads-head { display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-3); }
+.tree-leads-head h6 { margin: 0; }
+.tree-leads-list { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.tree-lead {
+  border: 1px dashed var(--color-hypothesis); background: var(--color-accent-100);
+  padding: var(--space-3); min-width: 200px; cursor: pointer;
+}
+.tree-lead.tier-unknown { border-color: var(--color-unknown); background: var(--color-surface); }
+.tree-lead:hover, .tree-lead:focus-visible { background: var(--color-accent-200, var(--color-surface)); }
+.tree-lead-name { font-size: 13px; font-weight: 700; }
+.tree-lead-meta { font-size: 11px; color: var(--color-text-muted); margin-top: var(--space-1); }
 
 .unlinked-panel { margin-top: var(--space-4); padding: var(--space-4); background: var(--color-surface); border: 1px dashed var(--color-divider); }
 #unlinked-list { margin: var(--space-2) 0 0; padding-left: 1.2rem; font-size: 0.9rem; }
