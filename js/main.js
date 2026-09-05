@@ -30,7 +30,7 @@ async function main() {
     overlay.addEventListener("click", (e) => { if (e.target === overlay) closeDialog(); });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDialog(); });
 
-    for (const id of ["add-relative", "story-add", "gaps-cta", "contribute-add"]) {
+    for (const id of ["add-relative", "story-add", "contribute-add"]) {
       const el = document.getElementById(id);
       if (el) el.addEventListener("click", openNewRelative);
     }
@@ -49,7 +49,6 @@ async function main() {
 
     renderTree(familyData, openPerson, kinship, photoAvailability);
     renderChronicle(familyData);
-    renderGapStats(familyData);
     loading.style.display = "none";
   } catch (err) {
     console.error(err);
