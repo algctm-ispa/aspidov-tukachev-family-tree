@@ -21,25 +21,28 @@ function buildChronicleEvents(familyData) {
   const events = [];
 
   for (const person of familyData.people.values()) {
+    // Russian marks gender on the verb, so each line is built from the
+    // person's recorded sex rather than falling back on "родился(ась)".
+    const female = person.sex === "female";
     if (person.birthYear != null) {
       events.push({
         year: person.birthYear,
         tier: person.statusTier,
-        text: `Родился(ась) ${person.displayName}${person.birthPlace ? `, ${person.birthPlace}` : ""}`
+        text: `${female ? "Родилась" : "Родился"} ${person.displayName}${person.birthPlace ? `, ${person.birthPlace}` : ""}`
       });
     }
     if (person.deathYear != null) {
       events.push({
         year: person.deathYear,
         tier: person.statusTier,
-        text: `Не стало ${person.displayName}`
+        text: `${female ? "Умерла" : "Умер"} ${person.displayName}`
       });
     }
     if (person.militaryLossYear != null) {
       events.push({
         year: person.militaryLossYear,
         tier: person.statusTier,
-        text: `${person.displayName} пропал(а) без вести на службе`
+        text: `${person.displayName} ${female ? "пропала" : "пропал"} без вести на службе`
       });
     }
   }

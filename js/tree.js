@@ -16,14 +16,14 @@ const PAIR_GAP = 64;       // between the father's block and the mother's block
 const LEVEL_H = 172;       // vertical pitch between generations
 const CANVAS_PAD = 48;
 
-function genericGenerationLabel(gen) {
-  if (gen === 0) return "Владимир и Людмила";
-  if (gen === -1) return "Дети";
-  if (gen < -1) return "Внуки";
+// Short label for the chip that sits above every card. Kept compact on purpose:
+// the chip is pinned to the card's top left corner and must not run past it.
+function generationChipLabel(gen) {
+  if (gen <= -1) return "Дети";
+  if (gen === 0) return "Их поколение";
   if (gen === 1) return "Родители";
   if (gen === 2) return "Дедушки и бабушки";
-  const prefix = "пра".repeat(gen - 2);
-  const label = `${prefix}дедушки и ${prefix}бабушки`;
+  const label = "пра".repeat(gen - 2) + "деды";
   return label.charAt(0).toUpperCase() + label.slice(1);
 }
 
@@ -177,15 +177,13 @@ function placeUnit(unit, cx, nodes) {
 // Cards
 // ---------------------------------------------------------------------------
 
+// Dates live in the dialog now, so the card carries only the relation. That
+// keeps every card the same shape whether or not a birth year is known.
 function cardMeta(person, kinshipLabel) {
-  const parts = [];
-  if (person.birthDisplay && person.deathDisplay) parts.push(`р. ${person.birthDisplay}, ум. ${person.deathDisplay}`);
-  else if (person.birthDisplay) parts.push(`р. ${person.birthDisplay}`);
-  else if (person.deathDisplay) parts.push(`ум. ${person.deathDisplay}`);
+  void person;
   const segments = (kinshipLabel || "").split(" · ");
   const role = segments.length > 1 ? segments.slice(1).join(" · ") : segments[0];
-  if (role) parts.push(role);
-  return parts.join(" · ") || " ";
+  return role || " ";
 }
 
 function cardHtml(person, kinship, photoAvailability, extraClass) {
@@ -246,7 +244,9 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
   const gens = nodes.map(n => n.gen);
   const maxGen = Math.max(...gens);
   const minGen = Math.min(...gens);
-  const yOf = gen => (maxGen - gen) * LEVEL_H + CANVAS_PAD;
+  // Mirrored vertically: the couple and their children sit at the top and the
+  // tree grows downwards into the older generations.
+  const yOf = gen => (gen - minGen) * LEVEL_H + CANVAS_PAD;
 
   const minX = Math.min(...nodes.map(n => n.x)) - CANVAS_PAD;
   const maxX = Math.max(...nodes.map(n => n.x + CARD_W)) + CANVAS_PAD;
@@ -260,27 +260,30 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
     for (const member of u.members) {
       if (!member.parentUnit) continue;
       const p = member.parentUnit;
-      const parentBottom = yOf(p.gen) + CARD_H;
-      const childTop = yOf(u.gen);
-      const barY = parentBottom + (childTop - parentBottom) / 2;
+      // The parent couple sits below its children, so the drop leaves the top
+      // of the parent box and the stubs meet the bottom of each child card.
+      const parentEdge = yOf(p.gen);
+      const childEdge = yOf(u.gen) + CARD_H;
+      const barY = (parentEdge + childEdge) / 2;
       const xs = (p.childXs && p.childXs.length ? p.childXs : [member.x + CARD_W / 2]).map(x => x + shift);
       const pcx = p.cx + shift;
-      paths.push(`M ${pcx} ${parentBottom} L ${pcx} ${barY}`);
+      paths.push(`M ${pcx} ${parentEdge} L ${pcx} ${barY}`);
       paths.push(`M ${Math.min(...xs, pcx)} ${barY} L ${Math.max(...xs, pcx)} ${barY}`);
-      for (const x of xs) paths.push(`M ${x} ${barY} L ${x} ${childTop}`);
+      for (const x of xs) paths.push(`M ${x} ${barY} L ${x} ${childEdge}`);
     }
     u.parents.forEach(collect);
   })(root);
 
   if (children.length) {
-    const parentBottom = yOf(root.gen) + CARD_H;
-    const childTop = yOf(childY);
-    const barY = parentBottom + (childTop - parentBottom) / 2;
+    // The children's row is above the couple after the mirror.
+    const parentEdge = yOf(root.gen);
+    const childEdge = yOf(childY) + CARD_H;
+    const barY = (parentEdge + childEdge) / 2;
     const xs = root.childXs.map(x => x + shift);
     const pcx = root.cx + shift;
-    paths.push(`M ${pcx} ${parentBottom} L ${pcx} ${barY}`);
+    paths.push(`M ${pcx} ${parentEdge} L ${pcx} ${barY}`);
     paths.push(`M ${Math.min(...xs, pcx)} ${barY} L ${Math.max(...xs, pcx)} ${barY}`);
-    for (const x of xs) paths.push(`M ${x} ${barY} L ${x} ${childTop}`);
+    for (const x of xs) paths.push(`M ${x} ${barY} L ${x} ${childEdge}`);
   }
 
   const svg = `<svg class="tree-links" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" aria-hidden="true">
@@ -296,20 +299,21 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
     u.parents.forEach(collectGroups);
   })(root);
 
-  const anchorFrame = `<div class="tree-couple-frame is-anchor" style="left:${root.boxLeft + shift}px;top:${yOf(root.gen)}px;width:${root.boxW}px;height:${CARD_H}px">
-      <span class="tree-anchor-ribbon">Рубиновая свадьба · 40 лет вместе</span>
-    </div>`;
+  // No ribbon on the anchor frame: the mirrored tree runs its connector down
+  // from the couple's box, and a ribbon there would sit across it. The ruby
+  // frame, the tinted fill and the chip already mark the pair.
+  const anchorFrame = `<div class="tree-couple-frame is-anchor" style="left:${root.boxLeft + shift}px;top:${yOf(root.gen)}px;width:${root.boxW}px;height:${CARD_H}px"></div>`;
 
   const cards = nodes.map(n => {
     const person = familyData.people.get(n.id);
     const extra = SITE_CONFIG.anchorPersonIds.includes(n.id) ? "is-anchor" : (n.role === "sibling" || n.role === "child" ? "is-collateral" : "");
-    return `<div class="tree-node" style="left:${n.x + shift}px;top:${yOf(n.gen)}px">${cardHtml(person, kinship, photoAvailability, extra)}</div>`;
+    // Every card carries its own generation chip, pinned outside its top left
+    // corner, so the generation is readable wherever you are in the tree.
+    const chip = `<span class="tree-chip">${escapeHtml(generationChipLabel(n.gen))}</span>`;
+    return `<div class="tree-node" style="left:${n.x + shift}px;top:${yOf(n.gen)}px">${chip}${cardHtml(person, kinship, photoAvailability, extra)}</div>`;
   }).join("");
 
-  const levels = [...new Set(nodes.map(n => n.gen))].sort((a, b) => b - a);
-  const labels = levels.filter(g => g !== 0).map(g =>
-    `<div class="tree-level-label" style="top:${yOf(g) - 30}px;left:${root.cx + shift}px"><span>${escapeHtml(genericGenerationLabel(g))}</span></div>`
-  ).join("");
+  const labels = "";
 
   const container = document.getElementById("tree-grid");
   container.style.width = width + "px";

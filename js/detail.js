@@ -115,16 +115,16 @@ function renderPersonDetail(person, familyData, kinshipLabel, hasPhoto) {
 
   const dates = [];
   if (person.birthDisplay) {
-    dates.push(`<div><span class="date-label">Родился(ась)</span> ${escapeHtml(person.birthDisplay)}${person.birthPlace ? `, ${escapeHtml(person.birthPlace)}` : ""}${person.birthStatusLabel ? ` <span class="tag tag-outline">${escapeHtml(person.birthStatusLabel)}</span>` : ""}</div>`);
+    dates.push(`<div><span class="date-label">Дата рождения</span> ${escapeHtml(person.birthDisplay)}${person.birthPlace ? `, ${escapeHtml(person.birthPlace)}` : ""}${person.birthStatusLabel ? ` <span class="tag tag-outline">${escapeHtml(person.birthStatusLabel)}</span>` : ""}</div>`);
   }
   if (person.living && person.birthDisplay) dates.push(`<p class="privacy-note">Показан только год рождения, из уважения к приватности.</p>`);
   if (person.deathDisplay) {
     const variantNote = person.deathStatusLabel ? ` <span class="tag tag-hypothesis">${escapeHtml(person.deathStatusLabel)}</span>` : "";
-    dates.push(`<div><span class="date-label">Умер(ла)</span> ${escapeHtml(person.deathDisplay)}${person.deathPlace ? `, ${escapeHtml(person.deathPlace)}` : ""}${person.deathCause ? `, ${escapeHtml(person.deathCause)}` : ""}${variantNote}</div>`);
+    dates.push(`<div><span class="date-label">Дата смерти</span> ${escapeHtml(person.deathDisplay)}${person.deathPlace ? `, ${escapeHtml(person.deathPlace)}` : ""}${person.deathCause ? `, ${escapeHtml(person.deathCause)}` : ""}${variantNote}</div>`);
   }
   if (person.residence && person.residence.placeName) {
     const asRecordedNote = person.residence.asRecorded ? ` <span class="text-muted">(в документе: «${escapeHtml(person.residence.asRecorded)}»)</span>` : "";
-    dates.push(`<div><span class="date-label">Проживал(а)</span> ${escapeHtml(person.residence.placeName)}${asRecordedNote}</div>`);
+    dates.push(`<div><span class="date-label">Место жительства</span> ${escapeHtml(person.residence.placeName)}${asRecordedNote}</div>`);
   }
 
   for (const move of person.moves || []) {
@@ -155,19 +155,23 @@ function renderPersonDetail(person, familyData, kinshipLabel, hasPhoto) {
       <button class="btn btn-secondary btn-icon dialog-close" type="button" aria-label="Закрыть">×</button>
     </div>
     <div class="hr"></div>
-    ${photoHtml}
-    ${candidateHtml}
-    <div class="dialog-dates">${dates.join("")}</div>
-    ${renderAttributeConflicts(person)}
-    ${renderMilitary(person)}
-    ${renderNameVariants(person)}
-    ${notesHtml}
-    ${renderSources(person, familyData)}
-    <div class="dialog-actions">
-      <a class="btn btn-primary btn-block" href="${escapeHtml(formUrl || "#")}" target="_blank" rel="noopener">Изменить данные или добавить фото</a>
-      <a class="btn btn-secondary btn-block" href="${escapeHtml(newRelativeUrl || "#")}" target="_blank" rel="noopener">Добавить нового родственника</a>
+    <div class="dialog-layout${photoHtml ? "" : " is-textonly"}">
+      ${photoHtml}
+      <div class="dialog-main">
+      ${candidateHtml}
+      <div class="dialog-dates">${dates.join("")}</div>
+        ${renderAttributeConflicts(person)}
+        ${renderMilitary(person)}
+        ${renderNameVariants(person)}
+        ${notesHtml}
+        ${renderSources(person, familyData)}
+        <div class="dialog-actions">
+          <a class="btn btn-primary btn-block" href="${escapeHtml(formUrl || "#")}" target="_blank" rel="noopener">Изменить данные или добавить фото</a>
+          <a class="btn btn-secondary btn-block" href="${escapeHtml(newRelativeUrl || "#")}" target="_blank" rel="noopener">Добавить нового родственника</a>
+        </div>
+        <div class="text-muted dialog-footnote">Форма откроется в новой вкладке и уже будет подписана нужным человеком.</div>
+      </div>
     </div>
-    <div class="text-muted dialog-footnote">Форма откроется в новой вкладке и уже будет подписана нужным человеком.</div>
   `;
 }
 
