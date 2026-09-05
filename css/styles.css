@@ -170,8 +170,7 @@ html, body {
 .node.tier-unknown rect { stroke: var(--line-unknown); stroke-dasharray: 2 3; }
 
 .node text { font-family: var(--font-body); pointer-events: none; text-anchor: middle; }
-.node-name { font-size: 12.5px; font-weight: 700; fill: var(--ink); }
-.node-native { font-size: 11px; fill: var(--ink-soft); }
+.node-name { font-size: 13px; font-weight: 700; fill: var(--ink); }
 .node-dates { font-size: 10.5px; fill: var(--gray); }
 
 .node:hover rect { fill: var(--cream-dark); }
@@ -226,8 +225,7 @@ html, body {
   font-size: 1.2rem; cursor: pointer;
 }
 
-.detail-header h2 { font-family: var(--font-display); margin: 0.25rem 0 0.1rem; font-size: 1.4rem; }
-.detail-native { color: var(--ink-soft); margin: 0 0 0.5rem; font-size: 0.95rem; }
+.detail-header h2 { font-family: var(--font-display); margin: 0.25rem 0 0.5rem; font-size: 1.4rem; }
 
 .badge {
   display: inline-block;
@@ -253,7 +251,6 @@ html, body {
 
 .variant-list, .source-list { list-style: none; margin: 0; padding: 0; font-size: 0.88rem; }
 .variant-list li, .source-list li { margin-bottom: 0.5rem; display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: baseline; }
-.variant-native { color: var(--ink-soft); }
 .source-quality { font-size: 0.72rem; color: var(--gray); }
 .source-list a { color: var(--ruby-dark); }
 

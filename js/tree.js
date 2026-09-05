@@ -103,19 +103,13 @@ function renderTree(familyData, onPersonClick) {
 
   nodeGroups.append("text")
     .attr("class", "node-name")
-    .attr("y", -nodeH / 2 + 22)
+    .attr("y", -4)
     .text(d => d.person.displayName)
     .each(function (d) { fitText(this, nodeW - 16); });
 
   nodeGroups.append("text")
-    .attr("class", "node-native")
-    .attr("y", -nodeH / 2 + 38)
-    .text(d => d.person.nativeName)
-    .each(function (d) { fitText(this, nodeW - 16); });
-
-  nodeGroups.append("text")
     .attr("class", "node-dates")
-    .attr("y", nodeH / 2 - 12)
+    .attr("y", nodeH / 2 - 14)
     .text(d => {
       const b = d.person.birthDisplay || "?";
       const dth = d.person.deathDisplay ? `— ${d.person.deathDisplay}` : (d.person.living ? "" : "");
@@ -178,7 +172,7 @@ function renderUnlinked(unlinked, familyData) {
     const person = familyData.people.get(id);
     if (!person) continue;
     const li = document.createElement("li");
-    li.textContent = `${person.displayName}${person.nativeName ? ` (${person.nativeName})` : ""}`;
+    li.textContent = person.displayName;
     list.appendChild(li);
   }
 }

@@ -137,8 +137,7 @@ async function loadFamilyData() {
     people.set(raw.id, {
       id: raw.id,
       sex: raw.sex || null,
-      displayName: primaryName.display,
-      nativeName: primaryName.native || "",
+      displayName: primaryName.native || primaryName.display,
       nameVariants,
       identityStatus: raw.identity_status || null,
       statusTier: tier,

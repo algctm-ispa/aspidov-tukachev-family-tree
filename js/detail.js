@@ -24,7 +24,7 @@ function tierBadge(tier) {
 function buildPersonFormUrl(person) {
   const cfg = SITE_CONFIG.correctionForm;
   if (!cfg.ready || !cfg.baseUrl || !cfg.personEntryId) return null;
-  const label = `${person.displayName} (${person.nativeName || ""}) — id: ${person.id}`;
+  const label = `${person.displayName} — id: ${person.id}`;
   const url = new URL(cfg.baseUrl);
   url.searchParams.set("usp", "pp_url");
   url.searchParams.set(cfg.personEntryId, label);
@@ -35,8 +35,7 @@ function renderNameVariants(person) {
   if (!person.nameVariants || person.nameVariants.length < 2) return "";
   const items = person.nameVariants.map(n => `
     <li>
-      <span class="variant-name">${escapeHtml(n.display)}</span>
-      ${n.native ? `<span class="variant-native">${escapeHtml(n.native)}</span>` : ""}
+      <span class="variant-name">${escapeHtml(n.native || n.display)}</span>
       ${n.tier && n.tier !== "confirmed" ? tierBadge(n.tier) : ""}
     </li>`).join("");
   return `
@@ -104,7 +103,6 @@ function renderPersonDetail(person, familyData) {
   return `
     <div class="detail-header">
       <h2>${escapeHtml(person.displayName)}</h2>
-      ${person.nativeName ? `<p class="detail-native">${escapeHtml(person.nativeName)}</p>` : ""}
       ${tierBadge(person.statusTier)}
     </div>
     ${candidateHtml}
