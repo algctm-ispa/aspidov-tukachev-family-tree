@@ -164,21 +164,47 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
   position: relative;
   border-top: 2px solid var(--color-divider); border-bottom: 2px solid var(--color-divider);
   padding: var(--space-6) 0;
-  max-height: min(85vh, 1000px);
-  overflow: auto;
+  min-height: 220px;
+  /* Horizontal only: the tree grows sideways as generations widen, while its
+     height grows with the page instead of living in a fixed-height window. */
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
   background: var(--color-bg);
+  cursor: grab;
 }
+.tree-canvas-wrap.is-panning { cursor: grabbing; user-select: none; }
+.tree-canvas-wrap.is-panning .tree-person,
+.tree-canvas-wrap.is-panning .tree-lead { cursor: grabbing; }
+
+/* Sizer box: JS sets its width/height to the zoomed size of .tree-grid so the
+   scroll extents actually follow the zoom (a CSS transform alone does not). */
+.tree-canvas { position: relative; min-width: 100%; }
+.tree-hint { font-size: 12px; color: var(--color-text-muted); margin: var(--space-2) 0 0; }
 .tree-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); font-size: 0.95rem; background: var(--color-bg); }
 
-.tree-grid { min-width: 900px; transform-origin: 0 0; }
+/* --tree-col-v / --tree-col-l / --tree-width are measured and set by tree.js
+   so every generation row shares the same two column widths. */
+.tree-grid {
+  --tree-col-v: max-content;
+  --tree-col-l: max-content;
+  width: var(--tree-width, max-content);
+  transform-origin: 0 0;
+}
 
 .tree-row-label {
   margin: 0 0 var(--space-3); padding-bottom: var(--space-2);
   border-bottom: 1px solid var(--color-divider); color: var(--color-text-muted);
 }
-.tree-row-columns { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: start; }
+/* Keeps the generation name readable while the canvas is scrolled sideways. */
+.tree-row-label > span {
+  position: sticky; left: 0; display: inline-block;
+  background: var(--color-bg); padding-right: var(--space-3);
+}
+.tree-row-columns { display: grid; grid-template-columns: var(--tree-col-v) var(--tree-col-l); gap: var(--space-6); align-items: start; }
 .tree-side-label { margin: 0 0 var(--space-2); color: var(--color-accent); }
-.tree-side-boxes { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.tree-side-boxes { display: flex; flex-wrap: nowrap; gap: var(--space-3); align-items: stretch; }
+.tree-side-boxes > * { flex: none; }
 
 .tree-box {
   border: 1.5px solid var(--color-confirmed); background: var(--color-surface);
@@ -207,10 +233,11 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 .person-name { font-size: 13.5px; font-weight: 700; line-height: 1.24; }
 .person-meta { font-size: 11px; color: var(--color-text-muted); margin-top: 2px; }
 
-.tree-connector { display: grid; grid-template-columns: 1fr 1fr; height: 28px; margin: var(--space-1) 0; }
+.tree-connector { display: grid; grid-template-columns: var(--tree-col-v) var(--tree-col-l); gap: var(--space-6); height: 28px; margin: var(--space-1) 0; }
 .tree-connector span { justify-self: center; width: 2px; height: 100%; background: var(--color-divider); }
 
-.tree-anchor-row { margin: var(--space-6) 0; }
+.tree-anchor-row { margin: var(--space-6) 0; display: flex; justify-content: center; }
+.tree-anchor-inner { width: max-content; max-width: 100%; }
 .tree-anchor-ribbon {
   background: var(--color-accent); color: var(--color-bg);
   padding: var(--space-2) var(--space-4); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;

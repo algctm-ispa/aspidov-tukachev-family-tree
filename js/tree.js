@@ -110,7 +110,7 @@ function renderGenerationRow(gen, sideData, familyData, kinship, photoAvailabili
 
   return `
     <div class="tree-row">
-      <h6 class="tree-row-label">${escapeHtml(genericGenerationLabel(gen))}</h6>
+      <h6 class="tree-row-label"><span>${escapeHtml(genericGenerationLabel(gen))}</span></h6>
       <div class="tree-row-columns">
         ${side("Линия Владимира", vladBoxes)}
         ${side("Линия Людмилы", lyudBoxes)}
@@ -123,9 +123,11 @@ function anchorRowHtml(familyData, kinship, photoAvailability) {
   const ids = SITE_CONFIG.anchorPersonIds.filter(id => familyData.people.has(id));
   return `
     <div class="tree-anchor-row">
-      <div class="tree-anchor-ribbon"><span>Рубиновая свадьба · 40 лет</span></div>
-      <div class="tree-anchor-box">
-        ${ids.map(id => personRowHtml(familyData.people.get(id), kinship, photoAvailability, 64)).join(`<div class="tree-box-divider"></div>`)}
+      <div class="tree-anchor-inner">
+        <div class="tree-anchor-ribbon"><span>Рубиновая свадьба · 40 лет</span></div>
+        <div class="tree-anchor-box">
+          ${ids.map(id => personRowHtml(familyData.people.get(id), kinship, photoAvailability, 64)).join(`<div class="tree-box-divider"></div>`)}
+        </div>
       </div>
     </div>`;
 }
@@ -199,11 +201,7 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
     if (person) onPersonClick(person);
   };
 
-  let zoom = 1;
-  const applyZoom = () => { container.style.transform = `scale(${zoom})`; container.style.transformOrigin = "0 0"; };
-  document.getElementById("zoom-in").onclick = () => { zoom = Math.min(1.5, zoom + 0.15); applyZoom(); };
-  document.getElementById("zoom-out").onclick = () => { zoom = Math.max(0.5, zoom - 0.15); applyZoom(); };
-  document.getElementById("zoom-reset").onclick = () => { zoom = 1; applyZoom(); };
+  setupTreeCanvas(container);
 
   renderUnlinked(unlinked, familyData, onPersonClick, kinship);
 }
@@ -220,4 +218,132 @@ function renderUnlinked(unlinked, familyData, onPersonClick, kinship) {
     const person = familyData.people.get(el.dataset.id);
     if (person) onPersonClick(person);
   };
+}
+
+
+// ---------------------------------------------------------------------------
+// Canvas sizing, zoom and pan.
+//
+// The tree is meant to keep growing sideways as Codex adds relatives, so each
+// generation row lays its two sides out on a single line (no wrapping) and the
+// whole canvas scrolls horizontally. Vertically it just grows with the page.
+//
+// Column widths are measured once from the widest generation row and then
+// pinned as CSS variables, so every row (and the connector lines between rows)
+// shares the same "Линия Владимира" / "Линия Людмилы" split no matter how many
+// people land in any single generation. Nothing here knows any person by name.
+// ---------------------------------------------------------------------------
+
+const TREE_COL_MIN = 420;   // px floor per side column, keeps a sparse tree from looking cramped
+const TREE_COL_GAP = 24;    // must match --space-6, the gap in .tree-row-columns
+const TREE_ZOOM_MIN = 0.4;
+const TREE_ZOOM_MAX = 1.6;
+const TREE_ZOOM_STEP = 0.15;
+const TREE_DRAG_THRESHOLD = 5; // px before a mouse-down counts as a pan, not a click
+
+function setupTreeCanvas(grid) {
+  const wrap = document.getElementById("tree-canvas-wrap");
+  const canvas = document.getElementById("tree-canvas");
+  if (!wrap || !canvas) return;
+
+  let zoom = 1;
+  let naturalWidth = 0;
+  let naturalHeight = 0;
+
+  function applyZoom() {
+    grid.style.transform = `scale(${zoom})`;
+    // The sizer carries the *layout* size; a transform alone leaves the scroll
+    // extents at 100%, which is why zooming in used to hide content.
+    canvas.style.width = Math.round(naturalWidth * zoom) + "px";
+    canvas.style.height = Math.round(naturalHeight * zoom) + "px";
+  }
+
+  function measure() {
+    grid.style.transform = "none";
+    grid.style.removeProperty("--tree-width");
+    grid.style.setProperty("--tree-col-v", "max-content");
+    grid.style.setProperty("--tree-col-l", "max-content");
+
+    let vlad = 0;
+    let lyud = 0;
+    for (const row of grid.querySelectorAll(".tree-row-columns")) {
+      const sides = row.children;
+      if (sides[0]) vlad = Math.max(vlad, sides[0].getBoundingClientRect().width);
+      if (sides[1]) lyud = Math.max(lyud, sides[1].getBoundingClientRect().width);
+    }
+    // Both sides get the same width, so the two lines stay a clean mirrored
+    // split and the anchor couple lands exactly on the seam between them —
+    // whichever side happens to be the crowded one as the data grows.
+    const col = Math.max(Math.ceil(vlad), Math.ceil(lyud), TREE_COL_MIN);
+
+    grid.style.setProperty("--tree-col-v", col + "px");
+    grid.style.setProperty("--tree-col-l", col + "px");
+    // Pinning the total width also gives the siblings / "Ранние следы" rows a
+    // sane width to wrap inside, instead of stretching the canvas arbitrarily.
+    grid.style.setProperty("--tree-width", (col * 2 + TREE_COL_GAP) + "px");
+
+    naturalWidth = grid.offsetWidth;
+    naturalHeight = grid.offsetHeight;
+    applyZoom();
+  }
+
+  function setZoom(next) {
+    const previous = zoom;
+    zoom = Math.min(TREE_ZOOM_MAX, Math.max(TREE_ZOOM_MIN, Math.round(next * 100) / 100));
+    if (zoom === previous) return;
+    const anchor = wrap.scrollLeft + wrap.clientWidth / 2;
+    applyZoom();
+    wrap.scrollLeft = Math.max(0, anchor * (zoom / previous) - wrap.clientWidth / 2);
+  }
+
+  const zoomIn = document.getElementById("zoom-in");
+  const zoomOut = document.getElementById("zoom-out");
+  const zoomReset = document.getElementById("zoom-reset");
+  if (zoomIn) zoomIn.onclick = () => setZoom(zoom + TREE_ZOOM_STEP);
+  if (zoomOut) zoomOut.onclick = () => setZoom(zoom - TREE_ZOOM_STEP);
+  if (zoomReset) zoomReset.onclick = () => { setZoom(1); wrap.scrollLeft = 0; };
+
+  // Drag to pan. Mouse only — touch already pans natively, and hijacking it
+  // would fight the browser's own scrolling.
+  let drag = null;
+  let swallowClick = false;
+
+  wrap.addEventListener("pointerdown", (e) => {
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
+    drag = { x: e.clientX, y: e.clientY, left: wrap.scrollLeft, top: window.scrollY, moved: false };
+  });
+
+  window.addEventListener("pointermove", (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x;
+    const dy = e.clientY - drag.y;
+    if (!drag.moved && Math.hypot(dx, dy) < TREE_DRAG_THRESHOLD) return;
+    if (!drag.moved) { drag.moved = true; wrap.classList.add("is-panning"); }
+    e.preventDefault();
+    wrap.scrollLeft = drag.left - dx;
+    window.scrollTo(0, Math.max(0, drag.top - dy));
+  });
+
+  const endDrag = () => {
+    if (!drag) return;
+    swallowClick = drag.moved;
+    drag = null;
+    wrap.classList.remove("is-panning");
+  };
+  window.addEventListener("pointerup", endDrag);
+  window.addEventListener("pointercancel", endDrag);
+
+  // Capture phase: stops a pan from also opening the dialog of whatever card
+  // happened to be under the cursor when the drag started.
+  wrap.addEventListener("click", (e) => {
+    if (!swallowClick) return;
+    swallowClick = false;
+    e.stopPropagation();
+    e.preventDefault();
+  }, true);
+
+  measure();
+  // Archivo loads as a webfont; re-measure once it lands so the pinned column
+  // widths match the final text metrics.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
 }
