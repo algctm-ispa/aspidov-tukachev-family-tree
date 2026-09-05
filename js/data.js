@@ -133,6 +133,7 @@ async function loadFamilyData() {
 
     const birthPlace = raw.birth && raw.birth.place_id ? buildPlaceLabel(raw.birth.place_id, placesById) : null;
     const residencePlace = raw.residence && raw.residence.place_id ? buildPlaceLabel(raw.residence.place_id, placesById) : null;
+    const militaryLossYear = hasMilitaryLoss ? parseInt(raw.military.loss_date.slice(0, 4), 10) : null;
 
     people.set(raw.id, {
       id: raw.id,
@@ -144,9 +145,12 @@ async function loadFamilyData() {
       candidateRole: raw.candidate_role || null,
       living,
       birthDisplay,
+      birthYear: birthNorm && birthNorm.year != null ? birthNorm.year : null,
       birthPlace,
       residence: raw.residence ? { placeName: residencePlace, asRecorded: raw.residence.as_recorded || null } : null,
       deathDisplay,
+      deathYear: deathNorm && deathNorm.year != null ? deathNorm.year : null,
+      militaryLossYear,
       military: raw.military || null,
       attributes: raw.attributes || null,
       notes: raw.notes || [],

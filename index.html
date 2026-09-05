@@ -4,66 +4,199 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Наше родословное древо — 40 лет вместе</title>
+<title>Родословное древо Аспидовых — Тукачёвых · 40 лет вместе</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<header class="hero">
-  <div class="hero-ornament" aria-hidden="true">♦</div>
-  <p class="hero-eyebrow">Рубиновая свадьба</p>
-  <h1 class="hero-title">Владимир и Людмила</h1>
-  <p class="hero-subtitle">40 лет вместе</p>
-  <p class="hero-date">6 сентября 2026</p>
-  <p class="hero-lede">Это родословное древо наша семья собирает по крупицам — архивные записи, семейные воспоминания и находки родственников. Прикоснитесь к любому имени, чтобы узнать историю. Нашли неточность или хотите добавить фотографию — дайте нам знать прямо на странице человека.</p>
-  <a class="hero-scroll" href="#tree">Смотреть древо ↓</a>
-</header>
+<nav class="nav">
+  <a class="nav-brand" href="#top">Аспидовы · Тукачёвы</a>
+  <a href="#tree" aria-current="page">Древо</a>
+  <a href="#story">Наши предки</a>
+  <a href="#chronicle">Хроника</a>
+  <a href="#places">Места</a>
+  <a class="btn btn-primary nav-cta" href="#contribute">Добавить своё</a>
+</nav>
 
-<main id="tree" class="tree-section">
-  <div class="tree-toolbar">
-    <div class="legend">
-      <span class="legend-item"><span class="legend-swatch legend-confirmed"></span>Подтверждено</span>
-      <span class="legend-item"><span class="legend-swatch legend-hypothesis"></span>Предположение</span>
-      <span class="legend-item"><span class="legend-swatch legend-unknown"></span>Не установлено</span>
+<div id="top" class="page">
+
+  <header class="hero">
+    <div class="hero-copy">
+      <h6 class="kicker">Рубиновая свадьба · 6 сентября 2026</h6>
+      <h1 class="hero-title">40 лет<br>вместе</h1>
+      <div class="hero-couple">
+        <div class="hero-couple-name" id="hero-name-a">Аспидов Владимир Витальевич</div>
+        <div class="hero-couple-name" id="hero-name-b">Тукачёва Людмила Михайловна</div>
+      </div>
+      <p class="hero-lede">Это древо наша семья собирает по крупицам — архивные записи, воспоминания, находки родственников. Нашли неточность или есть фотография — нажмите на человека в древе и отправьте нам правку.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#tree">Смотреть древо</a>
+        <a class="btn btn-secondary" href="#story">Наши предки</a>
+      </div>
     </div>
-    <div class="tree-controls">
-      <button id="zoom-in" title="Приблизить" aria-label="Приблизить">+</button>
-      <button id="zoom-out" title="Отдалить" aria-label="Отдалить">−</button>
-      <button id="zoom-reset" title="Сбросить масштаб" aria-label="Сбросить масштаб">⟲</button>
+    <div class="hero-photo-wrap">
+      <div class="hero-photo grayscale" id="hero-photo"></div>
+      <div class="hero-badge"><span class="hero-badge-num">40</span><span class="hero-badge-label">лет</span></div>
     </div>
-  </div>
+  </header>
 
-  <div id="tree-canvas" class="tree-canvas">
-    <svg id="tree-svg"></svg>
-    <div id="tree-loading" class="tree-loading">Загружаем древо…</div>
-  </div>
+  <section id="tree" class="section">
+    <div class="section-header">
+      <div>
+        <h2>Родословное древо</h2>
+        <p>Слева — линия Владимира, справа — линия Людмилы. Нажмите на любого человека: там даты, места и кнопка «изменить данные».</p>
+      </div>
+      <div class="tree-toolbar-actions">
+        <div class="legend">
+          <span class="tag tag-confirmed">Подтверждено</span>
+          <span class="tag tag-outline">Предположение</span>
+        </div>
+        <button class="btn btn-secondary btn-icon" id="zoom-out" title="Отдалить" aria-label="Отдалить">−</button>
+        <button class="btn btn-secondary btn-icon" id="zoom-in" title="Приблизить" aria-label="Приблизить">+</button>
+        <button class="btn btn-secondary" id="zoom-reset">Сбросить</button>
+        <button class="btn btn-primary" id="add-relative">Добавить родственника</button>
+      </div>
+    </div>
 
-  <div id="unlinked-panel" class="unlinked-panel" hidden>
-    <h3>Пока не удалось разместить на древе</h3>
-    <p class="unlinked-note">Эти записи ещё не связаны с остальным древом — возможно, потребуется больше исследований.</p>
-    <ul id="unlinked-list"></ul>
-  </div>
-</main>
+    <div class="tree-canvas-wrap">
+      <div id="tree-canvas" class="tree-canvas">
+        <svg id="tree-svg"></svg>
+        <div id="tree-loading" class="tree-loading">Загружаем древо…</div>
+      </div>
+    </div>
 
-<aside id="detail-panel" class="detail-panel" aria-hidden="true">
-  <button id="detail-close" class="detail-close" aria-label="Закрыть">×</button>
-  <div id="detail-content" class="detail-content"></div>
-</aside>
-<div id="detail-overlay" class="detail-overlay" hidden></div>
+    <div id="unlinked-panel" class="unlinked-panel" hidden>
+      <h6>Пока не удалось разместить на древе</h6>
+      <p class="text-muted">Эти записи ещё не связаны с остальным древом — возможно, потребуется больше исследований.</p>
+      <ul id="unlinked-list"></ul>
+    </div>
+
+    <div class="gaps-block">
+      <div class="gaps-questions">
+        <h6>Что мы ищем сейчас</h6>
+        <div class="question-item">
+          <div class="question-title">Отчество и даты Михаила Тукачёва — отца Людмилы</div>
+          <div class="text-muted question-meta">Чёрмоз · метрические книги</div>
+        </div>
+        <div class="question-item">
+          <div class="question-title">Полное отчество Марии Аспидовой — в документе только «Владимир.»</div>
+          <div class="text-muted question-meta">д. Тюремка · Осинский уезд</div>
+        </div>
+        <div class="question-item question-item-last">
+          <div class="question-title">Линия Сырчиковых до 1898 года — приход Ивановского</div>
+          <div class="text-muted question-meta">предположение · требует записи</div>
+        </div>
+      </div>
+      <div class="gaps-stats">
+        <h6>Пробелы в древе</h6>
+        <table class="table" style="flex:1"><tbody id="gap-stats"></tbody></table>
+        <button class="btn btn-primary btn-block" id="gaps-cta">Помочь заполнить</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="section">
+    <div class="story-layout">
+      <div class="story-intro">
+        <h2>Наши предки</h2>
+        <p>Только то, что подтверждено документами и семейной памятью. Каждая запись помечена: чья это линия и чего в ней ещё не хватает.</p>
+        <button class="btn btn-ghost" id="story-add">Дополнить историю предка</button>
+      </div>
+      <div class="story-cards">
+        <article class="story-card">
+          <h6 class="story-kicker">Линия Владимира · д. Тюремка, 1899—1943</h6>
+          <div class="story-headline">Связист Аспидов Михаил Николаевич — призван Осинским РВК 13 января 1942 года, пропал без вести в июне 1943-го.</div>
+          <p class="story-body">Прадед Владимира. Найден в документах ОБД «Мемориал» и в Книге памяти Пермского края; жена в записи названа как «Аспидова Мария Владимир.».</p>
+        </article>
+        <article class="story-card">
+          <h6 class="story-kicker">Линия Владимира · Политовы</h6>
+          <div class="story-headline">Фёдор Кириллович и Агафья Васильевна Политовы вырастили шестерых детей — одна из них, Анна, стала матерью Владимира.</div>
+          <p class="story-body">Прадед и прабабушка Владимира: ок. 1901—1953 и 1900—1978. Даты по семейному дереву — их ещё нужно сверить с записями.</p>
+        </article>
+        <article class="story-card">
+          <h6 class="story-kicker">Линия Людмилы · Чёрмоз</h6>
+          <div class="story-headline">Тукачёвы жили в заводском Чёрмозе — там 25 сентября 1959 года родилась Людмила.</div>
+          <p class="story-body">Её родители — Михаил Тукачёв и Вера Николаевна Жданкова; отчество и даты деда пока не установлены. Брат Валерий родился в 1964-м, сестра Татьяна — тоже в Чёрмозе.</p>
+        </article>
+        <article class="story-card story-card-last">
+          <h6 class="story-kicker">Линия Людмилы · Сырчиковы и Миковы <span class="tag tag-outline">предположение</span></h6>
+          <div class="story-headline">За Марией Степановной Сырчиковой — бабушкой Людмилы по матери — начинается след в деревне Сырчики под Ивановским.</div>
+          <p class="story-body">Отсюда фамилии Сырчиковых и Миковых в древе. Родство ещё не подтверждено: ближайшая цель — метрические книги Иоанно-Предтеченской церкви села Ивановского за 1898 год.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="chronicle" class="section">
+    <h2>Хроника рода</h2>
+    <div id="chronicle-track" class="chronicle-track"></div>
+  </section>
+
+  <section id="places" class="section">
+    <div class="section-header">
+      <h2>Места, откуда мы</h2>
+      <span class="text-muted">Пермский край</span>
+    </div>
+    <div class="places-grid">
+      <div class="card">
+        <span class="card-kicker">линия Владимира · с 1962 — Красные Горки</span>
+        <span class="card-title">Тюремка</span>
+        <p class="card-body">Родина Аспидовых, основана в 1827 году. Осинский уезд, Устиновская волость; приход — Вознесенская церковь села Устиновского.</p>
+      </div>
+      <div class="card">
+        <span class="card-kicker">линия Людмилы · завод с 1763, закрыт в 1956</span>
+        <span class="card-title">Чёрмоз</span>
+        <p class="card-body">Город Тукачёвых, где родилась Людмила. Часть старого города ушла под воду при создании Камского водохранилища.</p>
+      </div>
+      <div class="card">
+        <span class="card-kicker">линия Людмилы · Нижняя и Верхняя, 16 дворов в 1869</span>
+        <span class="card-title">Сырчики</span>
+        <p class="card-body">Деревня Сырчиковых и Миковых — предков Людмилы по матери. Название, возможно, от коми-пермяцкого «сырчик» — трясогузка.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contribute" class="section contribute-banner">
+    <div class="contribute-inner">
+      <div>
+        <div class="kicker" style="color:inherit">Это древо растёт вместе с нами</div>
+        <div class="contribute-headline">Добавьте фотографию, дату или нового родственника — и род станет полнее</div>
+        <p class="contribute-lede">Любая мелочь важна: подпись на обороте снимка, название деревни, имя, которое помнит только бабушка.</p>
+      </div>
+      <div class="contribute-actions">
+        <button class="btn btn-block contribute-btn-invert" id="contribute-add">Добавить нового родственника</button>
+        <a class="btn btn-block contribute-btn-outline" id="contribute-change" href="#" target="_blank" rel="noopener">Изменить данные или фото</a>
+        <div class="contribute-note">Всё, что вы пришлёте, мы проверим и добавим в древо вручную.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
 
 <footer class="site-footer">
-  <p>Семейный проект · данные собираются и уточняются постоянно</p>
+  <span class="text-muted">Семейный проект · данные уточняются постоянно</span>
+  <span class="text-muted">Аспидовы · Тукачёвы · 1986—2026</span>
 </footer>
+
+<div id="detail-overlay" class="dialog-backdrop" hidden>
+  <div id="detail-dialog" class="dialog" role="dialog" aria-modal="true">
+    <div id="detail-content"></div>
+  </div>
+</div>
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="js/config.js"></script>
+<script src="js/photos.js"></script>
 <script src="js/data.js"></script>
 <script src="js/layout.js"></script>
+<script src="js/kinship.js"></script>
 <script src="js/detail.js"></script>
 <script src="js/tree.js"></script>
+<script src="js/chronicle.js"></script>
+<script src="js/stats.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

@@ -2,32 +2,60 @@ async function main() {
   const loading = document.getElementById("tree-loading");
   try {
     const familyData = await loadFamilyData();
+    const { generation: generations } = computeGenerations(familyData);
+    const sides = computeSides(familyData);
+    const directAncestors = computeDirectAncestors(familyData);
+    const kinship = buildKinship(familyData, generations, sides, directAncestors);
+    const photoAvailability = await computePhotoAvailability(familyData);
 
-    const panel = document.getElementById("detail-panel");
     const overlay = document.getElementById("detail-overlay");
     const content = document.getElementById("detail-content");
 
-    function openDetail(person) {
-      content.innerHTML = renderPersonDetail(person, familyData);
-      panel.classList.add("open");
-      panel.setAttribute("aria-hidden", "false");
+    function openDialog(html) {
+      content.innerHTML = html;
       overlay.hidden = false;
+      const closeBtn = content.querySelector(".dialog-close");
+      if (closeBtn) closeBtn.addEventListener("click", closeDialog);
     }
-    function closeDetail() {
-      panel.classList.remove("open");
-      panel.setAttribute("aria-hidden", "true");
+    function closeDialog() {
       overlay.hidden = true;
     }
-    document.getElementById("detail-close").addEventListener("click", closeDetail);
-    overlay.addEventListener("click", closeDetail);
+    function openPerson(person) {
+      openDialog(renderPersonDetail(person, familyData, kinship.get(person.id) || "", photoAvailability.has(person.id)));
+    }
+    function openNewRelative() {
+      openDialog(renderNewRelativeDialog());
+    }
 
-    renderTree(familyData, openDetail);
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) closeDialog(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDialog(); });
+
+    for (const id of ["add-relative", "story-add", "gaps-cta", "contribute-add"]) {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("click", openNewRelative);
+    }
+
+    const changeLink = document.getElementById("contribute-change");
+    if (changeLink && SITE_CONFIG.correctionForm.ready) {
+      changeLink.href = SITE_CONFIG.correctionForm.baseUrl;
+    }
+
+    const heroPhotoUrl = "assets/photos/hero.jpg";
+    if (await checkImageExists(heroPhotoUrl)) {
+      document.getElementById("hero-photo").style.backgroundImage = `url(${heroPhotoUrl})`;
+    } else {
+      document.getElementById("hero-photo").textContent = "Фотография Владимира и Людмилы";
+    }
+
+    renderTree(familyData, openPerson);
+    renderChronicle(familyData);
+    renderGapStats(familyData);
     loading.style.display = "none";
 
     let resizeTimer;
     window.addEventListener("resize", () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => renderTree(familyData, openDetail), 200);
+      resizeTimer = setTimeout(() => renderTree(familyData, openPerson), 200);
     });
   } catch (err) {
     console.error(err);
