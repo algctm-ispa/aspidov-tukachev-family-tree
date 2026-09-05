@@ -28,6 +28,11 @@
   --space-8: 32px;
 
   --page-max: 1280px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
 }
 
 * { box-sizing: border-box; }
@@ -218,7 +223,7 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 /* Every card is exactly the same box, whoever is in it. */
 .tree-card {
   box-sizing: border-box;
-  width: 208px; height: 64px;
+  width: var(--card-w, 208px); height: var(--card-h, 64px);
   display: flex; align-items: center; gap: var(--space-2);
   padding: var(--space-2);
   border: 1.5px solid var(--color-confirmed);
@@ -229,7 +234,9 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 .tree-card.tier-hypothesis { border-color: var(--color-hypothesis); border-style: dashed; background: var(--color-accent-100); }
 .tree-card.tier-unknown { border-color: var(--color-unknown); border-style: dotted; }
 .tree-card.is-collateral { background: var(--color-bg); }
-.tree-card.is-anchor { background: transparent; border-color: transparent; }
+.tree-card.is-anchor { background: transparent; border-color: transparent; padding: var(--space-3); gap: var(--space-3); }
+.tree-card.is-anchor .person-photo { width: 52px; height: 52px; }
+.tree-card.is-anchor .person-name { font-size: 13.5px; }
 .tree-card.is-anchor .person-name { color: var(--color-accent); }
 .tree-card:hover, .tree-card:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; }
 
@@ -468,3 +475,40 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
   padding: 2px 8px; border-radius: 999px; white-space: nowrap; vertical-align: middle;
 }
 .card-map:hover, .card-map:focus-visible { background: var(--color-accent); color: var(--color-bg); }
+
+
+/* ---------- rounded corners ---------- */
+/* The original editorial styling used sharp corners throughout. Softened at
+   the owner's request; the radius scale lives with the other tokens. */
+
+.btn, .nav-cta, .contribute-btn-invert, .contribute-btn-outline { border-radius: var(--radius-pill); }
+.btn-icon { border-radius: var(--radius-pill); }
+
+.card, .story-card, .news-card, .chronicle-item, .conflict-card,
+.unlinked-panel, .route-panel, .contribute-banner, .table {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.news-card { overflow: hidden; }
+.news-photo img { border-radius: 0; }
+
+.dialog { border-radius: var(--radius-lg); }
+.dialog-photo { border-radius: var(--radius-md); }
+.dialog-photo img { border-radius: calc(var(--radius-md) - 4px); }
+
+.tag, .military-status, .variant-type, .source-link, .card-map, .tree-chip { border-radius: var(--radius-pill); }
+
+.tree-card { border-radius: var(--radius-md); }
+.tree-couple-frame { border-radius: calc(var(--radius-md) + 3px); }
+.tree-lead { border-radius: var(--radius-md); }
+.person-photo { border-radius: var(--radius-sm); }
+.tree-card.is-anchor .person-photo { border-radius: var(--radius-sm); }
+
+.hero-photo-wrap, .hero-photo { border-radius: var(--radius-lg); }
+.hero-badge { border-radius: var(--radius-md); }
+
+.route-legend { border-radius: var(--radius-md); }
+.route-map { border-radius: var(--radius-md); overflow: hidden; }
+.leaflet-control-zoom, .leaflet-control-zoom a { border-radius: var(--radius-sm) !important; }
+
+.tree-canvas-wrap { border-radius: var(--radius-md); }

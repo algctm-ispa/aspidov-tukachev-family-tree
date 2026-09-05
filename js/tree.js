@@ -8,8 +8,14 @@
 // couple) and each subtree is laid out inside its own horizontal band, the
 // connectors can never cross.
 
-const CARD_W = 208;        // every card is exactly this size, always
+const CARD_W = 208;        // every card is exactly this size...
 const CARD_H = 64;
+// ...except the anniversary couple, who get a slightly larger one. Nothing
+// else varies: this is the single exception the layout knows about.
+const ANCHOR_CARD_W = 248;
+const ANCHOR_CARD_H = 78;
+const cardWidthFor = gen => (gen === 0 ? ANCHOR_CARD_W : CARD_W);
+const cardHeightFor = gen => (gen === 0 ? ANCHOR_CARD_H : CARD_H);
 const CARD_PHOTO = 40;
 const SIB_GAP = 14;        // between a person and their brothers and sisters
 const PAIR_GAP = 64;       // between the father's block and the mother's block
@@ -93,7 +99,7 @@ function buildUnitTree(familyData) {
 // ---------------------------------------------------------------------------
 
 function measureUnit(unit) {
-  const boxW = unit.members.length * CARD_W;
+  const boxW = unit.members.length * cardWidthFor(unit.gen);
   const leftSibs = unit.members[0] ? unit.members[0].siblings.length : 0;
   const rightSibs = unit.members.length > 1
     ? unit.members[1].siblings.length
@@ -127,14 +133,15 @@ function measureUnit(unit) {
 
 function placeUnit(unit, cx, nodes) {
   unit.cx = cx;
-  const boxW = unit.members.length * CARD_W;
+  const unitCardW = cardWidthFor(unit.gen);
+  const boxW = unit.members.length * unitCardW;
   const boxLeft = cx - boxW / 2;
   unit.boxLeft = boxLeft;
   unit.boxW = boxW;
 
   unit.members.forEach((member, i) => {
-    member.x = boxLeft + i * CARD_W;
-    nodes.push({ id: member.id, x: member.x, gen: unit.gen, role: "unit", unit });
+    member.x = boxLeft + i * unitCardW;
+    nodes.push({ id: member.id, x: member.x, gen: unit.gen, role: "unit", unit, w: unitCardW, h: cardHeightFor(unit.gen) });
   });
 
   // Siblings sit beside the box, on their own member's side.
@@ -145,17 +152,17 @@ function placeUnit(unit, cx, nodes) {
       const x = i < leftCount
         ? boxLeft - (leftCount - i) * (CARD_W + SIB_GAP)
         : boxLeft + boxW + SIB_GAP + (i - leftCount) * (CARD_W + SIB_GAP);
-      nodes.push({ id, x, gen: unit.gen, role: "sibling", unit, of: unit.members[0].id });
+      nodes.push({ id, x, gen: unit.gen, role: "sibling", unit, of: unit.members[0].id, w: CARD_W, h: CARD_H });
     });
   } else {
     unit.members[0].siblings.forEach((id, i) => {
       const n = unit.members[0].siblings.length;
       const x = boxLeft - (n - i) * (CARD_W + SIB_GAP);
-      nodes.push({ id, x, gen: unit.gen, role: "sibling", unit, of: unit.members[0].id });
+      nodes.push({ id, x, gen: unit.gen, role: "sibling", unit, of: unit.members[0].id, w: CARD_W, h: CARD_H });
     });
     unit.members[1].siblings.forEach((id, i) => {
       const x = boxLeft + boxW + SIB_GAP + i * (CARD_W + SIB_GAP);
-      nodes.push({ id, x, gen: unit.gen, role: "sibling", unit, of: unit.members[1].id });
+      nodes.push({ id, x, gen: unit.gen, role: "sibling", unit, of: unit.members[1].id, w: CARD_W, h: CARD_H });
     });
   }
 
@@ -213,7 +220,7 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
   const childY = root.gen - 1;
   const childTotal = children.length * CARD_W + Math.max(0, children.length - 1) * SIB_GAP;
   children.forEach((id, i) => {
-    nodes.push({ id, x: -childTotal / 2 + i * (CARD_W + SIB_GAP), gen: childY, role: "child" });
+    nodes.push({ id, x: -childTotal / 2 + i * (CARD_W + SIB_GAP), gen: childY, role: "child", w: CARD_W, h: CARD_H });
   });
 
   // Record where each unit's children ended up, so the connector bar can span
@@ -227,7 +234,7 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
           const owner = m.parentUnit;
           if (owner) {
             if (!byGenParent.has(owner.key)) byGenParent.set(owner.key, []);
-            byGenParent.get(owner.key).push(n.x + CARD_W / 2);
+            byGenParent.get(owner.key).push(n.x + (n.w || CARD_W) / 2);
           }
         }
       }
@@ -248,10 +255,10 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
   const yOf = gen => (gen - minGen) * LEVEL_H + CANVAS_PAD;
 
   const minX = Math.min(...nodes.map(n => n.x)) - CANVAS_PAD;
-  const maxX = Math.max(...nodes.map(n => n.x + CARD_W)) + CANVAS_PAD;
+  const maxX = Math.max(...nodes.map(n => n.x + (n.w || CARD_W))) + CANVAS_PAD;
   const shift = -minX;
   const width = maxX - minX;
-  const height = (maxGen - minGen) * LEVEL_H + CARD_H + CANVAS_PAD * 2;
+  const height = (maxGen - minGen) * LEVEL_H + Math.max(CARD_H, ANCHOR_CARD_H) + CANVAS_PAD * 2;
 
   // Connectors
   const paths = [];
@@ -262,9 +269,9 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
       // The parent couple sits below its children, so the drop leaves the top
       // of the parent box and the stubs meet the bottom of each child card.
       const parentEdge = yOf(p.gen);
-      const childEdge = yOf(u.gen) + CARD_H;
+      const childEdge = yOf(u.gen) + cardHeightFor(u.gen);
       const barY = (parentEdge + childEdge) / 2;
-      const xs = (p.childXs && p.childXs.length ? p.childXs : [member.x + CARD_W / 2]).map(x => x + shift);
+      const xs = (p.childXs && p.childXs.length ? p.childXs : [member.x + cardWidthFor(u.gen) / 2]).map(x => x + shift);
       const pcx = p.cx + shift;
       paths.push(`M ${pcx} ${parentEdge} L ${pcx} ${barY}`);
       paths.push(`M ${Math.min(...xs, pcx)} ${barY} L ${Math.max(...xs, pcx)} ${barY}`);
@@ -276,7 +283,7 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
   if (children.length) {
     // The children's row is above the couple after the mirror.
     const parentEdge = yOf(root.gen);
-    const childEdge = yOf(childY) + CARD_H;
+    const childEdge = yOf(childY) + cardHeightFor(childY);
     const barY = (parentEdge + childEdge) / 2;
     const xs = root.childXs.map(x => x + shift);
     const pcx = root.cx + shift;
@@ -293,7 +300,7 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
   const groups = [];
   (function collectGroups(u) {
     if (u.members.length > 1) {
-      groups.push(`<div class="tree-couple-frame" style="left:${u.boxLeft + shift}px;top:${yOf(u.gen)}px;width:${u.boxW}px;height:${CARD_H}px"></div>`);
+      groups.push(`<div class="tree-couple-frame" style="left:${u.boxLeft + shift}px;top:${yOf(u.gen)}px;width:${u.boxW}px;height:${cardHeightFor(u.gen)}px"></div>`);
     }
     u.parents.forEach(collectGroups);
   })(root);
@@ -301,7 +308,7 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
   // No ribbon on the anchor frame: the mirrored tree runs its connector down
   // from the couple's box, and a ribbon there would sit across it. The ruby
   // frame, the tinted fill and the chip already mark the pair.
-  const anchorFrame = `<div class="tree-couple-frame is-anchor" style="left:${root.boxLeft + shift}px;top:${yOf(root.gen)}px;width:${root.boxW}px;height:${CARD_H}px"></div>`;
+  const anchorFrame = `<div class="tree-couple-frame is-anchor" style="left:${root.boxLeft + shift}px;top:${yOf(root.gen)}px;width:${root.boxW}px;height:${ANCHOR_CARD_H}px"></div>`;
 
   const cards = nodes.map(n => {
     const person = familyData.people.get(n.id);
@@ -314,7 +321,12 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
     const chip = onBloodline
       ? `<span class="tree-chip">${escapeHtml(generationChipLabel(n.gen))}</span>`
       : "";
-    return `<div class="tree-node" style="left:${n.x + shift}px;top:${yOf(n.gen)}px">${chip}${cardHtml(person, kinship, photoAvailability, extra)}</div>`;
+    const w = n.w || CARD_W;
+    const h = n.h || CARD_H;
+    // A standard card sharing a row with the taller couple is centred against it.
+    const top = yOf(n.gen) + (cardHeightFor(n.gen) - h) / 2;
+    const size = `--card-w:${w}px;--card-h:${h}px;`;
+    return `<div class="tree-node" style="left:${n.x + shift}px;top:${top}px;${size}">${chip}${cardHtml(person, kinship, photoAvailability, extra)}</div>`;
   }).join("");
 
   const labels = "";
@@ -380,7 +392,7 @@ function setupTreeCanvas(grid) {
   const naturalWidth = grid.offsetWidth;
   const naturalHeight = grid.offsetHeight;
   const anchorCx = Number(grid.dataset.anchorCx || naturalWidth / 2);
-  const anchorW = Number(grid.dataset.anchorW || CARD_W * 2);
+  const anchorW = Number(grid.dataset.anchorW || ANCHOR_CARD_W * 2);
   let zoom = 1;
 
   function applyZoom() {
