@@ -20,7 +20,6 @@ const CANVAS_PAD = 48;
 // the chip is pinned to the card's top left corner and must not run past it.
 function generationChipLabel(gen) {
   if (gen <= -1) return "Дети";
-  if (gen === 0) return "Их поколение";
   if (gen === 1) return "Родители";
   if (gen === 2) return "Дедушки и бабушки";
   const label = "пра".repeat(gen - 2) + "деды";
@@ -307,9 +306,14 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
   const cards = nodes.map(n => {
     const person = familyData.people.get(n.id);
     const extra = SITE_CONFIG.anchorPersonIds.includes(n.id) ? "is-anchor" : (n.role === "sibling" || n.role === "child" ? "is-collateral" : "");
-    // Every card carries its own generation chip, pinned outside its top left
-    // corner, so the generation is readable wherever you are in the tree.
-    const chip = `<span class="tree-chip">${escapeHtml(generationChipLabel(n.gen))}</span>`;
+    // Chips mark the direct line only. A unit is built from someone's parents,
+    // so every unit member above the couple is a blood ancestor; brothers,
+    // sisters and the couple's own generation get none. The couple's children
+    // keep theirs, since they carry the line onward.
+    const onBloodline = (n.role === "unit" && n.gen >= 1) || n.role === "child";
+    const chip = onBloodline
+      ? `<span class="tree-chip">${escapeHtml(generationChipLabel(n.gen))}</span>`
+      : "";
     return `<div class="tree-node" style="left:${n.x + shift}px;top:${yOf(n.gen)}px">${chip}${cardHtml(person, kinship, photoAvailability, extra)}</div>`;
   }).join("");
 
