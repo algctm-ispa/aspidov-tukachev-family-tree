@@ -107,25 +107,16 @@ function renderGenerationRow(gen, sideData, familyData, kinship, photoAvailabili
   const photoSize = gen === 1 ? 48 : 40;
 
   const side = (label, data) => {
-    const boxes = groupIntoBoxes(data.ancestors, familyData);
-    const collateralBoxes = groupIntoBoxes(data.collaterals, familyData);
-    // Brothers and sisters of this generation's direct ancestors: confirmed
-    // family, but off the direct line — so they sit under it in smaller cards
-    // rather than in the spine or in the unattached-leads block.
-    const collateralHtml = collateralBoxes.length ? `
-      <div class="tree-side-collaterals">
-        <h6 class="tree-collateral-label">Братья и сёстры</h6>
-        <div class="tree-side-boxes">
-          ${collateralBoxes.map(b => coupleBoxHtml(b, familyData, kinship, photoAvailability, 32, null, "small")).join("")}
-        </div>
-      </div>` : "";
+    // Everyone of this generation on this side stands in one row: the direct
+    // ancestors first, then their brothers and sisters. Each card's own kicker
+    // ("дед" vs "брат деда") says which is which, so the row needs no split.
+    const boxes = groupIntoBoxes([...data.ancestors, ...data.collaterals], familyData);
     return `
       <div class="tree-side">
         <h6 class="tree-side-label">${escapeHtml(label)}</h6>
         <div class="tree-side-boxes">
           ${boxes.length ? boxes.map(b => coupleBoxHtml(b, familyData, kinship, photoAvailability, photoSize)).join("") : `<div class="tree-box empty">Пока не установлены</div>`}
         </div>
-        ${collateralHtml}
       </div>`;
   };
 
@@ -173,14 +164,19 @@ function childrenRowHtml(childIds, familyData, kinship, photoAvailability) {
 
 function siblingsRowHtml(siblingIds, familyData, kinship, photoAvailability) {
   if (!siblingIds.length) return "";
+  // Centred under the couple, like the children's row — these are the anchor
+  // couple's own brothers and sisters, and left-aligning them on a canvas this
+  // wide would strand them off-screen beside an empty band.
   return `
     <div class="tree-siblings-row">
+      <div class="tree-siblings-inner">
       <h6>Братья и сёстры</h6>
       <div class="tree-siblings-list">
         ${siblingIds.map(id => `
           <div class="tree-box single small tier-${familyData.people.get(id).statusTier}">
             ${personRowHtml(familyData.people.get(id), kinship, photoAvailability, 32)}
           </div>`).join("")}
+      </div>
       </div>
     </div>`;
 }
@@ -276,7 +272,7 @@ function renderUnlinked(unlinked, familyData, onPersonClick, kinship) {
 
 const TREE_COL_MIN = 420;   // px floor per side column, keeps a sparse tree from looking cramped
 const TREE_COL_GAP = 24;    // must match --space-6, the gap in .tree-row-columns
-const TREE_ZOOM_MIN = 0.4;
+const TREE_ZOOM_MIN = 0.25;
 const TREE_ZOOM_MAX = 1.6;
 const TREE_ZOOM_STEP = 0.15;
 const TREE_DRAG_THRESHOLD = 5; // px before a mouse-down counts as a pan, not a click
@@ -289,6 +285,7 @@ function setupTreeCanvas(grid) {
   let zoom = 1;
   let naturalWidth = 0;
   let naturalHeight = 0;
+  let hasAutoFitted = false;
 
   function applyZoom() {
     grid.style.transform = `scale(${zoom})`;
@@ -308,11 +305,6 @@ function setupTreeCanvas(grid) {
     // sub-rows wrap inside whatever width that gives, so a generation with
     // many siblings makes its own row taller rather than stretching the
     // entire tree sideways.
-    // is-measuring hides the collateral sub-rows, so the column width comes
-    // from the direct-ancestor line alone. The sub-rows then wrap inside that
-    // width — a generation with many siblings grows its own row taller
-    // instead of stretching the whole tree sideways.
-    grid.classList.add("is-measuring");
     let vlad = 0;
     let lyud = 0;
     for (const row of grid.querySelectorAll(".tree-row-columns")) {
@@ -320,7 +312,6 @@ function setupTreeCanvas(grid) {
       if (sides[0]) vlad = Math.max(vlad, sides[0].getBoundingClientRect().width);
       if (sides[1]) lyud = Math.max(lyud, sides[1].getBoundingClientRect().width);
     }
-    grid.classList.remove("is-measuring");
     // Both sides get the same width, so the two lines stay a clean mirrored
     // split and the anchor couple lands exactly on the seam between them —
     // whichever side happens to be the crowded one as the data grows.
@@ -334,7 +325,30 @@ function setupTreeCanvas(grid) {
 
     naturalWidth = grid.offsetWidth;
     naturalHeight = grid.offsetHeight;
+
+    // On the first pass, open at whatever scale puts the whole couple in the
+    // window — never magnified past 1:1. A phone would otherwise open on a
+    // couple box wider than the screen.
+    if (!hasAutoFitted) {
+      hasAutoFitted = true;
+      const anchor = grid.querySelector(".tree-anchor-inner");
+      if (anchor && anchor.offsetWidth) {
+        const fit = (wrap.clientWidth * 0.94) / anchor.offsetWidth;
+        zoom = Math.min(1, Math.max(TREE_ZOOM_MIN, Math.round(fit * 100) / 100));
+      }
+    }
+
     applyZoom();
+    centreOnAnchor();
+  }
+
+  // The tree runs far wider than the window, so left-aligned it would open on
+  // the oldest ancestors with the couple off-screen. Centre the view on the
+  // anchor couple instead — they are what the page is about.
+  function centreOnAnchor() {
+    const anchor = grid.querySelector(".tree-anchor-inner") || grid;
+    const centre = (anchor.offsetLeft + anchor.offsetWidth / 2) * zoom;
+    wrap.scrollLeft = Math.max(0, centre - wrap.clientWidth / 2);
   }
 
   function setZoom(next) {
@@ -351,7 +365,7 @@ function setupTreeCanvas(grid) {
   const zoomReset = document.getElementById("zoom-reset");
   if (zoomIn) zoomIn.onclick = () => setZoom(zoom + TREE_ZOOM_STEP);
   if (zoomOut) zoomOut.onclick = () => setZoom(zoom - TREE_ZOOM_STEP);
-  if (zoomReset) zoomReset.onclick = () => { setZoom(1); wrap.scrollLeft = 0; };
+  if (zoomReset) zoomReset.onclick = () => { hasAutoFitted = false; measure(); };
 
   // Drag to pan. Mouse only — touch already pans natively, and hijacking it
   // would fight the browser's own scrolling.

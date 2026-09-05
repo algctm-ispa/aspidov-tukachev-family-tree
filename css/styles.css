@@ -248,16 +248,6 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 .tree-anchor-box .tree-person { padding: var(--space-4) var(--space-6); }
 .tree-anchor-box .person-name { font-family: var(--font-family); font-weight: 800; font-size: 19px; color: var(--color-accent); }
 
-/* Brothers and sisters of a generation's direct ancestors: same row, one step
-   down in weight so the direct line still reads as the spine. */
-.tree-side-collaterals {
-  margin-top: var(--space-3); padding-top: var(--space-3);
-  border-top: 1px dashed var(--color-divider-soft);
-}
-.tree-collateral-label { margin: 0 0 var(--space-2); color: var(--color-text-muted); }
-.tree-side-collaterals .tree-side-boxes { flex-wrap: wrap; }
-.tree-grid.is-measuring .tree-side-collaterals { display: none; }
-
 .tree-children-row {
   margin-top: var(--space-6); padding-top: var(--space-4);
   border-top: 1px solid var(--color-divider);
@@ -267,9 +257,14 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 .tree-children-inner h6 { margin: 0 0 var(--space-2); color: var(--color-accent); text-align: center; }
 .tree-children-list { display: flex; gap: var(--space-3); justify-content: center; }
 
-.tree-siblings-row { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--color-divider); }
-.tree-siblings-row h6 { margin: 0 0 var(--space-3); }
-.tree-siblings-list { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.tree-siblings-row {
+  margin-top: var(--space-6); padding-top: var(--space-4);
+  border-top: 1px solid var(--color-divider);
+  display: flex; justify-content: center;
+}
+.tree-siblings-inner { width: max-content; max-width: 100%; }
+.tree-siblings-row h6 { margin: 0 0 var(--space-3); text-align: center; }
+.tree-siblings-list { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
 .tree-box.small .tree-person { padding: var(--space-2) var(--space-4) var(--space-2) var(--space-2); }
 
 .tree-leads-row { margin-top: var(--space-8); padding-top: var(--space-4); border-top: 1px solid var(--color-divider); }
