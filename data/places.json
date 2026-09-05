@@ -56,6 +56,8 @@
     },
     {"id": "ilyinsky_district", "names": [{"name": "Ильинский район", "native": "Ильинский район"}], "parent_place_ids": ["perm_region"]},
     {"id": "osinsky_district", "names": [{"name": "Осинский район", "native": "Осинский район"}], "parent_place_ids": ["perm_region"]},
-    {"id": "perm_region", "names": [{"name": "Пермский край", "native": "Пермский край"}, {"name": "Молотовская область", "native": "Молотовская область", "type": "historical"}]}
+    {"id": "perm_region", "names": [{"name": "Пермский край", "native": "Пермский край"}, {"name": "Молотовская область", "native": "Молотовская область", "type": "historical"}]},
+    {"id": "perm_city", "names": [{"name": "Пермь", "native": "Пермь"}], "settlement_type": "city", "parent_place_ids": ["perm_region"]},
+    {"id": "moscow_city", "names": [{"name": "Москва", "native": "Москва"}], "settlement_type": "city"}
   ]
 }

@@ -57,6 +57,36 @@ function kinshipTerm(generation, sex) {
   return male ? `${prefix}прадед` : `${prefix}прабабушка`;
 }
 
+// Genitive of the same term, so a collateral relative can be described by who
+// they are a sibling of ("брат бабушки", "сестра прадеда") instead of being
+// flattened to a bare "брат".
+function kinshipTermGenitive(generation, sex) {
+  const male = sex === "male";
+  if (generation <= 1) return male ? "отца" : "матери";
+  if (generation === 2) return male ? "деда" : "бабушки";
+  const prefix = "пра".repeat(Math.max(0, generation - 3));
+  return male ? `${prefix}прадеда` : `${prefix}прабабушки`;
+}
+
+// Generations below the anchor couple: the line carrying on.
+function descendantTerm(generation, sex) {
+  const male = sex === "male";
+  if (generation === -1) return male ? "сын" : "дочь";
+  const prefix = "пра".repeat(Math.max(0, -generation - 2));
+  return male ? `${prefix}внук` : `${prefix}внучка`;
+}
+
+// For someone off the direct line, find the direct ancestor they share a
+// parent with — that sibling is what gives the relation its name.
+function ancestorSiblingOf(id, familyData, directAncestors) {
+  for (const { parentId } of familyData.parentEdgesByChild.get(id) || []) {
+    for (const { childId } of familyData.childEdgesByParent.get(parentId) || []) {
+      if (childId !== id && directAncestors.has(childId)) return childId;
+    }
+  }
+  return null;
+}
+
 function buildKinship(familyData, generations, sides, directAncestors) {
   const kinship = new Map();
   for (const [id, person] of familyData.people) {
@@ -67,14 +97,29 @@ function buildKinship(familyData, generations, sides, directAncestors) {
     const side = sides.get(id);
     const sideLabel = side === "vladimir" ? "Линия Владимира" : side === "lyudmila" ? "Линия Людмилы" : "Родство уточняется";
     const gen = generations.get(id);
+    const male = person.sex === "male";
     let role;
-    if (directAncestors.has(id) && gen != null) {
+    if (gen == null) {
+      // No edge into the tree yet — say only what is actually known.
+      role = male ? "родственник" : "родственница";
+    } else if (gen < 0) {
+      role = descendantTerm(gen, person.sex);
+    } else if (directAncestors.has(id)) {
       role = kinshipTerm(gen, person.sex);
+    } else if (gen === 0) {
+      role = male ? "брат" : "сестра";
     } else {
-      role = person.sex === "male" ? "брат" : "сестра";
+      const sibling = ancestorSiblingOf(id, familyData, directAncestors);
+      const siblingPerson = sibling ? familyData.people.get(sibling) : null;
+      role = siblingPerson
+        ? `${male ? "брат" : "сестра"} ${kinshipTermGenitive(generations.get(sibling), siblingPerson.sex)}`
+        : (male ? "родственник" : "родственница");
     }
     const tierSuffix = person.statusTier !== "confirmed" ? ` · ${statusLabel(person.statusTier)}` : "";
-    kinship.set(id, `${sideLabel} · ${role}${tierSuffix}`);
+    // A descendant belongs to both lines at once, so naming one of them would
+    // be arbitrary — the relation alone says everything.
+    const prefix = gen != null && gen < 0 ? "" : `${sideLabel} · `;
+    kinship.set(id, `${prefix}${role}${tierSuffix}`);
   }
   return kinship;
 }

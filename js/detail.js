@@ -127,6 +127,13 @@ function renderPersonDetail(person, familyData, kinshipLabel, hasPhoto) {
     dates.push(`<div><span class="date-label">Проживал(а)</span> ${escapeHtml(person.residence.placeName)}${asRecordedNote}</div>`);
   }
 
+  for (const move of person.moves || []) {
+    const route = move.from && move.to ? `${move.from} → ${move.to}` : (move.to || move.from);
+    const when = move.dateUnknown ? ` <span class="text-muted">(дата неизвестна)</span>` : "";
+    const label = move.event.charAt(0).toUpperCase() + move.event.slice(1);
+    dates.push(`<div><span class="date-label">${escapeHtml(label)}</span> ${escapeHtml(route)}${when}</div>`);
+  }
+
   const notesHtml = person.notes && person.notes.length
     ? `<section class="dialog-section"><h6>Заметки исследования</h6>${person.notes.map(n => `<p class="research-note">${escapeHtml(n)}</p>`).join("")}</section>`
     : "";

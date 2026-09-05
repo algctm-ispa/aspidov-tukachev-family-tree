@@ -16,28 +16,34 @@ function genericGenerationLabel(gen) {
 }
 
 function buildTreeSections(familyData, generations, sides, directAncestors) {
-  const gridByGen = new Map(); // gen -> { vladimir: [ids], lyudmila: [ids] }
-  const siblings = [];
-  const earlyLeads = [];
+  // gen -> { vladimir: { ancestors: [ids], collaterals: [ids] }, lyudmila: {...} }
+  const gridByGen = new Map();
+  const siblings = [];   // generation 0: the anchor couple's own brothers and sisters
+  const children = [];   // generation below the anchor couple
+  const earlyLeads = []; // in the graph, but with no parents to hang off yet
 
-  for (const [id, person] of familyData.people) {
+  const emptySide = () => ({ ancestors: [], collaterals: [] });
+
+  for (const [id] of familyData.people) {
     if (SITE_CONFIG.anchorPersonIds.includes(id)) continue;
     const gen = generations.get(id);
     if (gen == null) continue; // unlinked — shown in its own panel
 
-    const side = sides.get(id) === "lyudmila" ? "lyudmila" : "vladimir";
-    const isMainAncestor = gen >= 1 && person.statusTier === "confirmed" && directAncestors.has(id);
+    if (gen < 0) { children.push(id); continue; }
+    if (gen === 0) { siblings.push(id); continue; }
 
-    if (isMainAncestor) {
-      if (!gridByGen.has(gen)) gridByGen.set(gen, { vladimir: [], lyudmila: [] });
-      gridByGen.get(gen)[side].push(id);
-    } else if (gen === 0 && person.statusTier === "confirmed") {
-      siblings.push(id);
-    } else {
-      earlyLeads.push(id);
-    }
+    const side = sides.get(id) === "lyudmila" ? "lyudmila" : "vladimir";
+    if (!gridByGen.has(gen)) gridByGen.set(gen, { vladimir: emptySide(), lyudmila: emptySide() });
+    const bucket = gridByGen.get(gen)[side];
+
+    // Confidence tier is now purely visual (border style); it no longer decides
+    // whether someone appears in the tree at all. What decides placement is the
+    // shape of the graph: on the direct line, beside it, or not yet attached.
+    if (directAncestors.has(id)) bucket.ancestors.push(id);
+    else if ((familyData.parentEdgesByChild.get(id) || []).length) bucket.collaterals.push(id);
+    else earlyLeads.push(id);
   }
-  return { gridByGen, siblings, earlyLeads };
+  return { gridByGen, siblings, children, earlyLeads };
 }
 
 function groupIntoBoxes(ids, familyData) {
@@ -72,21 +78,25 @@ function personRowHtml(person, kinship, photoAvailability, photoSize) {
 function shortMeta(person, kinshipLabel) {
   const parts = [];
   if (person.birthDisplay) parts.push(person.deathDisplay ? `${person.birthDisplay} — ${person.deathDisplay}` : person.birthDisplay);
-  const role = (kinshipLabel || "").split(" · ").slice(1).join(" · ");
+  // The kicker is "<линия> · <роль>[· <статус>]", except for descendants,
+  // where there is no line prefix to strip.
+  const segments = (kinshipLabel || "").split(" · ");
+  const role = segments.length > 1 ? segments.slice(1).join(" · ") : segments[0];
   if (role) parts.push(role);
   return parts.join(" · ") || " ";
 }
 
-function coupleBoxHtml(ids, familyData, kinship, photoAvailability, photoSize, tierClassFor) {
+function coupleBoxHtml(ids, familyData, kinship, photoAvailability, photoSize, tierClassFor, extraClass) {
   const [a, b] = ids;
   const personA = familyData.people.get(a);
   const tierClass = `tier-${tierClassFor ? tierClassFor(personA) : personA.statusTier}`;
+  const extra = extraClass ? ` ${extraClass}` : "";
   if (!b) {
-    return `<div class="tree-box single ${tierClass}">${personRowHtml(personA, kinship, photoAvailability, photoSize)}</div>`;
+    return `<div class="tree-box single ${tierClass}${extra}">${personRowHtml(personA, kinship, photoAvailability, photoSize)}</div>`;
   }
   const personB = familyData.people.get(b);
   return `
-    <div class="tree-box couple ${tierClass}">
+    <div class="tree-box couple ${tierClass}${extra}">
       ${personRowHtml(personA, kinship, photoAvailability, photoSize)}
       <div class="tree-box-divider"></div>
       ${personRowHtml(personB, kinship, photoAvailability, photoSize)}
@@ -95,25 +105,36 @@ function coupleBoxHtml(ids, familyData, kinship, photoAvailability, photoSize, t
 
 function renderGenerationRow(gen, sideData, familyData, kinship, photoAvailability, isLast) {
   const photoSize = gen === 1 ? 48 : 40;
-  const vladBoxes = groupIntoBoxes(sideData.vladimir, familyData);
-  const lyudBoxes = groupIntoBoxes(sideData.lyudmila, familyData);
-  const worstTierIn = (ids) => ids.some(id => familyData.people.get(id).statusTier === "hypothesis") ? "hypothesis"
-    : ids.some(id => familyData.people.get(id).statusTier === "unknown") ? "unknown" : "confirmed";
 
-  const side = (label, boxes) => `
-    <div class="tree-side">
-      <h6 class="tree-side-label">${escapeHtml(label)}</h6>
-      <div class="tree-side-boxes">
-        ${boxes.length ? boxes.map(b => coupleBoxHtml(b, familyData, kinship, photoAvailability, photoSize)).join("") : `<div class="tree-box empty">Пока не установлены</div>`}
-      </div>
-    </div>`;
+  const side = (label, data) => {
+    const boxes = groupIntoBoxes(data.ancestors, familyData);
+    const collateralBoxes = groupIntoBoxes(data.collaterals, familyData);
+    // Brothers and sisters of this generation's direct ancestors: confirmed
+    // family, but off the direct line — so they sit under it in smaller cards
+    // rather than in the spine or in the unattached-leads block.
+    const collateralHtml = collateralBoxes.length ? `
+      <div class="tree-side-collaterals">
+        <h6 class="tree-collateral-label">Братья и сёстры</h6>
+        <div class="tree-side-boxes">
+          ${collateralBoxes.map(b => coupleBoxHtml(b, familyData, kinship, photoAvailability, 32, null, "small")).join("")}
+        </div>
+      </div>` : "";
+    return `
+      <div class="tree-side">
+        <h6 class="tree-side-label">${escapeHtml(label)}</h6>
+        <div class="tree-side-boxes">
+          ${boxes.length ? boxes.map(b => coupleBoxHtml(b, familyData, kinship, photoAvailability, photoSize)).join("") : `<div class="tree-box empty">Пока не установлены</div>`}
+        </div>
+        ${collateralHtml}
+      </div>`;
+  };
 
   return `
     <div class="tree-row">
       <h6 class="tree-row-label"><span>${escapeHtml(genericGenerationLabel(gen))}</span></h6>
       <div class="tree-row-columns">
-        ${side("Линия Владимира", vladBoxes)}
-        ${side("Линия Людмилы", lyudBoxes)}
+        ${side("Линия Владимира", sideData.vladimir)}
+        ${side("Линия Людмилы", sideData.lyudmila)}
       </div>
     </div>
     ${isLast ? "" : `<div class="tree-connector"><span></span><span></span></div>`}`;
@@ -127,6 +148,24 @@ function anchorRowHtml(familyData, kinship, photoAvailability) {
         <div class="tree-anchor-ribbon"><span>Рубиновая свадьба · 40 лет</span></div>
         <div class="tree-anchor-box">
           ${ids.map(id => personRowHtml(familyData.people.get(id), kinship, photoAvailability, 64)).join(`<div class="tree-box-divider"></div>`)}
+        </div>
+      </div>
+    </div>`;
+}
+
+// The generation below the anchor couple — the line carrying on.
+function childrenRowHtml(childIds, familyData, kinship, photoAvailability) {
+  if (!childIds.length) return "";
+  // No connector stem here: the siblings row sits between this and the anchor
+  // couple, so a line would appear to come from the wrong place.
+  return `
+    <div class="tree-children-row">
+      <div class="tree-children-inner">
+        <h6>Дети</h6>
+        <div class="tree-children-list">
+          ${groupIntoBoxes(childIds, familyData)
+            .map(b => coupleBoxHtml(b, familyData, kinship, photoAvailability, 40))
+            .join("")}
         </div>
       </div>
     </div>`;
@@ -173,7 +212,7 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
   const { generation: generations, unlinked } = computeGenerations(familyData);
   const sides = computeSides(familyData);
   const directAncestors = computeDirectAncestors(familyData);
-  const { gridByGen, siblings, earlyLeads } = buildTreeSections(familyData, generations, sides, directAncestors);
+  const { gridByGen, siblings, children, earlyLeads } = buildTreeSections(familyData, generations, sides, directAncestors);
 
   const gens = [...gridByGen.keys()].sort((a, b) => b - a); // oldest first
 
@@ -181,6 +220,7 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
     ${gens.map((g, i) => renderGenerationRow(g, gridByGen.get(g), familyData, kinship, photoAvailability, false)).join("")}
     ${anchorRowHtml(familyData, kinship, photoAvailability)}
     ${siblingsRowHtml(siblings, familyData, kinship, photoAvailability)}
+    ${childrenRowHtml(children, familyData, kinship, photoAvailability)}
     ${earlyLeadsHtml(earlyLeads, familyData, kinship)}
   `;
 
@@ -264,6 +304,15 @@ function setupTreeCanvas(grid) {
     grid.style.setProperty("--tree-col-v", "max-content");
     grid.style.setProperty("--tree-col-l", "max-content");
 
+    // Measure only the direct-ancestor line of each side. The collateral
+    // sub-rows wrap inside whatever width that gives, so a generation with
+    // many siblings makes its own row taller rather than stretching the
+    // entire tree sideways.
+    // is-measuring hides the collateral sub-rows, so the column width comes
+    // from the direct-ancestor line alone. The sub-rows then wrap inside that
+    // width — a generation with many siblings grows its own row taller
+    // instead of stretching the whole tree sideways.
+    grid.classList.add("is-measuring");
     let vlad = 0;
     let lyud = 0;
     for (const row of grid.querySelectorAll(".tree-row-columns")) {
@@ -271,6 +320,7 @@ function setupTreeCanvas(grid) {
       if (sides[0]) vlad = Math.max(vlad, sides[0].getBoundingClientRect().width);
       if (sides[1]) lyud = Math.max(lyud, sides[1].getBoundingClientRect().width);
     }
+    grid.classList.remove("is-measuring");
     // Both sides get the same width, so the two lines stay a clean mirrored
     // split and the anchor couple lands exactly on the seam between them —
     // whichever side happens to be the crowded one as the data grows.

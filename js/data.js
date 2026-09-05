@@ -4,9 +4,14 @@
 // through js/labels.js for Russian translation; nothing untranslatable is
 // ever shown to a visitor (see web-content-manifest-ru.json's rule).
 
+// Genitive, for "29 декабря 1941"; nominative, for a month with no day.
 const MONTHS_RU = [
   "января", "февраля", "марта", "апреля", "мая", "июня",
   "июля", "августа", "сентября", "октября", "ноября", "декабря"
+];
+const MONTHS_RU_NOMINATIVE = [
+  "январь", "февраль", "март", "апрель", "май", "июнь",
+  "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"
 ];
 
 function statusTier(status) {
@@ -38,8 +43,9 @@ function formatOneDate(dateStr, { day, month, year } = {}) {
   }
   if (!year) return null;
   if (!month) return `${year}`;
-  const monthName = MONTHS_RU[month - 1];
-  return day ? `${day} ${monthName} ${year}` : `${monthName} ${year}`;
+  return day
+    ? `${day} ${MONTHS_RU[month - 1]} ${year}`
+    : `${MONTHS_RU_NOMINATIVE[month - 1]} ${year}`;
 }
 
 // Normalizes the many birth/death object shapes (date, year, estimated_range,
@@ -54,6 +60,11 @@ function normalizeDateFields(obj) {
 
   if (obj.date_unknown) {
     display = null;
+  } else if (obj.before) {
+    // "born before <date>" — used where only an ordering is known
+    // (e.g. an older sibling of someone with a documented birth date).
+    const formatted = formatOneDate(obj.before);
+    display = formatted ? `до ${formatted}` : null;
   } else if (Array.isArray(obj.date_variants) && obj.date_variants.length) {
     const formatted = obj.date_variants.map(d => formatOneDate(d)).filter(Boolean);
     display = formatted.length ? `${formatted.join(" или ")}${oldStyleSuffix}` : null;
@@ -117,6 +128,29 @@ function buildPlaceLabel(placeId, placesById) {
   return chain.join(", ") || null;
 }
 
+// residence_history entries record a move between two places. The event name
+// arrives as plain Russian ("переезд"); anything else is hidden rather than
+// shown untranslated, per the manifest's fallback rule.
+function buildResidenceHistory(history, placesById) {
+  if (!Array.isArray(history)) return [];
+  const moves = [];
+  for (const entry of history) {
+    if (!entry || typeof entry !== "object") continue;
+    const event = isCyrillicText(entry.event) ? entry.event : null;
+    const from = entry.from_place_id ? buildPlaceLabel(entry.from_place_id, placesById) : null;
+    const to = entry.to_place_id ? buildPlaceLabel(entry.to_place_id, placesById) : null;
+    if (!to && !from) continue;
+    moves.push({
+      event: event || "Переезд",
+      from,
+      to,
+      dateUnknown: !!entry.date_unknown,
+      statusLabel: translateStatusLike(entry.status)
+    });
+  }
+  return moves;
+}
+
 function resolvePlace(placeId, placeAsRecorded, placesById) {
   if (placeId) return buildPlaceLabel(placeId, placesById);
   return placeAsRecorded || null;
@@ -127,17 +161,28 @@ function resolvePlace(placeId, placeAsRecorded, placesById) {
 // documented disagreement is shown in full rather than silently resolved.
 function buildAttributeConflicts(attributes) {
   if (!attributes) return [];
-  const titles = { patronymic: "Отчество", alternative_family_recollection: "По семейной памяти" };
+  const titles = {
+    patronymic: "Отчество",
+    alternative_family_recollection: "По семейной памяти"
+  };
+  // A variant the family has explicitly ruled out must not resurface on the
+  // site as if it were still an open question.
+  const hidden = new Set(["rejected_alternative"]);
   const conflicts = [];
   for (const [key, value] of Object.entries(attributes)) {
     if (!value || typeof value !== "object") continue;
+    if (hidden.has(key) || String(value.status).toUpperCase() === "REJECTED") continue;
+    // No Russian title for this key means no way to label it without leaking
+    // the raw English key — hide it, per the manifest's own fallback rule.
+    if (!titles[key]) continue;
     const lines = [];
-    if (value.document_text) lines.push({ label: "В документе", text: value.document_text });
+    if (value.document_text) lines.push({ label: "Запись в документе", text: value.document_text });
+    if (value.full_form) lines.push({ label: "Полная форма", text: value.full_form });
     if (value.probable_expansion) lines.push({ label: "Предполагаемая полная форма", text: value.probable_expansion });
     if (value.value) lines.push({ label: "Указано", text: value.value });
     if (!lines.length) continue;
     conflicts.push({
-      title: titles[key] || key.replace(/_/g, " "),
+      title: titles[key],
       lines,
       statusLabel: translateStatusLike(value.status)
     });
@@ -209,6 +254,7 @@ async function loadFamilyData() {
     const residencePlace = raw.residence && raw.residence.place_id ? buildPlaceLabel(raw.residence.place_id, placesById) : null;
     const residenceAsRecorded = raw.residence && raw.residence.as_recorded && raw.residence.as_recorded !== residencePlace ? raw.residence.as_recorded : null;
     const militaryLossYear = hasMilitaryLoss ? parseInt(String(raw.military.loss_date).slice(0, 4), 10) : null;
+    const moves = buildResidenceHistory(raw.residence_history, placesById);
 
     people.set(raw.id, {
       id: raw.id,
@@ -225,6 +271,7 @@ async function loadFamilyData() {
       birthStatusLabel: birthNorm ? birthNorm.statusLabel : null,
       birthHasVariants: !!(birthNorm && birthNorm.hasVariants),
       residence: raw.residence ? { placeName: residencePlace || raw.residence.as_recorded || null, asRecorded: residenceAsRecorded } : null,
+      moves,
       deathDisplay,
       deathYear: deathNorm && deathNorm.year != null ? deathNorm.year : null,
       deathPlace,

@@ -1,6 +1,25 @@
 {
   "schema_version": "1.0",
+  "family_confirmation_events": [
+    {
+      "source_id": "src_family_confirmation_p01_p19_m01_m17_2026_09_05",
+      "confirmed_table_codes": ["P01–P19", "M01–M17"],
+      "note": "Подтверждение относится к родственным ролям из таблицы; приблизительные даты и места сохраняют прежнюю степень точности. Для P19 данные военного однофамильца 1926–1945 годов исключены."
+    }
+  ],
   "people": [
+    {
+      "id": "alla_vladimirovna_aspidova_1987",
+      "names": [{"type": "primary", "display": "Аспидова Алла Владимировна", "native": "Аспидова Алла Владимировна"}],
+      "sex": "female",
+      "birth": {"year": 1987, "place_id": "perm_city", "status": "CONFIRMED_BY_FIRST_PERSON"},
+      "residence_history": [
+        {"event": "переезд", "from_place_id": "perm_city", "to_place_id": "moscow_city", "date_unknown": true, "with_family": ["vladimir_vitalievich_aspidov", "lyudmila_mikhailovna_tukacheva"], "status": "CONFIRMED_BY_FIRST_PERSON"}
+      ],
+      "identity_status": "CONFIRMED",
+      "notes": ["Центральная персона семейного дерева. Родилась в 1987 году в Перми. Переехала в Москву вместе с родителями; дата переезда пока неизвестна."],
+      "evidence_source_ids": ["src_family_testimony_alla_aspidova_1987"]
+    },
     {
       "id": "vitaly_mikhailovich_aspidov",
       "names": [{"type": "primary", "display": "Аспидов Виталий Михайлович", "native": "Аспидов Виталий Михайлович"}],
@@ -43,27 +62,28 @@
     {
       "id": "maria_vladimirovna_aspidova",
       "names": [
-        {"type": "primary", "display": "Аспидова Мария", "native": "Аспидова Мария"},
+        {"type": "primary", "display": "Аспидова Мария Владимировна", "native": "Аспидова Мария Владимировна"},
         {"type": "documentary_abbreviated", "display": "Аспидова Мария (отчество начинается на «Владимир-»)", "native": "Аспидова Мария Владимир."},
-        {"type": "probable_expansion", "display": "Аспидова Мария Владимировна", "native": "Аспидова Мария Владимировна", "status": "HYPOTHESIS"}
+        {"type": "family_confirmed", "display": "Аспидова Мария Владимировна", "native": "Аспидова Мария Владимировна", "status": "CONFIRMED_BY_FAMILY"}
       ],
       "sex": "female",
       "residence": {"place_id": "tyuremka", "as_recorded": "д. Тюремки, Кашкаринский с/совет"},
       "identity_status": "CONFIRMED",
       "attributes": {
-        "patronymic": {"document_text": "Владимир.", "probable_expansion": "Владимировна", "status": "HYPOTHESIS"},
-        "alternative_family_recollection": {"value": "Степановна", "status": "HYPOTHESIS"}
+        "patronymic": {"document_text": "Владимир.", "full_form": "Владимировна", "status": "CONFIRMED_BY_FAMILY"},
+        "rejected_alternative": {"value": "Степановна", "status": "REJECTED"}
       },
-      "notes": ["Пользователь подтвердил, что Мария, названная женой Михаила Николаевича, — это Мария, которую в семье помнят как мать Виталия. Сокращение в документе прочитано точно; полная форма «Владимировна» остаётся гипотезой, а не подтверждённым семьёй фактом."],
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_obd_58253101"]
+      "notes": ["Пользователь подтвердил, что Мария Владимировна, названная в документе женой Михаила Николаевича, была матерью Виталия. Полная форма отчества «Владимировна» подтверждена семьёй 5 сентября 2026 года; прежний вариант «Степановна» отклонён."],
+      "evidence_source_ids": ["src_family_confirmation_round2", "src_family_confirmation_p01_p19_m01_m17_2026_09_05", "src_obd_58253101"]
     },
     {
       "id": "vladimir_vitalievich_aspidov",
       "names": [{"type": "primary", "display": "Аспидов Владимир Витальевич", "native": "Аспидов Владимир Витальевич"}],
       "sex": "male",
       "identity_status": "CONFIRMED",
-      "notes": ["Отец пользователя; пользователь прямо подтвердил, что он сын Виталия Михайловича Аспидова."],
-      "evidence_source_ids": ["src_family_testimony_current_generation"]
+      "residence_history": [{"event": "переезд", "to_place_id": "moscow_city", "date_unknown": true, "with_family": ["alla_vladimirovna_aspidova_1987", "lyudmila_mikhailovna_tukacheva"], "status": "CONFIRMED_BY_FAMILY"}],
+      "notes": ["Отец Аллы Владимировны; пользователь прямо подтвердил, что он сын Виталия Михайловича Аспидова. Вместе с Людмилой и Аллой переехал в Москву; дата переезда неизвестна."],
+      "evidence_source_ids": ["src_family_testimony_current_generation", "src_family_testimony_alla_aspidova_1987"]
     },
     {
       "id": "lyudmila_mikhailovna_tukacheva",
@@ -74,8 +94,9 @@
       "sex": "female",
       "birth": {"date": "1959-09-25", "place_id": "chyormoz", "status": "CONFIRMED_BY_FAMILY"},
       "identity_status": "CONFIRMED",
-      "notes": ["Мать пользователя. Пользователь подтвердил личность, дату и место рождения, родителей, а также братьев и сестёр, указанных в Familio."],
-      "evidence_source_ids": ["src_family_testimony_current_generation", "src_family_confirmation_round2", "src_family_testimony_lyudmila_birth_1959", "src_familio_lyudmila_tukacheva"]
+      "residence_history": [{"event": "переезд", "to_place_id": "moscow_city", "date_unknown": true, "with_family": ["alla_vladimirovna_aspidova_1987", "vladimir_vitalievich_aspidov"], "status": "CONFIRMED_BY_FAMILY"}],
+      "notes": ["Мать Аллы Владимировны. Пользователь подтвердил личность, дату и место рождения, родителей, а также братьев и сестёр, указанных в Familio. Вместе с Владимиром и Аллой переехала в Москву; дата переезда неизвестна."],
+      "evidence_source_ids": ["src_family_testimony_current_generation", "src_family_confirmation_round2", "src_family_testimony_lyudmila_birth_1959", "src_family_testimony_alla_aspidova_1987", "src_familio_lyudmila_tukacheva"]
     },
     {
       "id": "mikhail_tukachev_father_of_lyudmila",
@@ -137,16 +158,16 @@
       "id": "candidate_stepan_sergeevich_syrchikov",
       "names": [{"type": "user_tree_clue", "display": "Сырчиков Степан Сергеевич", "native": "Сырчиков Степан Сергеевич"}],
       "sex": "male",
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "maternal_great_grandfather_of_lyudmila",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "maternal_great_grandfather_of_lyudmila_confirmed_by_family",
       "evidence_source_ids": ["src_familio_stepan_syrchikov"]
     },
     {
       "id": "candidate_sergey_yakovlevich_syrchikov",
       "names": [{"type": "user_tree_clue", "display": "Сырчиков Сергей Яковлевич", "native": "Сырчиков Сергей Яковлевич"}],
       "sex": "male",
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "ancestor_lead",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "maternal_ancestor_confirmed_by_family",
       "evidence_source_ids": ["src_familio_stepan_syrchikov"]
     },
     {
@@ -156,8 +177,8 @@
         {"type": "married", "display": "Сырчикова Агриппина Спиридоновна", "native": "Сырчикова Агриппина Спиридоновна"}
       ],
       "sex": "female",
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "ancestor_lead",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "maternal_ancestor_confirmed_by_family",
       "notes": ["В Familio её поздние годы жизни или смерть связаны с небольшой деревней Сырчики, а отцом назван Спиридон Данилович Миков."],
       "evidence_source_ids": ["src_familio_stepan_syrchikov", "src_familio_agrippina_mikova"]
     },
@@ -185,8 +206,8 @@
       "id": "candidate_kirill_politov",
       "names": [{"type": "user_tree_clue", "display": "Политов Кирилл", "native": "Политов Кирилл"}],
       "sex": "male",
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "father_of_fedor_politov",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "father_of_fedor_politov_confirmed_by_family",
       "notes": ["Гипотеза о более раннем поколении из Familio; даты и места не указаны."],
       "evidence_source_ids": ["src_familio_kirill_politov"]
     },
@@ -195,8 +216,8 @@
       "names": [{"type": "user_tree_clue", "display": "Политова Пелагея Кирилловна", "native": "Политова Пелагея Кирилловна"}],
       "sex": "female",
       "death": {"year": 1970, "status": "USER_TREE_VALUE"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "mother_of_fedor_politov",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "mother_of_fedor_politov_confirmed_by_family",
       "notes": ["Гипотеза о более раннем поколении из Familio; дата и место рождения не указаны."],
       "evidence_source_ids": ["src_familio_pelageya_politova"]
     },
@@ -204,8 +225,8 @@
       "id": "candidate_spiridon_danilovich_mikov",
       "names": [{"type": "user_tree_clue", "display": "Миков Спиридон Данилович", "native": "Миков Спиридон Данилович"}],
       "sex": "male",
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "father_of_agrippina_mikova",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "father_of_agrippina_mikova_confirmed_by_family",
       "notes": ["Гипотеза о более раннем поколении из Familio. Отчество указывает ещё на одно возможное поколение — отца по имени Данил, но конкретный человек не установлен."],
       "evidence_source_ids": ["src_familio_spiridon_mikov"]
     },
@@ -214,8 +235,8 @@
       "names": [{"type": "user_tree_clue", "display": "Сырчикова Мария Сергеевна", "native": "Сырчикова Мария Сергеевна"}],
       "sex": "female",
       "birth": {"date": "1898-04-28", "calendar": "old_style", "place_id": "syrchiki", "status": "USER_TREE_VALUE"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "sister_of_stepan_syrchikov",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "sister_of_stepan_syrchikov_confirmed_by_family",
       "notes": ["Полезная боковая подсказка: в Familio указаны точная дата рождения по старому стилю и деревня Сырчики. Эти сведения могут помочь распознать нужную семью, но не доказывают прямое родство."],
       "evidence_source_ids": ["src_familio_maria_sergeevna_syrchikova"]
     },
@@ -224,8 +245,8 @@
       "names": [{"type": "patronymic_inference", "display": "Аспидов Николай", "native": "Аспидов Николай"}],
       "sex": "male",
       "birth": {"estimated_range": "1860–1880", "status": "GENERATION_ESTIMATE"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "father_of_mikhail_nikolaevich_aspidov",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "father_of_mikhail_nikolaevich_aspidov_confirmed_by_family",
       "notes": ["Имя выведено из отчества Михаила Николаевича. Фамилия предполагается по обычной передаче фамилии по отцовской линии, но не подтверждена; конкретный исторический человек не установлен."],
       "evidence_source_ids": ["src_obd_58253101", "src_osagen_aspidov"]
     },
@@ -234,8 +255,8 @@
       "names": [{"type": "patronymic_inference", "display": "Владимир, фамилия неизвестна", "native": "Владимир, фамилия неизвестна"}],
       "sex": "male",
       "birth": {"estimated_range": "1860–1890", "status": "GENERATION_ESTIMATE"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "father_of_maria_probably_vladimirovna",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "father_of_maria_vladimirovna_confirmed_by_family",
       "notes": ["Этот человек присутствует в рабочем дереве только при условии, что сокращение «Владимир.» в ОБД правильно раскрывается как «Владимировна». Девичья фамилия Марии неизвестна."],
       "evidence_source_ids": ["src_obd_58253101"]
     },
@@ -244,8 +265,8 @@
       "names": [{"type": "patronymic_inference", "display": "Василий, фамилия неизвестна", "native": "Василий, фамилия неизвестна"}],
       "sex": "male",
       "birth": {"estimated_range": "1860–1885", "status": "GENERATION_ESTIMATE"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "father_of_agafya_vasilievna",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "father_of_agafya_vasilievna_confirmed_by_family",
       "notes": ["Из отчества Агафьи выведено только имя отца; её девичья фамилия неизвестна."],
       "evidence_source_ids": ["src_familio_agafya_politova"]
     },
@@ -254,8 +275,8 @@
       "names": [{"type": "patronymic_inference", "display": "Сырчиков Яков", "native": "Сырчиков Яков"}],
       "sex": "male",
       "birth": {"estimated_range": "1830–1860", "status": "GENERATION_ESTIMATE"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "father_of_sergey_yakovlevich_syrchikov",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "father_of_sergey_yakovlevich_syrchikov_confirmed_by_family",
       "notes": ["Имя выведено из отчества Сергея; фамилия и личность остаются гипотезой."],
       "evidence_source_ids": ["src_familio_stepan_syrchikov"]
     },
@@ -264,8 +285,8 @@
       "names": [{"type": "patronymic_inference", "display": "Миков Данил", "native": "Миков Данил"}],
       "sex": "male",
       "birth": {"estimated_range": "1800–1840", "status": "GENERATION_ESTIMATE"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "father_of_spiridon_danilovich_mikov",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "father_of_spiridon_danilovich_mikov_confirmed_by_family",
       "notes": ["Имя выведено из отчества Спиридона; фамилия и личность остаются гипотезой."],
       "evidence_source_ids": ["src_familio_spiridon_mikov"]
     },
@@ -274,8 +295,8 @@
       "names": [{"type": "user_tree_clue", "display": "Политов Михаил Фёдорович", "native": "Политов Михаил Фёдорович"}],
       "sex": "male",
       "birth": {"year": 1924, "approximate": true, "status": "USER_TREE_VALUE"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "brother_of_anna_fedorovna_politova",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "brother_of_anna_fedorovna_politova_confirmed_by_family",
       "notes": ["Назван одним из шести детей Фёдора Кирилловича и Агафьи Васильевны в Familio; независимого подтверждения пока нет."],
       "evidence_source_ids": ["src_familio_fedor_politov"]
     },
@@ -286,8 +307,8 @@
       "birth": {"year": 1925, "place_as_recorded": "деревня Мартели", "status": "MATCHING_USER_TREE_AND_MILITARY_RECORD"},
       "death": {"year": 1943, "status": "SOURCE_CONFLICT", "date_variants": ["1943-10-13", "1943-10-18"]},
       "military": {"call_up_year": 1943, "call_up_authority": "Верещагинский РВК", "rank": "красноармеец", "unit": "1-я гвардейская воздушно-десантная дивизия", "status": "killed_in_action"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "brother_of_anna_fedorovna_politova",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "brother_of_anna_fedorovna_politova_confirmed_by_family",
       "notes": ["Совпадение полного имени, года и деревни Мартели делает связь сильной, но родители в военной записи не названы.", "ОБД и районная книга памяти расходятся в дате гибели и месте захоронения; обе версии сохранены."],
       "evidence_source_ids": ["src_familio_fedor_politov", "src_obd_petr_fedorovich_politov_503665796", "src_vereshchagino_memory_book_petr_politov"]
     },
@@ -296,8 +317,8 @@
       "names": [{"type": "user_tree_clue", "display": "Политов Кирилл Фёдорович", "native": "Политов Кирилл Фёдорович"}],
       "sex": "male",
       "birth": {"year": 1927, "approximate": true, "status": "USER_TREE_VALUE"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "brother_of_anna_fedorovna_politova",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "brother_of_anna_fedorovna_politova_confirmed_by_family",
       "evidence_source_ids": ["src_familio_fedor_politov"]
     },
     {
@@ -305,8 +326,8 @@
       "names": [{"type": "birth", "display": "Политова Степанида Фёдоровна", "native": "Политова Степанида Фёдоровна"}, {"type": "married", "display": "Шмырина Степанида Фёдоровна", "native": "Шмырина Степанида Фёдоровна", "status": "USER_TREE_VALUE"}],
       "sex": "female",
       "birth": {"year": 1930, "status": "USER_TREE_VALUE"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "sister_of_anna_fedorovna_politova",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "sister_of_anna_fedorovna_politova_confirmed_by_family",
       "evidence_source_ids": ["src_familio_fedor_politov"]
     },
     {
@@ -314,8 +335,8 @@
       "names": [{"type": "birth", "display": "Политова Лукерия (Гликерия) Фёдоровна", "native": "Политова Лукерия (Гликерия) Фёдоровна"}, {"type": "married", "display": "Самусенко Лукерия Фёдоровна", "native": "Самусенко Лукерия Фёдоровна", "status": "USER_TREE_VALUE"}],
       "sex": "female",
       "birth": {"date": "1939-05-20", "place_as_recorded": "деревня Мартели", "status": "USER_TREE_VALUE"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "sister_of_anna_fedorovna_politova",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "sister_of_anna_fedorovna_politova_confirmed_by_family",
       "notes": ["Имя в пользовательском дереве передано вариантами Лукерия/Гликерия; до проверки акта сохранены обе формы."],
       "evidence_source_ids": ["src_familio_fedor_politov"]
     },
@@ -323,22 +344,21 @@
       "id": "candidate_zinaida_kirillovna_politova",
       "names": [{"type": "user_tree_clue", "display": "Политова Зинаида Кирилловна", "native": "Политова Зинаида Кирилловна"}],
       "sex": "female",
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "sister_of_fedor_kirillovich_politov",
+      "identity_status": "CONFIRMED",
+      "candidate_role": "sister_of_fedor_kirillovich_politov_confirmed_by_family",
       "notes": ["Названа дочерью Кирилла и Пелагеи в Familio; даты и места неизвестны."],
       "evidence_source_ids": ["src_familio_kirill_politov"]
     },
     {
-      "id": "candidate_nikolai_mikhailovich_aspidov_1926",
+      "id": "nikolai_mikhailovich_aspidov_older_brother",
       "names": [{"type": "memorial_record", "display": "Аспидов Николай Михайлович", "native": "Аспидов Николай Михайлович"}],
       "sex": "male",
-      "birth": {"year": 1926, "place_as_recorded": "Устиново, Осинский район"},
-      "death": {"date": "1945-09", "date_precision": "month", "cause": "умер от ран", "place_as_recorded": "Куйбышев, Восточно-Амурская область"},
-      "military": {"call_up_year": 1943, "call_up_authority": "Осинский РВК", "rank": "рядовой"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "possible_brother_or_close_relative_of_vitaly",
-      "notes": ["Редкие фамилия и отчество, подходящий возраст и соседнее Устиново делают его важным кандидатом, но мать и родители в источнике не названы."],
-      "evidence_source_ids": ["src_permgaspi_memory_book", "src_osinsky_wwii_aspidov_candidates"]
+      "birth": {"before": "1935-01-03", "status": "OLDER_THAN_VITALY_CONFIRMED_BY_FAMILY"},
+      "death": {"date_unknown": true, "place_as_recorded": "Пермь", "cause": "старость", "status": "CONFIRMED_BY_FAMILY"},
+      "identity_status": "CONFIRMED",
+      "candidate_role": "older_brother_of_vitaly_confirmed_by_family",
+      "notes": ["Пользователь подтвердил, что Николай Михайлович был старшим братом Виталия. Он умер в Перми от старости; точная дата смерти не подтверждена.", "Ранее сопоставленная военная карточка Николая Михайловича 1926 года из Устинова, умершего от ран в 1945 году, относится к другому человеку и не должна использоваться для этой карточки."],
+      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05"]
     },
     {
       "id": "candidate_pavel_mikhailovich_aspidov_1908",
@@ -378,10 +398,10 @@
       "sex": "male",
       "birth": {"year": 1901, "place_as_recorded": "Васильевский сельсовет, Ильинский район"},
       "death": {"date": "1941-12", "date_precision": "month", "status": "пропал без вести"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "possible_brother_of_stepan_sergeevich_or_maria_sergeevna",
-      "notes": ["Жена — Анна Алексеевна. Останки найдены поисковиками в 2012 году и перезахоронены в деревне Яковлево Смоленской области. Совпадение отчества и района ещё не доказывает родство."],
-      "evidence_source_ids": ["src_permgaspi_syrchikov_candidates", "src_otechestvo_ivan_sergeevich_syrchikov"]
+      "identity_status": "CONFIRMED",
+      "candidate_role": "brother_of_stepan_sergeevich_and_maria_sergeevna_confirmed_by_family",
+      "notes": ["Пользователь подтвердил принадлежность Ивана Сергеевича к семье. Жена — Анна Алексеевна. Останки найдены поисковиками в 2012 году и перезахоронены в деревне Яковлево Смоленской области."],
+      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05", "src_permgaspi_syrchikov_candidates", "src_otechestvo_ivan_sergeevich_syrchikov"]
     },
     {
       "id": "candidate_ivan_stepanovich_syrchikov_1907",
@@ -390,20 +410,42 @@
       "birth": {"year": 1907, "place_as_recorded": "Ильинский район"},
       "death": {"date_variants": ["1941-12", "1941-12-29"], "place_as_recorded": "у деревни Гаврилово, Московская область", "status": "SOURCE_CONFLICT"},
       "military": {"call_up_year": 1941, "call_up_place": "Чёрмоз", "unit": "46-я отдельная стрелковая бригада", "rank": "рядовой"},
-      "identity_status": "HYPOTHESIS",
-      "candidate_role": "possible_brother_of_maria_stepanovna_syrchikova",
-      "notes": ["Отчество, район и призыв в Чёрмозе делают его важным кандидатом в дети Степана Сергеевича, но ни один источник не называет родителей. ОБД указывает гибель 29.12.1941, книга памяти — пропажу без вести в декабре."] ,
-      "evidence_source_ids": ["src_permgaspi_syrchikov_candidates", "src_obd_ivan_stepanovich_syrchikov_551438577"]
+      "identity_status": "CONFIRMED",
+      "candidate_role": "brother_of_maria_stepanovna_syrchikova_confirmed_by_family",
+      "notes": ["Пользователь подтвердил, что Иван Степанович был братом Марии Степановны. ОБД указывает гибель 29.12.1941, книга памяти — пропажу без вести в декабре; расхождение о судьбе сохраняется."] ,
+      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05", "src_permgaspi_syrchikov_candidates", "src_obd_ivan_stepanovich_syrchikov_551438577"]
     },
     {
       "id": "candidate_alexandra_mikhailovna_syrchikova_1904",
       "names": [{"type": "repression_index", "display": "Сырчикова Александра Михайловна", "native": "Сырчикова Александра Михайловна"}],
       "sex": "female",
       "birth": {"year": 1904, "place_id": "syrchiki"},
+      "identity_status": "CONFIRMED",
+      "candidate_role": "family_relative_exact_connection_unknown",
+      "notes": ["Пользователь подтвердил принадлежность Александры Михайловны к семье, но точная родственная линия пока не указана. Арестована 22.10.1936, осуждена 03.03.1937 на три года лишения свободы, впоследствии реабилитирована."],
+      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05", "src_perm_memorial_syrchikova_alexandra_1904"]
+    },
+    {
+      "id": "candidate_anna_yakovlevna_aspidova_1903",
+      "names": [{"type": "repression_index", "display": "Аспидова Анна Яковлевна", "native": "Аспидова Анна Яковлевна"}],
+      "sex": "female",
+      "birth": {"year": 1903, "place_as_recorded": "деревня Кряж, Осинский район"},
+      "residence": {"place_as_recorded": "село Устиново, Осинский район"},
       "identity_status": "HYPOTHESIS",
-      "candidate_role": "regional_syrchikov_relative_lead",
-      "notes": ["Арестована 22.10.1936, осуждена 03.03.1937 на три года лишения свободы, впоследствии реабилитирована. Прямая связь с известной семьёй Сырчиковых не установлена."],
-      "evidence_source_ids": ["src_perm_memorial_syrchikova_alexandra_1904"]
+      "candidate_role": "regional_aspidov_relative_lead",
+      "notes": ["Работала сторожем начальной школы. Арестована в Устинове в 1937 году, приговорена к двухлетнему гласному надзору, впоследствии реабилитирована. Фамилия и проживание в Устинове делают её кандидатом в расширенный род, но родителей и мужа источник не называет."],
+      "evidence_source_ids": ["src_perm_memorial_anna_yakovlevna_aspidova_1903"]
+    },
+    {
+      "id": "candidate_fedor_ilyich_politov_1885",
+      "names": [{"type": "repression_index", "display": "Политов Фёдор Ильич", "native": "Политов Фёдор Ильич"}],
+      "sex": "male",
+      "birth": {"year": 1885, "place_as_recorded": "деревня Мартелы, Верещагинский район"},
+      "residence": {"place_as_recorded": "деревня Мартелы, Верещагинский район"},
+      "identity_status": "HYPOTHESIS",
+      "candidate_role": "regional_politov_relative_lead",
+      "notes": ["Плотник и колхозник. Арестован в 1937 году, приговорён к десяти годам лишения свободы, впоследствии реабилитирован. Совпадение фамилии и деревни с предполагаемой семьёй Анны Фёдоровны делает его полезной боковой подсказкой, но родство не доказано."],
+      "evidence_source_ids": ["src_perm_memorial_fedor_ilyich_politov_1885"]
     }
   ]
 }

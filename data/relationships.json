@@ -1,6 +1,29 @@
 {
   "schema_version": "1.0",
+  "family_confirmation_events": [
+    {
+      "source_id": "src_family_confirmation_p01_p19_m01_m17_2026_09_05",
+      "confirmed_table_codes": ["P01–P19", "M01–M17"],
+      "note": "Все однозначно определённые родительские и супружеские связи в этих диапазонах подтверждены семьёй; для M17 линия пока не установлена и не создана."
+    }
+  ],
   "relationships": [
+    {
+      "id": "rel_vladimir_father_alla",
+      "type": "biological_parent",
+      "parent_id": "vladimir_vitalievich_aspidov",
+      "child_id": "alla_vladimirovna_aspidova_1987",
+      "status": "CONFIRMED",
+      "evidence_source_ids": ["src_family_testimony_alla_aspidova_1987"]
+    },
+    {
+      "id": "rel_lyudmila_mother_alla",
+      "type": "biological_parent",
+      "parent_id": "lyudmila_mikhailovna_tukacheva",
+      "child_id": "alla_vladimirovna_aspidova_1987",
+      "status": "CONFIRMED",
+      "evidence_source_ids": ["src_family_testimony_alla_aspidova_1987"]
+    },
     {
       "id": "rel_vitaly_anna_spouses",
       "type": "spouse",
@@ -110,7 +133,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_stepan_sergeevich_syrchikov",
       "child_id": "maria_stepanovna_syrchikova",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_maria_syrchikova", "src_familio_stepan_syrchikov"]
     },
     {
@@ -118,7 +141,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_sergey_yakovlevich_syrchikov",
       "child_id": "candidate_stepan_sergeevich_syrchikov",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_stepan_syrchikov"]
     },
     {
@@ -126,7 +149,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_agrippina_spiridonovna_mikova",
       "child_id": "candidate_stepan_sergeevich_syrchikov",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_stepan_syrchikov"]
     },
     {
@@ -182,7 +205,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_kirill_politov",
       "child_id": "fedor_kirillovich_politov",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_kirill_politov", "src_familio_fedor_politov"]
     },
     {
@@ -190,7 +213,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_pelageya_kirillovna_politova",
       "child_id": "fedor_kirillovich_politov",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_pelageya_politova", "src_familio_fedor_politov"]
     },
     {
@@ -198,7 +221,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_spiridon_danilovich_mikov",
       "child_id": "candidate_agrippina_spiridonovna_mikova",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_spiridon_mikov", "src_familio_agrippina_mikova"]
     },
     {
@@ -206,7 +229,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_sergey_yakovlevich_syrchikov",
       "child_id": "candidate_maria_sergeevna_syrchikova_1898",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_maria_sergeevna_syrchikova"]
     },
     {
@@ -214,7 +237,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_agrippina_spiridonovna_mikova",
       "child_id": "candidate_maria_sergeevna_syrchikova_1898",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_maria_sergeevna_syrchikova"]
     },
     {
@@ -222,7 +245,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_nikolai_aspidov_father_of_mikhail",
       "child_id": "mikhail_nikolaevich_aspidov_1899",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_obd_58253101", "src_osagen_aspidov"]
     },
     {
@@ -230,7 +253,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_vladimir_father_of_maria_aspidova",
       "child_id": "maria_vladimirovna_aspidova",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_obd_58253101"]
     },
     {
@@ -238,7 +261,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_vasily_father_of_agafya",
       "child_id": "agafya_vasilievna_politova",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_agafya_politova"]
     },
     {
@@ -246,7 +269,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_yakov_syrchikov_father_of_sergey",
       "child_id": "candidate_sergey_yakovlevich_syrchikov",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_stepan_syrchikov"]
     },
     {
@@ -254,7 +277,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_danil_mikov_father_of_spiridon",
       "child_id": "candidate_spiridon_danilovich_mikov",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_spiridon_mikov"]
     },
     {
@@ -262,7 +285,7 @@
       "type": "spouse",
       "person_1_id": "candidate_kirill_politov",
       "person_2_id": "candidate_pelageya_kirillovna_politova",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_kirill_politov", "src_familio_pelageya_politova"]
     },
     {
@@ -270,7 +293,7 @@
       "type": "biological_parent",
       "parent_id": "fedor_kirillovich_politov",
       "child_id": "candidate_mikhail_fedorovich_politov_1924",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_fedor_politov"]
     },
     {
@@ -278,7 +301,7 @@
       "type": "biological_parent",
       "parent_id": "agafya_vasilievna_politova",
       "child_id": "candidate_mikhail_fedorovich_politov_1924",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_fedor_politov", "src_familio_agafya_politova"]
     },
     {
@@ -286,7 +309,7 @@
       "type": "biological_parent",
       "parent_id": "fedor_kirillovich_politov",
       "child_id": "candidate_petr_fedorovich_politov_1925",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_fedor_politov", "src_obd_petr_fedorovich_politov_503665796"]
     },
     {
@@ -294,7 +317,7 @@
       "type": "biological_parent",
       "parent_id": "agafya_vasilievna_politova",
       "child_id": "candidate_petr_fedorovich_politov_1925",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_fedor_politov", "src_familio_agafya_politova", "src_obd_petr_fedorovich_politov_503665796"]
     },
     {
@@ -302,7 +325,7 @@
       "type": "biological_parent",
       "parent_id": "fedor_kirillovich_politov",
       "child_id": "candidate_kirill_fedorovich_politov_1927",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_fedor_politov"]
     },
     {
@@ -310,7 +333,7 @@
       "type": "biological_parent",
       "parent_id": "agafya_vasilievna_politova",
       "child_id": "candidate_kirill_fedorovich_politov_1927",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_fedor_politov", "src_familio_agafya_politova"]
     },
     {
@@ -318,7 +341,7 @@
       "type": "biological_parent",
       "parent_id": "fedor_kirillovich_politov",
       "child_id": "candidate_stepanida_fedorovna_politova_1930",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_fedor_politov"]
     },
     {
@@ -326,7 +349,7 @@
       "type": "biological_parent",
       "parent_id": "agafya_vasilievna_politova",
       "child_id": "candidate_stepanida_fedorovna_politova_1930",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_fedor_politov", "src_familio_agafya_politova"]
     },
     {
@@ -334,7 +357,7 @@
       "type": "biological_parent",
       "parent_id": "fedor_kirillovich_politov",
       "child_id": "candidate_lukeriya_fedorovna_politova_1939",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_fedor_politov"]
     },
     {
@@ -342,7 +365,7 @@
       "type": "biological_parent",
       "parent_id": "agafya_vasilievna_politova",
       "child_id": "candidate_lukeriya_fedorovna_politova_1939",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_fedor_politov", "src_familio_agafya_politova"]
     },
     {
@@ -350,7 +373,7 @@
       "type": "biological_parent",
       "parent_id": "candidate_kirill_politov",
       "child_id": "candidate_zinaida_kirillovna_politova",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_kirill_politov"]
     },
     {
@@ -358,8 +381,48 @@
       "type": "biological_parent",
       "parent_id": "candidate_pelageya_kirillovna_politova",
       "child_id": "candidate_zinaida_kirillovna_politova",
-      "status": "HYPOTHESIS",
+      "status": "CONFIRMED",
       "evidence_source_ids": ["src_familio_kirill_politov", "src_familio_pelageya_politova"]
+    },
+    {
+      "id": "rel_mikhail_nikolaevich_father_nikolai_older_brother",
+      "type": "biological_parent",
+      "parent_id": "mikhail_nikolaevich_aspidov_1899",
+      "child_id": "nikolai_mikhailovich_aspidov_older_brother",
+      "status": "CONFIRMED",
+      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05"]
+    },
+    {
+      "id": "rel_maria_mother_nikolai_older_brother",
+      "type": "biological_parent",
+      "parent_id": "maria_vladimirovna_aspidova",
+      "child_id": "nikolai_mikhailovich_aspidov_older_brother",
+      "status": "CONFIRMED",
+      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05"]
+    },
+    {
+      "id": "rel_sergey_father_ivan_sergeevich",
+      "type": "biological_parent",
+      "parent_id": "candidate_sergey_yakovlevich_syrchikov",
+      "child_id": "candidate_ivan_sergeevich_syrchikov_1901",
+      "status": "CONFIRMED",
+      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05"]
+    },
+    {
+      "id": "rel_agrippina_mother_ivan_sergeevich",
+      "type": "biological_parent",
+      "parent_id": "candidate_agrippina_spiridonovna_mikova",
+      "child_id": "candidate_ivan_sergeevich_syrchikov_1901",
+      "status": "CONFIRMED",
+      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05"]
+    },
+    {
+      "id": "rel_stepan_father_ivan_stepanovich",
+      "type": "biological_parent",
+      "parent_id": "candidate_stepan_sergeevich_syrchikov",
+      "child_id": "candidate_ivan_stepanovich_syrchikov_1907",
+      "status": "CONFIRMED",
+      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05"]
     }
   ]
 }
