@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Наше родословное древо — 40 лет вместе</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-ornament" aria-hidden="true">♦</div>
+  <p class="hero-eyebrow">Рубиновая свадьба</p>
+  <h1 class="hero-title">Владимир и Людмила</h1>
+  <p class="hero-subtitle">40 лет вместе</p>
+  <p class="hero-date">6 сентября 2026</p>
+  <p class="hero-lede">Это родословное древо наша семья собирает по крупицам — архивные записи, семейные воспоминания и находки родственников. Прикоснитесь к любому имени, чтобы узнать историю. Нашли неточность или хотите добавить фотографию — дайте нам знать прямо на странице человека.</p>
+  <a class="hero-scroll" href="#tree">Смотреть древо ↓</a>
+</header>
+
+<main id="tree" class="tree-section">
+  <div class="tree-toolbar">
+    <div class="legend">
+      <span class="legend-item"><span class="legend-swatch legend-confirmed"></span>Подтверждено</span>
+      <span class="legend-item"><span class="legend-swatch legend-hypothesis"></span>Предположение</span>
+      <span class="legend-item"><span class="legend-swatch legend-unknown"></span>Не установлено</span>
+    </div>
+    <div class="tree-controls">
+      <button id="zoom-in" title="Приблизить" aria-label="Приблизить">+</button>
+      <button id="zoom-out" title="Отдалить" aria-label="Отдалить">−</button>
+      <button id="zoom-reset" title="Сбросить масштаб" aria-label="Сбросить масштаб">⟲</button>
+    </div>
+  </div>
+
+  <div id="tree-canvas" class="tree-canvas">
+    <svg id="tree-svg"></svg>
+    <div id="tree-loading" class="tree-loading">Загружаем древо…</div>
+  </div>
+
+  <div id="unlinked-panel" class="unlinked-panel" hidden>
+    <h3>Пока не удалось разместить на древе</h3>
+    <p class="unlinked-note">Эти записи ещё не связаны с остальным древом — возможно, потребуется больше исследований.</p>
+    <ul id="unlinked-list"></ul>
+  </div>
+</main>
+
+<aside id="detail-panel" class="detail-panel" aria-hidden="true">
+  <button id="detail-close" class="detail-close" aria-label="Закрыть">×</button>
+  <div id="detail-content" class="detail-content"></div>
+</aside>
+<div id="detail-overlay" class="detail-overlay" hidden></div>
+
+<footer class="site-footer">
+  <p>Семейный проект · данные собираются и уточняются постоянно</p>
+</footer>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/detail.js"></script>
+<script src="js/tree.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

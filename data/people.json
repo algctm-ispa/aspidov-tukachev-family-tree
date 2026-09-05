@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.0",
+  "people": [
+    {
+      "id": "vitaly_mikhailovich_aspidov",
+      "names": [{"type": "primary", "display": "Vitaly Mikhailovich Aspidov", "native": "Аспидов Виталий Михайлович"}],
+      "sex": "male",
+      "birth": {"date": "1935-01-03", "place_id": "tyuremka", "status": "REPORTED_BY_FAMILY_MEMORY"},
+      "death": {"year": 2010, "approximate": true},
+      "identity_status": "CONFIRMED",
+      "notes": ["The user remembers his birth date as 3 January 1935. The date should be verified against the civil birth record."],
+      "evidence_source_ids": ["src_family_testimony_aspidov", "src_family_testimony_vitaly_birth_1935"]
+    },
+    {
+      "id": "anna_fedorovna_politova",
+      "names": [
+        {"type": "married", "display": "Anna Fedorovna Aspidova", "native": "Аспидова Анна Фёдоровна"},
+        {"type": "birth", "display": "Anna Fedorovna Politova", "native": "Политова Анна Фёдоровна"}
+      ],
+      "sex": "female",
+      "birth": {"year": 1934, "approximate": true, "place_id": "perm_region"},
+      "identity_status": "CONFIRMED",
+      "notes": ["The user confirmed that Anna was the mother of Vladimir Vitalievich Aspidov."],
+      "evidence_source_ids": ["src_family_testimony_aspidov", "src_family_confirmation_round2", "src_familio_vitaly_anna"]
+    },
+    {
+      "id": "mikhail_nikolaevich_aspidov_1899",
+      "names": [{"type": "documentary", "display": "Mikhail Nikolaevich Aspidov", "native": "Аспидов Михаил Николаевич"}],
+      "sex": "male",
+      "birth": {"year": 1899, "approximate": false, "place_id": "tyuremka"},
+      "military": {
+        "call_up_date": "1942-01-13",
+        "call_up_authority": "Осинский РВК",
+        "role_as_recorded": "связист",
+        "status": "missing_in_action",
+        "loss_date": "1943-06",
+        "loss_date_precision": "month"
+      },
+      "identity_status": "CONFIRMED",
+      "notes": ["The user confirmed that this is the Mikhail Aspidov remembered as Vitaly's father. The identity is therefore confirmed by family testimony, while an archival parent-child record is still desirable."],
+      "evidence_source_ids": ["src_family_confirmation_round2", "src_obd_58253101", "src_obd_558253101", "src_permgaspi_memory_book"]
+    },
+    {
+      "id": "maria_vladimirovna_aspidova",
+      "names": [
+        {"type": "primary", "display": "Maria Aspidova", "native": "Аспидова Мария"},
+        {"type": "documentary_abbreviated", "display": "Maria Aspidova (patronymic begins Vladimir-)", "native": "Аспидова Мария Владимир."},
+        {"type": "probable_expansion", "display": "Maria Vladimirovna Aspidova", "native": "Аспидова Мария Владимировна", "status": "HIGHLY_PROBABLE"}
+      ],
+      "sex": "female",
+      "residence": {"place_id": "tyuremka", "as_recorded": "д. Тюремки, Кашкаринский с/совет"},
+      "identity_status": "CONFIRMED",
+      "attributes": {
+        "patronymic": {"document_text": "Владимир.", "probable_expansion": "Владимировна", "status": "HIGHLY_PROBABLE"},
+        "alternative_family_recollection": {"value": "Степановна", "status": "HYPOTHESIS"}
+      },
+      "notes": ["The user confirmed that the Maria named as Mikhail Nikolaevich's wife is the Maria remembered as Vitaly's mother. The exact abbreviation is confirmed; the full expansion Vladimirovna remains highly probable rather than certain."],
+      "evidence_source_ids": ["src_family_confirmation_round2", "src_obd_58253101"]
+    },
+    {
+      "id": "vladimir_vitalievich_aspidov",
+      "names": [{"type": "primary", "display": "Vladimir Vitalievich Aspidov", "native": "Аспидов Владимир Витальевич"}],
+      "sex": "male",
+      "identity_status": "CONFIRMED",
+      "notes": ["The user's father; directly identified by the user as Vitaly Mikhailovich Aspidov's son."],
+      "evidence_source_ids": ["src_family_testimony_current_generation"]
+    },
+    {
+      "id": "lyudmila_mikhailovna_tukacheva",
+      "names": [
+        {"type": "birth", "display": "Lyudmila Mikhailovna Tukacheva", "native": "Тукачева Людмила Михайловна"},
+        {"type": "possible_married", "display": "Lyudmila Mikhailovna Aspidova", "native": "Аспидова Людмила Михайловна", "status": "HYPOTHESIS"}
+      ],
+      "sex": "female",
+      "birth": {"date": "1959-09-25", "place_id": "chyormoz", "status": "CONFIRMED_BY_FAMILY"},
+      "identity_status": "CONFIRMED",
+      "notes": ["The user's mother. The user confirmed the Familio identity, birth date, birthplace, parents, and sibling group."],
+      "evidence_source_ids": ["src_family_testimony_current_generation", "src_family_confirmation_round2", "src_family_testimony_lyudmila_birth_1959", "src_familio_lyudmila_tukacheva"]
+    },
+    {
+      "id": "mikhail_tukachev_father_of_lyudmila",
+      "names": [{"type": "constructed", "display": "Mikhail ? Tukachev", "native": "Михаил ? Тукачев"}],
+      "sex": "male",
+      "identity_status": "CONFIRMED",
+      "notes": ["Confirmed by the user as Lyudmila's father. Familio supplies no birth or death dates."],
+      "evidence_source_ids": ["src_family_testimony_current_generation", "src_family_confirmation_round2", "src_familio_mikhail_tukachev"]
+    },
+    {
+      "id": "vera_nikolaevna_zhdankova",
+      "names": [
+        {"type": "birth", "display": "Vera Nikolaevna Zhdankova", "native": "Жданкова Вера Николаевна"},
+        {"type": "married", "display": "Vera Nikolaevna Tukacheva", "native": "Тукачева Вера Николаевна"}
+      ],
+      "sex": "female",
+      "identity_status": "CONFIRMED",
+      "notes": ["Confirmed by the user as Lyudmila's mother. Birth and death dates remain unknown."],
+      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_vera_zhdankova"]
+    },
+    {
+      "id": "tatyana_mikhailovna_tukacheva",
+      "names": [{"type": "birth", "display": "Tatyana Mikhailovna Tukacheva", "native": "Тукачева Татьяна Михайловна"}],
+      "sex": "female",
+      "birth": {"place_id": "chyormoz", "date_unknown": true, "status": "CONFIRMED_BY_FAMILY"},
+      "identity_status": "CONFIRMED",
+      "notes": ["Confirmed by the user as Lyudmila's sister. Familio gives the married surname Popchenko, spouse Andrey Nikolaevich Popchenko, and children Anna and Anton; those later-family details remain clue-only."],
+      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_tatyana_tukacheva"]
+    },
+    {
+      "id": "valery_mikhailovich_tukachev_1964",
+      "names": [{"type": "documentary_clue", "display": "Valery Mikhailovich Tukachev", "native": "Тукачев Валерий Михайлович"}],
+      "sex": "male",
+      "birth": {"date": "1964-01-26", "place_id": "chyormoz", "status": "CONFIRMED_BY_FAMILY"},
+      "identity_status": "CONFIRMED",
+      "notes": ["Confirmed by the user as Lyudmila's brother. Familio reports marriage to Tatyana Anatolievna Kozlova on 5 June 1987 in Chyormoz and two children whose identities are private; these details remain clue-only until separately confirmed."],
+      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_valery_tukachev"]
+    },
+    {
+      "id": "nikolai_zhdanov",
+      "names": [{"type": "user_tree_clue", "display": "Nikolai Zhdanov", "native": "Жданов Николай"}],
+      "sex": "male",
+      "identity_status": "CONFIRMED",
+      "notes": ["Confirmed by the user as Vera Nikolaevna's father. Patronymic, dates, and places remain unknown."],
+      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_nikolai_zhdanov"]
+    },
+    {
+      "id": "maria_stepanovna_syrchikova",
+      "names": [
+        {"type": "birth", "display": "Maria Stepanovna Syrchikova", "native": "Сырчикова Мария Степановна"},
+        {"type": "married", "display": "Maria Stepanovna Zhdanova", "native": "Жданова Мария Степановна"}
+      ],
+      "sex": "female",
+      "identity_status": "CONFIRMED",
+      "notes": ["Confirmed by the user as Vera Nikolaevna's mother. Dates and places remain unknown."],
+      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_maria_syrchikova"]
+    },
+    {
+      "id": "candidate_stepan_sergeevich_syrchikov",
+      "names": [{"type": "user_tree_clue", "display": "Stepan Sergeevich Syrchikov", "native": "Сырчиков Степан Сергеевич"}],
+      "sex": "male",
+      "identity_status": "UNKNOWN",
+      "candidate_role": "maternal_great_grandfather_of_lyudmila",
+      "evidence_source_ids": ["src_familio_stepan_syrchikov"]
+    },
+    {
+      "id": "candidate_sergey_yakovlevich_syrchikov",
+      "names": [{"type": "user_tree_clue", "display": "Sergey Yakovlevich Syrchikov", "native": "Сырчиков Сергей Яковлевич"}],
+      "sex": "male",
+      "identity_status": "UNKNOWN",
+      "candidate_role": "ancestor_lead",
+      "evidence_source_ids": ["src_familio_stepan_syrchikov"]
+    },
+    {
+      "id": "candidate_agrippina_spiridonovna_mikova",
+      "names": [
+        {"type": "birth", "display": "Agrippina Spiridonovna Mikova", "native": "Микова Агриппина Спиридоновна"},
+        {"type": "married", "display": "Agrippina Spiridonovna Syrchikova", "native": "Сырчикова Агриппина Спиридоновна"}
+      ],
+      "sex": "female",
+      "identity_status": "UNKNOWN",
+      "candidate_role": "ancestor_lead",
+      "notes": ["Familio places her later life/death in the tiny village of Syrchiki and names her father as Spiridon Danilovich Mikov."],
+      "evidence_source_ids": ["src_familio_stepan_syrchikov", "src_familio_agrippina_mikova"]
+    },
+    {
+      "id": "fedor_kirillovich_politov",
+      "names": [{"type": "primary", "display": "Fedor Kirillovich Politov", "native": "Политов Фёдор Кириллович"}],
+      "sex": "male",
+      "birth": {"year": 1901, "approximate": true, "status": "USER_TREE_VALUE"},
+      "death": {"year": 1953, "status": "USER_TREE_VALUE"},
+      "identity_status": "CONFIRMED",
+      "notes": ["Confirmed by the user as Anna Fedorovna's father. Familio lists six children: Mikhail, Pyotr, Kirill, Stepanida, Anna, and Lukeria/Glikeria; dates and collateral relationships still need records."],
+      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_fedor_politov"]
+    },
+    {
+      "id": "agafya_vasilievna_politova",
+      "names": [{"type": "primary", "display": "Agafya Vasilievna Politova", "native": "Политова Агафья Васильевна"}],
+      "sex": "female",
+      "birth": {"year": 1900, "status": "USER_TREE_VALUE"},
+      "death": {"year": 1978, "status": "USER_TREE_VALUE"},
+      "identity_status": "CONFIRMED",
+      "notes": ["Confirmed by the user as Anna Fedorovna's mother. Familio lists six children with Fedor Kirillovich."],
+      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_agafya_politova"]
+    },
+    {
+      "id": "candidate_kirill_politov",
+      "names": [{"type": "user_tree_clue", "display": "Kirill Politov", "native": "Политов Кирилл"}],
+      "sex": "male",
+      "identity_status": "UNKNOWN",
+      "candidate_role": "father_of_fedor_politov",
+      "notes": ["New earlier-generation lead from Familio; no dates or places are supplied."],
+      "evidence_source_ids": ["src_familio_kirill_politov"]
+    },
+    {
+      "id": "candidate_pelageya_kirillovna_politova",
+      "names": [{"type": "user_tree_clue", "display": "Pelageya Kirillovna Politova", "native": "Политова Пелагея Кирилловна"}],
+      "sex": "female",
+      "death": {"year": 1970, "status": "USER_TREE_VALUE"},
+      "identity_status": "UNKNOWN",
+      "candidate_role": "mother_of_fedor_politov",
+      "notes": ["New earlier-generation lead from Familio; birth date and birthplace are not supplied."],
+      "evidence_source_ids": ["src_familio_pelageya_politova"]
+    },
+    {
+      "id": "candidate_spiridon_danilovich_mikov",
+      "names": [{"type": "user_tree_clue", "display": "Spiridon Danilovich Mikov", "native": "Миков Спиридон Данилович"}],
+      "sex": "male",
+      "identity_status": "UNKNOWN",
+      "candidate_role": "father_of_agrippina_mikova",
+      "notes": ["New earlier-generation lead from Familio. The patronymic opens another possible generation—a father named Daniil—but no record yet identifies him."],
+      "evidence_source_ids": ["src_familio_spiridon_mikov"]
+    },
+    {
+      "id": "candidate_maria_sergeevna_syrchikova_1898",
+      "names": [{"type": "user_tree_clue", "display": "Maria Sergeevna Syrchikova", "native": "Сырчикова Мария Сергеевна"}],
+      "sex": "female",
+      "birth": {"date": "1898-04-28", "calendar": "old_style", "place_id": "syrchiki", "status": "USER_TREE_VALUE"},
+      "identity_status": "UNKNOWN",
+      "candidate_role": "sister_of_stepan_syrchikov",
+      "notes": ["A useful collateral anchor: Familio gives an exact old-style birth date and Syrchiki birthplace, making the 1898 parish register a concrete record target."],
+      "evidence_source_ids": ["src_familio_maria_sergeevna_syrchikova"]
+    }
+  ]
+}

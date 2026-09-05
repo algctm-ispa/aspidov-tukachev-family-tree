@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "hypotheses": [
+    {
+      "id": "hyp_mikhail_nikolaevich_is_vitalys_father",
+      "claim": "Mikhail Nikolaevich Aspidov (born 1899) was Vitaly Mikhailovich Aspidov's father",
+      "status": "CONFIRMED_BY_FAMILY",
+      "supports": [
+        "Vitaly's patronymic indicates a father named Mikhail.",
+        "Family testimony places Vitaly in Tyuremka and names his mother Maria.",
+        "The primary OBD document places Mikhail Nikolaevich in Tyuremka and names his wife Maria there.",
+        "The chronology is compatible with Vitaly's family-reported birth date of 3 January 1935."
+      ],
+      "unresolved": ["The relationship is confirmed by the user but still lacks a surviving archival record explicitly naming Vitaly as Mikhail Nikolaevich's son."],
+      "source_ids": ["src_family_confirmation_round2", "src_obd_58253101"]
+    },
+    {
+      "id": "hyp_maria_vladimirovna_is_vitalys_mother",
+      "claim": "The Maria Aspidova named in the OBD record as Mikhail Nikolaevich's wife was Vitaly's mother",
+      "status": "CONFIRMED_BY_FAMILY",
+      "supports": ["Both are Maria Aspidova of Tyuremka in the relevant family context."],
+      "conflicts": ["Family memory tentatively gives Stepanovna; the OBD scan abbreviates a patronymic as 'Владимир.'."],
+      "unresolved": ["The identity is confirmed by the user; Vitaly's birth or household record is still required for archival corroboration. The full expansion Vladimirovna remains highly probable."],
+      "source_ids": ["src_family_confirmation_round2", "src_obd_58253101"]
+    },
+    {
+      "id": "hyp_marias_patronymic_was_stepanovna",
+      "claim": "Vitaly's mother Maria had the patronymic Stepanovna",
+      "status": "HYPOTHESIS",
+      "supports": ["Tentative family memory."],
+      "conflicts": ["The OBD primary document appears to identify Mikhail Nikolaevich's wife as Maria Vladimirovna."],
+      "source_ids": ["src_family_testimony_aspidov", "src_obd_58253101"]
+    },
+    {
+      "id": "hyp_modern_line_descends_from_1834_tyuremka_aspidovs",
+      "claim": "Vitaly's documented line descends from an Aspidov household recorded in Tyuremka in 1834",
+      "status": "UNKNOWN",
+      "unresolved": ["Intervening generations have not been documented."],
+      "source_ids": ["src_osagen_aspidov", "src_tyuremka_revision_index"]
+    },
+    {
+      "id": "hyp_anna_politova_is_vladimirs_mother",
+      "claim": "Anna Fedorovna Politova/Aspidova was the biological mother of Vladimir Vitalievich Aspidov",
+      "status": "CONFIRMED_BY_FAMILY",
+      "supports": ["Anna is identified in family testimony as the user's paternal grandmother and Vitaly's wife."],
+      "source_ids": ["src_family_confirmation_round2"]
+    },
+    {
+      "id": "hyp_familio_lyudmila_page_is_users_mother",
+      "claim": "The Familio page 05ed2688-e0e9-4e31-a23f-f57a0b4ad507 describes the user's mother Lyudmila Mikhailovna Tukacheva",
+      "status": "CONFIRMED_BY_FAMILY",
+      "supports": ["Exact full birth name and a Perm-region birthplace."],
+      "conflicts": ["The page names her husband Vladimir Nikolaevich Aspidov, while direct family testimony identifies the user's father as Vladimir Vitalievich Aspidov."],
+      "unresolved": ["The profile's husband patronymic is erroneous, but the user confirmed that the remaining identity, birth, parent, and sibling details describe the family."],
+      "source_ids": ["src_family_confirmation_round2", "src_familio_lyudmila_tukacheva"]
+    },
+    {
+      "id": "hyp_vera_zhdankova_is_lyudmilas_mother",
+      "claim": "Vera Nikolaevna Zhdankova/Tukacheva was Lyudmila Mikhailovna Tukacheva's mother",
+      "status": "CONFIRMED_BY_FAMILY",
+      "supports": ["A user-created Familio tree explicitly states the relationship."],
+      "unresolved": ["No primary birth or marriage record has yet been obtained."],
+      "source_ids": ["src_family_confirmation_round2", "src_familio_lyudmila_tukacheva", "src_familio_vera_zhdankova"]
+    },
+    {
+      "id": "hyp_tukachev_familio_maternal_chain",
+      "claim": "Maria Stepanovna Syrchikova was the daughter of Stepan Sergeevich Syrchikov, who was the son of Sergey Yakovlevich Syrchikov and Agrippina Spiridonovna Mikova",
+      "status": "HYPOTHESIS",
+      "supports": ["The relationships form a coherent patronymic chain within one user-created tree.", "The same tree places the Syrchikov household in the tiny village of Syrchiki and gives a collateral daughter, Maria Sergeevna, an exact 1898 birth there."],
+      "unresolved": ["The user asked to retain but did not confirm M8–M10; parish or household records are required."],
+      "source_ids": ["src_familio_maria_syrchikova", "src_familio_stepan_syrchikov", "src_familio_agrippina_mikova", "src_familio_maria_sergeevna_syrchikova"]
+    },
+    {
+      "id": "hyp_spiridon_mikov_is_agrippinas_father",
+      "claim": "Spiridon Danilovich Mikov was Agrippina Spiridonovna Mikova's father",
+      "status": "HYPOTHESIS",
+      "supports": ["Familio explicitly names him and Agrippina's patronymic agrees."],
+      "unresolved": ["No date, place, or primary record has been found."],
+      "source_ids": ["src_familio_spiridon_mikov", "src_familio_agrippina_mikova"]
+    },
+    {
+      "id": "hyp_kirill_and_pelageya_are_fedors_parents",
+      "claim": "Kirill Politov and Pelageya Kirillovna Politova were the parents of Fedor Kirillovich Politov",
+      "status": "HYPOTHESIS",
+      "supports": ["Familio states the relationship and Fedor's patronymic agrees with Kirill."],
+      "unresolved": ["No dates, places, or primary records establish the couple."],
+      "source_ids": ["src_familio_fedor_politov", "src_familio_kirill_politov", "src_familio_pelageya_politova"]
+    }
+  ]
+}
