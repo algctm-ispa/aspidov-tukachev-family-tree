@@ -121,7 +121,14 @@ function buildPlaceLabel(placeId, placesById) {
   while (current && !seen.has(current.id)) {
     seen.add(current.id);
     const nameEntry = (current.names || []).find(n => n.type === "modern") || (current.names || [])[0];
-    if (nameEntry) chain.push(nameEntry.native || nameEntry.name);
+    // «native» обычно и есть русское написание, но у зарубежных мест это
+    // самоназвание латиницей («España»). На сайте всё по-русски, поэтому
+    // берётся то написание, которое написано кириллицей.
+    if (nameEntry) {
+      const cyrillic = [nameEntry.native, nameEntry.name].find(v => typeof v === "string" && /[а-яА-ЯёЁ]/.test(v));
+      const label = cyrillic || nameEntry.native || nameEntry.name;
+      if (label) chain.push(label);
+    }
     const parentId = (current.parent_place_ids || [])[0];
     current = parentId ? placesById.get(parentId) : null;
   }
@@ -151,6 +158,29 @@ function buildResidenceHistory(history, placesById) {
     });
   }
   return moves;
+}
+
+// Тот же набор данных, но суженный до людей, прошедших проверку. Связи, у
+// которых пропал один из концов, тоже отпадают, поэтому в древе не остаётся
+// ни висящих линий, ни пустых колонок.
+function filterFamilyData(familyData, keepPerson) {
+  const people = new Map([...familyData.people].filter(([, p]) => keepPerson(p)));
+  const trimEdges = (map, otherKey) => {
+    const out = new Map();
+    for (const [id, edges] of map) {
+      if (!people.has(id)) continue;
+      const kept = edges.filter(e => people.has(e[otherKey]) && e.tier === "confirmed");
+      if (kept.length) out.set(id, kept);
+    }
+    return out;
+  };
+  return {
+    ...familyData,
+    people,
+    parentEdgesByChild: trimEdges(familyData.parentEdgesByChild, "parentId"),
+    childEdgesByParent: trimEdges(familyData.childEdgesByParent, "childId"),
+    spouseEdgesByPerson: trimEdges(familyData.spouseEdgesByPerson, "spouseId")
+  };
 }
 
 function resolvePlace(placeId, placeAsRecorded, placesById) {
@@ -246,7 +276,12 @@ async function loadFamilyData() {
   }
 
   const placesById = new Map((placesRaw.places || []).map(p => [p.id, p]));
-  const sourcesById = new Map((sourcesRaw.sources || []).map(s => [s.id, s]));
+  // Совпадение, которое семья отвергла, не должно попадать на сайт ни одной
+  // строкой. Выгрузка помечает такие источники сама, и сайт им доверяет,
+  // чтобы правило пережило любую следующую выгрузку.
+  const visibleSources = (sourcesRaw.sources || []).filter(s =>
+    s.excluded_from_website !== true && !String(s.disposition || "").startsWith("REJECTED"));
+  const sourcesById = new Map(visibleSources.map(s => [s.id, s]));
 
   const people = new Map();
   for (const raw of peopleRaw.people || []) {
@@ -275,6 +310,8 @@ async function loadFamilyData() {
     const residencePlace = raw.residence && raw.residence.place_id ? buildPlaceLabel(raw.residence.place_id, placesById) : null;
     const residenceAsRecorded = raw.residence && raw.residence.as_recorded && raw.residence.as_recorded !== residencePlace ? raw.residence.as_recorded : null;
     const militaryLossYear = hasMilitaryLoss ? parseInt(String(raw.military.loss_date).slice(0, 4), 10) : null;
+    // Дата потери нужна не только годом: в блоке памяти пишется месяц.
+    const militaryLossNorm = hasMilitaryLoss ? normalizeDateFields({ date: raw.military.loss_date }) : null;
     const moves = buildResidenceHistory(raw.residence_history, placesById);
 
     people.set(raw.id, {
@@ -304,12 +341,21 @@ async function loadFamilyData() {
       deathStatusLabel: deathNorm ? deathNorm.statusLabel : null,
       deathHasVariants: !!(deathNorm && deathNorm.hasVariants),
       militaryLossYear,
+      militaryLossDisplay: militaryLossNorm ? militaryLossNorm.display : null,
       hasMilitaryRecord: !!raw.military,
       militaryWar: (raw.military && raw.military.war) || null,
       militaryOutcome: (raw.military && raw.military.status) || null,
       military: buildMilitary(raw.military),
       attributeConflicts: buildAttributeConflicts(raw.attributes),
       notes: raw.notes || [],
+      education: raw.education || [],
+      activities: raw.activities || [],
+      // Латинское написание имени из источника на сайт не выводится, поэтому
+      // до карточки доезжают только русское имя и описание.
+      publicMatches: (raw.possible_public_matches || []).map(m => ({
+        name: m.name || null,
+        description: m.description || null
+      })),
       sourceIds: raw.evidence_source_ids || []
     });
   }
@@ -363,6 +409,9 @@ async function loadFamilyData() {
     spouseEdgesByPerson,
     placesById,
     sourcesById,
-    hypotheses: hypothesesRaw.hypotheses || []
+    // Версию, от которой семья отказалась, сайт не показывает как открытый
+    // вопрос: она уже решена, и решение записано в SITE-CONTENT-CORRECTIONS.md.
+    hypotheses: (hypothesesRaw.hypotheses || [])
+      .filter(h => !String(h.status || "").startsWith("REJECTED"))
   };
 }

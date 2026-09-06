@@ -132,7 +132,7 @@ function buildKinship(familyData, generations, sides, directAncestors) {
       continue;
     }
     const side = sides.get(id);
-    const sideLabel = side === "vladimir" ? "Линия Владимира" : side === "lyudmila" ? "Линия Людмилы" : "Родство уточняется";
+    const sideLabel = side === "vladimir" ? "Линия Владимира" : side === "lyudmila" ? "Линия Людмилы" : "Связь пока не подтверждена";
     const gen = generations.get(id);
     const male = person.sex === "male";
     let role;

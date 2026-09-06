@@ -5,10 +5,12 @@
     {
       "id": "src_family_testimony_aspidov",
       "category": "family_testimony",
-      "title": "Семейные сведения об Аспидовых, сообщённые пользователем",
+      "title": "Семейные сведения об Аспидовых, сообщённые Аллой",
       "repository": "Частные семейные сведения",
       "source_quality": "direct_testimony",
-      "notes": ["Подтверждает Виталия и Анну; мать Виталия в семье помнят как Марию, возможно Степановну."]
+      "notes": [
+        "Подтверждает Виталия и Анну; мать Виталия в семье помнят как Марию, возможно Степановну."
+      ]
     },
     {
       "id": "src_familio_vitaly_anna",
@@ -17,12 +19,24 @@
       "source_quality": "clue_only",
       "url": "https://familio.org/persons/0347eaf2-f9a9-41e8-8bd9-d93ee917bc98",
       "document_urls": [
-        {"type": "anna_person_page", "url": "https://familio.org/persons/0347eaf2-f9a9-41e8-8bd9-d93ee917bc98"},
-        {"type": "vitaly_person_page", "url": "https://familio.org/persons/ffa87c7a-1d1c-4eb5-b2c8-ea33fbbf5f27"},
-        {"type": "politov_surname_index", "url": "https://familio.org/surnames/a662cc60-7410-473b-8df3-c4b2d90fc1f4"}
+        {
+          "type": "anna_person_page",
+          "url": "https://familio.org/persons/0347eaf2-f9a9-41e8-8bd9-d93ee917bc98"
+        },
+        {
+          "type": "vitaly_person_page",
+          "url": "https://familio.org/persons/ffa87c7a-1d1c-4eb5-b2c8-ea33fbbf5f27"
+        },
+        {
+          "type": "politov_surname_index",
+          "url": "https://familio.org/surnames/a662cc60-7410-473b-8df3-c4b2d90fc1f4"
+        }
       ],
       "accessed_at": "2026-09-04",
-      "notes": ["На двух персональных страницах Политова Анна Фёдоровна (родилась около 1934 года) и Аспидов Виталий Михайлович (1935–около 2010) указаны супругами. Это пользовательское дерево, а не архивный источник.", "На странице Анны её родителями названы Политов Фёдор Кириллович и Политова Агафья Васильевна; пользователь позднее подтвердил эту родственную связь."]
+      "notes": [
+        "На двух персональных страницах Политова Анна Фёдоровна (родилась около 1934 года) и Аспидов Виталий Михайлович (1935–около 2010) указаны супругами. Это любительское дерево, а не архивный источник.",
+        "На странице Анны её родителями названы Политов Фёдор Кириллович и Политова Агафья Васильевна; Алла позднее подтвердила эту родственную связь."
+      ]
     },
     {
       "id": "src_obd_58253101",
@@ -32,9 +46,19 @@
       "archive_reference": "ЦАМО, ф. 58, оп. 18004, д. 577; идентификатор ОБД 58253101",
       "url": "https://obd-memorial.ru/html/info.htm?id=58253101",
       "document_urls": [
-        {"type": "record_page", "url": "https://obd-memorial.ru/html/info.htm?id=58253101"},
-        {"type": "consolidated_record", "url": "https://obd-memorial.ru/html/info.htm?id=558253101"},
-        {"type": "original_scan", "url": "https://obd-memorial.ru/html/images3?id=58252764&id1=f4b865d1d290fca11c3dd7dc6562e754&path=Z/005/058-0018004-0577/00000206.jpg", "note": "Прямая ссылка на изображение может измениться; постоянной резервной ссылкой считается страница записи в ОБД."}
+        {
+          "type": "record_page",
+          "url": "https://obd-memorial.ru/html/info.htm?id=58253101"
+        },
+        {
+          "type": "consolidated_record",
+          "url": "https://obd-memorial.ru/html/info.htm?id=558253101"
+        },
+        {
+          "type": "original_scan",
+          "url": "https://obd-memorial.ru/html/images3?id=58252764&id1=f4b865d1d290fca11c3dd7dc6562e754&path=Z/005/058-0018004-0577/00000206.jpg",
+          "note": "Прямая ссылка на изображение может измениться; постоянной резервной ссылкой считается страница записи в ОБД."
+        }
       ],
       "local_document": "../evidence/documents/OBD-58253101-original-scan.jpg",
       "local_transcription": "../evidence/transcriptions/OBD-58253101-transcription.md",
@@ -56,13 +80,26 @@
       "repository": "ПермГАСПИ",
       "url": "https://www.permgaspi.ru/membook/index.php?char=%D0%90&page=68",
       "document_urls": [
-        {"type": "mikhail_nikolaevich_aspidov", "url": "https://www.permgaspi.ru/membook/index.php?id=6791"},
-        {"type": "nikolai_mikhailovich_aspidov", "url": "https://www.permgaspi.ru/membook/index.php?id=6792"},
-        {"type": "pavel_mikhailovich_aspidov", "url": "https://www.permgaspi.ru/membook/index.php?id=6793"}
+        {
+          "type": "mikhail_nikolaevich_aspidov",
+          "url": "https://www.permgaspi.ru/membook/index.php?id=6791"
+        },
+        {
+          "type": "nikolai_mikhailovich_aspidov",
+          "url": "https://www.permgaspi.ru/membook/index.php?id=6792"
+        },
+        {
+          "type": "pavel_mikhailovich_aspidov",
+          "url": "https://www.permgaspi.ru/membook/index.php?id=6793"
+        }
       ],
       "source_quality": "secondary_derivative",
       "accessed_at": "2026-09-05",
-      "notes": ["Михаил Николаевич: 1899, Тюремка, рядовой-связист, пропал без вести в июне 1943 года. Книга памяти указывает призыв в 1941 году, тогда как первичная карточка ОБД — 13.01.1942; в базе предпочтена точная дата ОБД, а расхождение сохранено.", "Николай Михайлович: 1926, Устиново; призван в 1943 году; умер от ран в сентябре 1945 года; похоронен в Куйбышеве Восточно-Амурской области. Родственная связь не установлена.", "Павел Михайлович: 1908, Щелкановка; призван в 1941 году; стрелок; пропал без вести 06.10.1941. По возрасту не мог быть сыном Михаила Николаевича 1899 года рождения."]
+      "notes": [
+        "Михаил Николаевич: 1899, Тюремка, рядовой-связист, пропал без вести в июне 1943 года. Книга памяти указывает призыв в 1941 году, тогда как первичная карточка ОБД — 13.01.1942; в базе предпочтена точная дата ОБД, а расхождение сохранено.",
+        "Николай Михайлович: 1926, Устиново; призван в 1943 году; умер от ран в сентябре 1945 года; похоронен в Куйбышеве Восточно-Амурской области. Родственная связь не установлена.",
+        "Павел Михайлович: 1908, Щелкановка; призван в 1941 году; стрелок; пропал без вести 06.10.1941. По возрасту не мог быть сыном Михаила Николаевича 1899 года рождения."
+      ]
     },
     {
       "id": "src_osagen_aspidov",
@@ -71,24 +108,38 @@
       "url": "https://osagen.ru/surnames/4-aspidov.html",
       "source_quality": "secondary",
       "accessed_at": "2026-09-05",
-      "notes": ["По краеведческому указателю в 1834 году Аспидовы жили в Тюремке, Щелкановке, Чумкасной, Тишковой, Устиновой и Новозалесновском. Происхождение фамилии связывается с прозвищем «аспид». Это контекст, а не доказательство конкретной родственной связи."]
+      "notes": [
+        "По краеведческому указателю в 1834 году Аспидовы жили в Тюремке, Щелкановке, Чумкасной, Тишковой, Устиновой и Новозалесновском. Происхождение фамилии связывается с прозвищем «аспид». Это контекст, а не доказательство конкретной родственной связи."
+      ]
     },
     {
       "id": "src_tyuremka_revision_index",
       "category": "archival_finding_aid",
       "title": "Тюремка / Красные Горки в генеалогическом указателе населённых пунктов",
       "url": "https://vitaboyarsh.ru/moi_proekty/spravochnik-ukazatel_naselyonnyh_punktov_v_genealogicheskih_dokumentah/gora-goskova.html",
-      "archive_references": ["ГАПК, ф. 111, оп. 1, д. 1983, л. 30об.–34 — ревизская сказка 1834 года", "ГАПК, ф. 111, оп. 3, д. 182, л. 28об.–32 — ревизская сказка 1834 года", "ГАПК, ф. 111, оп. 1, д. 2005, л. 542об.–551 — ревизская сказка 1850 года", "ГАПК, ф. 111, оп. 1, д. 2911, л. 542об.–551 — альтернативная ссылка указателя за 1850 год, требует проверки", "ГАПК, ф. 111, оп. 1, д. 2043, л. 678об.–687 — ревизская сказка 1858 года", "ГАПК, ф. 111, оп. 3, д. 211в, л. 7об.–17 — ревизская сказка 1858 года"],
+      "archive_references": [
+        "ГАПК, ф. 111, оп. 1, д. 1983, л. 30об.–34 — ревизская сказка 1834 года",
+        "ГАПК, ф. 111, оп. 3, д. 182, л. 28об.–32 — ревизская сказка 1834 года",
+        "ГАПК, ф. 111, оп. 1, д. 2005, л. 542об.–551 — ревизская сказка 1850 года",
+        "ГАПК, ф. 111, оп. 1, д. 2911, л. 542об.–551 — альтернативная ссылка указателя за 1850 год, требует проверки",
+        "ГАПК, ф. 111, оп. 1, д. 2043, л. 678об.–687 — ревизская сказка 1858 года",
+        "ГАПК, ф. 111, оп. 3, д. 211в, л. 7об.–17 — ревизская сказка 1858 года"
+      ],
       "source_quality": "finding_aid",
       "accessed_at": "2026-09-05",
-      "notes": ["Тюремка, также Красные Горки, основана в 1827 году; 13.03.1962 переименована в Красные Горки. В 1834, 1850 и 1858 годах относилась к Устиновскому удельному управлению; жители — русские удельные, позднее государственные крестьяне."]
+      "notes": [
+        "Тюремка, также Красные Горки, основана в 1827 году; 13.03.1962 переименована в Красные Горки. В 1834, 1850 и 1858 годах относилась к Устиновскому удельному управлению; жители — русские удельные, позднее государственные крестьяне."
+      ]
     },
     {
       "id": "src_perm_memorial_martyr_list",
       "category": "published_repression_index",
       "title": "Мартиролог Пермского «Мемориала»: записи об Аспидовых",
       "url": "https://pmem.ru/index.php?id=1270",
-      "archive_references": ["ПермГАНИ, ф. 641/1, оп. 1, д. 12744", "ПермГАНИ, ф. 643/2, оп. 1, д. 26214"],
+      "archive_references": [
+        "ПермГАНИ, ф. 641/1, оп. 1, д. 12744",
+        "ПермГАНИ, ф. 643/2, оп. 1, д. 26214"
+      ],
       "source_quality": "derivative_index"
     },
     {
@@ -101,47 +152,78 @@
     {
       "id": "src_family_testimony_current_generation",
       "category": "family_testimony",
-      "title": "Сведения пользователя о родителях и отцовской линии",
+      "title": "Сведения Аллы о родителях и отцовской линии",
       "repository": "Частные семейные сведения",
       "source_quality": "direct_testimony",
-      "notes": ["Отец пользователя — Аспидов Владимир Витальевич, сын Аспидова Виталия Михайловича; мать пользователя — Тукачева Людмила Михайловна.", "Пользователь не уверен в отчестве Марии и допускает вариант «Владимировна»." ]
+      "notes": [
+        "Отец Аллы — Аспидов Владимир Витальевич, сын Аспидова Виталия Михайловича; мать Аллы — Тукачева Людмила Михайловна.",
+        "Алла не уверена в отчестве Марии и допускает вариант «Владимировна»."
+      ]
     },
     {
       "id": "src_familio_lyudmila_tukacheva",
       "category": "user_generated_genealogy_database",
       "title": "Персональная страница Тукачевой Людмилы Михайловны в Familio",
       "url": "https://familio.org/persons/05ed2688-e0e9-4e31-a23f-f57a0b4ad507",
-      "document_urls": [{"type": "person_page", "url": "https://familio.org/persons/05ed2688-e0e9-4e31-a23f-f57a0b4ad507"}],
+      "document_urls": [
+        {
+          "type": "person_page",
+          "url": "https://familio.org/persons/05ed2688-e0e9-4e31-a23f-f57a0b4ad507"
+        }
+      ],
       "source_quality": "clue_only",
       "accessed_at": "2026-09-04",
-      "notes": ["Указаны рождение 25.09.1959 в Чёрмозе и родители Михаил Тукачев и Вера Николаевна. Девичья фамилия Веры на странице ошибочно написана «Жданкова»; пользователь подтверждает правильную форму «Жданова».", "Супруг ошибочно назван Владимиром Николаевичем Аспидовым вместо Владимира Витальевича Аспидова. Правильное отчество подтверждено семьёй." ]
+      "notes": [
+        "Указаны рождение 25.09.1959 в Чёрмозе и родители Михаил Тукачев и Вера Николаевна. Девичья фамилия Веры на странице ошибочно написана «Жданкова»; Алла подтверждает правильную форму «Жданова».",
+        "Супруг ошибочно назван Владимиром Николаевичем Аспидовым вместо Владимира Витальевича Аспидова. Правильное отчество подтверждено семьёй."
+      ]
     },
     {
       "id": "src_familio_mikhail_tukachev",
       "category": "user_generated_genealogy_database",
       "title": "Персональная страница Михаила Тукачева в Familio",
       "url": "https://familio.org/persons/ce41d841-80dc-48ba-b78d-f9d22c628b62",
-      "document_urls": [{"type": "person_page", "url": "https://familio.org/persons/ce41d841-80dc-48ba-b78d-f9d22c628b62"}],
+      "document_urls": [
+        {
+          "type": "person_page",
+          "url": "https://familio.org/persons/ce41d841-80dc-48ba-b78d-f9d22c628b62"
+        }
+      ],
       "source_quality": "clue_only",
       "accessed_at": "2026-09-04",
-      "notes": ["Жена Вера Николаевна указана под ошибочной девичьей фамилией «Жданкова»; пользователь подтверждает форму «Жданова». Детьми названы Татьяна, Людмила и Валерий; даты Михаила не указаны."]
+      "notes": [
+        "Жена Вера Николаевна указана под ошибочной девичьей фамилией «Жданкова»; Алла подтверждает форму «Жданова». Детьми названы Татьяна, Людмила и Валерий; даты Михаила не указаны."
+      ]
     },
     {
       "id": "src_familio_vera_zhdanova_profile",
       "category": "user_generated_genealogy_database",
       "title": "Персональная страница Тукачевой Веры Николаевны в Familio (девичья фамилия указана ошибочно)",
       "url": "https://familio.org/persons/29125152-6416-47c0-8a82-e1f55a2a80a1",
-      "document_urls": [{"type": "person_page", "url": "https://familio.org/persons/29125152-6416-47c0-8a82-e1f55a2a80a1"}],
+      "document_urls": [
+        {
+          "type": "person_page",
+          "url": "https://familio.org/persons/29125152-6416-47c0-8a82-e1f55a2a80a1"
+        }
+      ],
       "source_quality": "clue_only",
       "accessed_at": "2026-09-04",
-      "notes": ["Родителями названы Жданов Николай и Сырчикова Мария Степановна, супругом — Михаил Тукачев.", "На странице девичья фамилия написана «Жданкова». Пользователь прямо исправил её на «Жданова»; ошибочная форма не должна отображаться как семейный факт."]
+      "notes": [
+        "Родителями названы Жданов Николай и Сырчикова Мария Степановна, супругом — Михаил Тукачев.",
+        "На странице девичья фамилия написана «Жданкова». Алла прямо исправила её на «Жданова»; ошибочная форма не должна отображаться как семейный факт."
+      ]
     },
     {
       "id": "src_familio_nikolai_zhdanov",
       "category": "user_generated_genealogy_database",
       "title": "Персональная страница Жданова Николая в Familio",
       "url": "https://familio.org/persons/a73d713b-9869-4ce8-af24-83d472b725c8",
-      "document_urls": [{"type": "person_page", "url": "https://familio.org/persons/a73d713b-9869-4ce8-af24-83d472b725c8"}],
+      "document_urls": [
+        {
+          "type": "person_page",
+          "url": "https://familio.org/persons/a73d713b-9869-4ce8-af24-83d472b725c8"
+        }
+      ],
       "source_quality": "clue_only",
       "accessed_at": "2026-09-04"
     },
@@ -150,27 +232,46 @@
       "category": "user_generated_genealogy_database",
       "title": "Персональная страница Сырчиковой (Ждановой) Марии Степановны в Familio",
       "url": "https://familio.org/persons/18ca1d1c-3922-499d-b88a-dafc481eafa0",
-      "document_urls": [{"type": "person_page", "url": "https://familio.org/persons/18ca1d1c-3922-499d-b88a-dafc481eafa0"}],
+      "document_urls": [
+        {
+          "type": "person_page",
+          "url": "https://familio.org/persons/18ca1d1c-3922-499d-b88a-dafc481eafa0"
+        }
+      ],
       "source_quality": "clue_only",
       "accessed_at": "2026-09-04",
-      "notes": ["Отцом назван Сырчиков Степан Сергеевич; мать не указана."]
+      "notes": [
+        "Отцом назван Сырчиков Степан Сергеевич; мать не указана."
+      ]
     },
     {
       "id": "src_familio_stepan_syrchikov",
       "category": "user_generated_genealogy_database",
       "title": "Персональная страница Сырчикова Степана Сергеевича в Familio",
       "url": "https://familio.org/persons/99d67aaa-e5da-4832-94c1-87aa9268fc26",
-      "document_urls": [{"type": "person_page", "url": "https://familio.org/persons/99d67aaa-e5da-4832-94c1-87aa9268fc26"}],
+      "document_urls": [
+        {
+          "type": "person_page",
+          "url": "https://familio.org/persons/99d67aaa-e5da-4832-94c1-87aa9268fc26"
+        }
+      ],
       "source_quality": "clue_only",
       "accessed_at": "2026-09-04",
-      "notes": ["Родителями названы Сырчиков Сергей Яковлевич и Микова Агриппина Спиридоновна."]
+      "notes": [
+        "Родителями названы Сырчиков Сергей Яковлевич и Микова Агриппина Спиридоновна."
+      ]
     },
     {
       "id": "src_familio_tukachev_surname_page",
       "category": "user_generated_genealogy_database",
       "title": "Страница фамилии Тукачев в Familio",
       "url": "https://familio.org/surnames/d6dfcf7b-ae21-46a9-96e2-605c6eec8606",
-      "document_urls": [{"type": "surname_index", "url": "https://familio.org/surnames/d6dfcf7b-ae21-46a9-96e2-605c6eec8606"}],
+      "document_urls": [
+        {
+          "type": "surname_index",
+          "url": "https://familio.org/surnames/d6dfcf7b-ae21-46a9-96e2-605c6eec8606"
+        }
+      ],
       "source_quality": "clue_only",
       "accessed_at": "2026-09-04"
     },
@@ -179,19 +280,29 @@
       "category": "onomastic_secondary_source",
       "title": "Статья о фамилии Тукачев в словаре Коршуновой",
       "url": "https://azbyka.ru/otechnik/Istorija_Tserkvi/slovar-nekalendarnyh-lichnyh-imen-prozvishh-i-familnyh-prozvanij-severo-zapadnoj-rusi-15-17-vv/1492",
-      "document_urls": [{"type": "dictionary_entry", "url": "https://azbyka.ru/otechnik/Istorija_Tserkvi/slovar-nekalendarnyh-lichnyh-imen-prozvishh-i-familnyh-prozvanij-severo-zapadnoj-rusi-15-17-vv/1492"}],
+      "document_urls": [
+        {
+          "type": "dictionary_entry",
+          "url": "https://azbyka.ru/otechnik/Istorija_Tserkvi/slovar-nekalendarnyh-lichnyh-imen-prozvishh-i-familnyh-prozvanij-severo-zapadnoj-rusi-15-17-vv/1492"
+        }
+      ],
       "source_quality": "secondary",
       "accessed_at": "2026-09-04",
-      "notes": ["Полезна только для происхождения фамилии и географического контекста; родственную связь не устанавливает."]
+      "notes": [
+        "Полезна только для происхождения фамилии и географического контекста; родственную связь не устанавливает."
+      ]
     },
     {
       "id": "src_family_confirmation_round2",
       "category": "family_testimony",
-      "title": "Проверка пользователем отцовской линии P1–P7/P9–P10 и материнской линии M1–M7",
+      "title": "Проверка Аллой отцовской линии P1–P7/P9–P10 и материнской линии M1–M7",
       "repository": "Частные семейные сведения",
       "source_quality": "direct_testimony",
       "accessed_at": "2026-09-04",
-      "notes": ["Подтверждены Владимир, Виталий и Анна; Михаил Николаевич и Мария из записи ОБД признаны родителями Виталия; Фёдор Кириллович и Агафья Васильевна подтверждены как родители Анны; по материнской линии подтверждена цепочка от Людмилы до Марии Степановны Сырчиковой.", "Михаил Гаврилович Аспидов отвергнут как отец Виталия. Степан, Сергей и Агриппина сохранены как гипотезы."]
+      "notes": [
+        "Подтверждены Владимир, Виталий и Анна; Михаил Николаевич и Мария из записи ОБД признаны родителями Виталия; Фёдор Кириллович и Агафья Васильевна подтверждены как родители Анны; по материнской линии подтверждена цепочка от Людмилы до Марии Степановны Сырчиковой.",
+        "Михаил Гаврилович Аспидов отвергнут как отец Виталия. Степан, Сергей и Агриппина сохранены как гипотезы."
+      ]
     },
     {
       "id": "src_familio_tatyana_tukacheva",
@@ -199,14 +310,28 @@
       "title": "Персональная страница Тукачевой (Попченко) Татьяны Михайловны в Familio",
       "url": "https://familio.org/persons/1b01c881-eb82-4307-b996-3763df6a7413",
       "document_urls": [
-        {"type": "tatyana_profile", "url": "https://familio.org/persons/1b01c881-eb82-4307-b996-3763df6a7413"},
-        {"type": "spouse_andrey_profile", "url": "https://familio.org/persons/7649dcce-3c3c-4019-a072-6ad6cd660600"},
-        {"type": "daughter_anna_profile", "url": "https://familio.org/persons/d07bb76b-e4b5-46bd-a106-3e713c3d1d46"},
-        {"type": "son_anton_profile", "url": "https://familio.org/persons/0889944f-81f1-4dc3-8313-8c396da60741"}
+        {
+          "type": "tatyana_profile",
+          "url": "https://familio.org/persons/1b01c881-eb82-4307-b996-3763df6a7413"
+        },
+        {
+          "type": "spouse_andrey_profile",
+          "url": "https://familio.org/persons/7649dcce-3c3c-4019-a072-6ad6cd660600"
+        },
+        {
+          "type": "daughter_anna_profile",
+          "url": "https://familio.org/persons/d07bb76b-e4b5-46bd-a106-3e713c3d1d46"
+        },
+        {
+          "type": "son_anton_profile",
+          "url": "https://familio.org/persons/0889944f-81f1-4dc3-8313-8c396da60741"
+        }
       ],
       "source_quality": "clue_only",
       "accessed_at": "2026-09-06",
-      "notes": ["Профили называют супругом Татьяны Андрея Николаевича Попченко, дочерью Анну Андреевну Попченко и сыном Антона Андреевича Попченко. Даты рождения, место жительства и дата брака не указаны. Это пользовательское дерево без независимого документа."]
+      "notes": [
+        "Профили называют супругом Татьяны Андрея Николаевича Попченко, дочерью Анну Андреевну Попченко и сыном Антона Андреевича Попченко. Даты рождения, место жительства и дата брака не указаны. Это любительское дерево без независимого документа."
+      ]
     },
     {
       "id": "src_familio_valery_tukachev",
@@ -214,22 +339,55 @@
       "title": "Персональная страница Тукачева Валерия Михайловича в Familio",
       "url": "https://familio.org/persons/fa8a1454-5e79-4868-9af6-b574ec629c41",
       "document_urls": [
-        {"type": "valery_profile", "url": "https://familio.org/persons/fa8a1454-5e79-4868-9af6-b574ec629c41"},
-        {"type": "spouse_tatyana_kozlova_profile", "url": "https://familio.org/persons/b6b46843-2713-4d2d-b337-2ce604c7f87e"}
+        {
+          "type": "valery_profile",
+          "url": "https://familio.org/persons/fa8a1454-5e79-4868-9af6-b574ec629c41"
+        },
+        {
+          "type": "spouse_tatyana_kozlova_profile",
+          "url": "https://familio.org/persons/b6b46843-2713-4d2d-b337-2ce604c7f87e"
+        }
       ],
       "source_quality": "clue_only",
       "accessed_at": "2026-09-06",
-      "notes": ["Указаны рождение Валерия 26 января 1964 года в Чёрмозе и брак 5 июня 1987 года в Чёрмозе с Козловой Татьяной Анатольевной.", "Профиль Татьяны указывает рождение 31 марта 1964 года в деревне Селезни Ильинского района.", "Показаны двое детей с датами рождения 18 ноября 1987 года и 3 апреля 1996 года. Имя и пол каждого ребёнка скрыты настройками приватности. Событие 1996 года связано с Чёрмозом."]
+      "notes": [
+        "Указаны рождение Валерия 26 января 1964 года в Чёрмозе и брак 5 июня 1987 года в Чёрмозе с Козловой Татьяной Анатольевной.",
+        "Профиль Татьяны указывает рождение 31 марта 1964 года в деревне Селезни Ильинского района.",
+        "Показаны двое детей с датами рождения 18 ноября 1987 года и 3 апреля 1996 года. Имя и пол каждого ребёнка скрыты настройками приватности. Событие 1996 года связано с Чёрмозом."
+      ]
     },
     {
       "id": "src_familio_fedor_politov",
       "category": "user_generated_genealogy_database",
       "title": "Персональная страница Политова Фёдора Кирилловича в Familio",
       "url": "https://familio.org/persons/8eecc679-7b87-42ac-923c-2127675fdf37",
-      "document_urls": [{"type": "mikhail_fedorovich_politov", "url": "https://familio.org/persons/03f14160-245f-436e-908a-ffcf5ddbe288"}, {"type": "petr_fedorovich_politov", "url": "https://familio.org/persons/d75b5d9d-c307-4c61-ac86-90be919eba0f"}, {"type": "kirill_fedorovich_politov", "url": "https://familio.org/persons/0ff320cd-9890-46d8-b7ce-02d679e5e5bb"}, {"type": "stepanida_fedorovna_politova", "url": "https://familio.org/persons/ddeb4128-913d-4a70-9336-0a26ab6e6fff"}, {"type": "lukeriya_fedorovna_politova", "url": "https://familio.org/persons/0e2aa826-6adf-4e8b-a2b9-93432a81e5a9"}],
+      "document_urls": [
+        {
+          "type": "mikhail_fedorovich_politov",
+          "url": "https://familio.org/persons/03f14160-245f-436e-908a-ffcf5ddbe288"
+        },
+        {
+          "type": "petr_fedorovich_politov",
+          "url": "https://familio.org/persons/d75b5d9d-c307-4c61-ac86-90be919eba0f"
+        },
+        {
+          "type": "kirill_fedorovich_politov",
+          "url": "https://familio.org/persons/0ff320cd-9890-46d8-b7ce-02d679e5e5bb"
+        },
+        {
+          "type": "stepanida_fedorovna_politova",
+          "url": "https://familio.org/persons/ddeb4128-913d-4a70-9336-0a26ab6e6fff"
+        },
+        {
+          "type": "lukeriya_fedorovna_politova",
+          "url": "https://familio.org/persons/0e2aa826-6adf-4e8b-a2b9-93432a81e5a9"
+        }
+      ],
       "source_quality": "clue_only",
       "accessed_at": "2026-09-04",
-      "notes": ["Указаны примерный год рождения 1901, смерть в 1953 году, родители Кирилл Политов и Пелагея Кирилловна, жена Агафья Васильевна и шестеро детей."]
+      "notes": [
+        "Указаны примерный год рождения 1901, смерть в 1953 году, родители Кирилл Политов и Пелагея Кирилловна, жена Агафья Васильевна и шестеро детей."
+      ]
     },
     {
       "id": "src_familio_agafya_politova",
@@ -238,17 +396,26 @@
       "url": "https://familio.org/persons/349b23de-8d3c-48bc-a3ce-00f2207a79c2",
       "source_quality": "clue_only",
       "accessed_at": "2026-09-04",
-      "notes": ["Указаны рождение в 1900 году, смерть в 1978 году, муж Фёдор Кириллович и шестеро детей."]
+      "notes": [
+        "Указаны рождение в 1900 году, смерть в 1978 году, муж Фёдор Кириллович и шестеро детей."
+      ]
     },
     {
       "id": "src_familio_kirill_politov",
       "category": "user_generated_genealogy_database",
       "title": "Персональная страница Политова Кирилла в Familio",
       "url": "https://familio.org/persons/978219bb-0c13-4bdb-ad78-63cbecca5b4f",
-      "document_urls": [{"type": "zinaida_kirillovna_politova", "url": "https://familio.org/persons/2eec7ce7-b25e-4226-8f01-acfd84543c3d"}],
+      "document_urls": [
+        {
+          "type": "zinaida_kirillovna_politova",
+          "url": "https://familio.org/persons/2eec7ce7-b25e-4226-8f01-acfd84543c3d"
+        }
+      ],
       "source_quality": "clue_only",
       "accessed_at": "2026-09-05",
-      "notes": ["Супругой названа Пелагея Кирилловна; детьми — Фёдор Кириллович и Зинаида Кирилловна. Все связи пока являются подсказками пользовательского дерева."]
+      "notes": [
+        "Супругой названа Пелагея Кирилловна; детьми — Фёдор Кириллович и Зинаида Кирилловна. Все связи пока являются подсказками любительского дерева."
+      ]
     },
     {
       "id": "src_familio_pelageya_politova",
@@ -257,7 +424,9 @@
       "url": "https://familio.org/persons/21cd8970-da87-4576-b8ff-434fa10057a9",
       "source_quality": "clue_only",
       "accessed_at": "2026-09-04",
-      "notes": ["Указана смерть в 1970 году; дата и место рождения отсутствуют."]
+      "notes": [
+        "Указана смерть в 1970 году; дата и место рождения отсутствуют."
+      ]
     },
     {
       "id": "src_familio_agrippina_mikova",
@@ -266,7 +435,9 @@
       "url": "https://familio.org/persons/34c336c0-cf50-40f6-b9ed-ef5742ebbc53",
       "source_quality": "clue_only",
       "accessed_at": "2026-09-04",
-      "notes": ["Отцом назван Миков Спиридон Данилович; жизнь Агриппины связывается с деревней Сырчики."]
+      "notes": [
+        "Отцом назван Миков Спиридон Данилович; жизнь Агриппины связывается с деревней Сырчики."
+      ]
     },
     {
       "id": "src_familio_spiridon_mikov",
@@ -283,7 +454,9 @@
       "url": "https://familio.org/persons/904bc126-c247-48d2-b320-f4956fcefa2e",
       "source_quality": "clue_only",
       "accessed_at": "2026-09-04",
-      "notes": ["Указаны рождение 28.04.1898 по старому стилю в деревне Сырчики и родители Сырчиков Сергей Яковлевич и Микова Агриппина Спиридоновна."]
+      "notes": [
+        "Указаны рождение 28.04.1898 по старому стилю в деревне Сырчики и родители Сырчиков Сергей Яковлевич и Микова Агриппина Спиридоновна."
+      ]
     },
     {
       "id": "src_chyormoz_metric_book_index",
@@ -292,7 +465,11 @@
       "url": "https://rodovoj.blogspot.com/2018/01/372_23.html",
       "source_quality": "finding_aid",
       "accessed_at": "2026-09-04",
-      "archive_references": ["ГАПК, ф. 37, оп. 2, д. 525 — Чермозский завод, 1881–1885", "ГАПК, ф. 37, оп. 2, д. 531 — Чермозский завод, 1886–1892", "ГАПК, ф. 37, оп. 6, д. 639в — Рождество-Богородицкая церковь Чермозского завода, 1896"]
+      "archive_references": [
+        "ГАПК, ф. 37, оп. 2, д. 525 — Чермозский завод, 1881–1885",
+        "ГАПК, ф. 37, оп. 2, д. 531 — Чермозский завод, 1886–1892",
+        "ГАПК, ф. 37, оп. 6, д. 639в — Рождество-Богородицкая церковь Чермозского завода, 1896"
+      ]
     },
     {
       "id": "src_komi_perm_chyormoz_church_fond30",
@@ -301,7 +478,11 @@
       "url": "https://www.komi-permarchiv.ru/funds/index.php?act=fund&id=294&opis=455",
       "source_quality": "official_finding_aid",
       "accessed_at": "2026-09-05",
-      "notes": ["Опись 2 содержит 31 дело с метрическими книгами разных церквей и районов за 1839–1918 годы; это не непрерывная серия по Чёрмозу.", "В описи видны дела Рождество-Богородицкой церкви Чёрмоза: № 2 за 1874 год (141 лист) и № 2А за 1886 год (103 листа). Книга Чёрмоза за 1898 год в этой описи не указана.", "Опись 1 содержит только исповедные ведомости Николаевской церкви села Кочёво за 1899–1901 годы и к Чёрмозу не относится."]
+      "notes": [
+        "Опись 2 содержит 31 дело с метрическими книгами разных церквей и районов за 1839–1918 годы; это не непрерывная серия по Чёрмозу.",
+        "В описи видны дела Рождество-Богородицкой церкви Чёрмоза: № 2 за 1874 год (141 лист) и № 2А за 1886 год (103 листа). Книга Чёрмоза за 1898 год в этой описи не указана.",
+        "Опись 1 содержит только исповедные ведомости Николаевской церкви села Кочёво за 1899–1901 годы и к Чёрмозу не относится."
+      ]
     },
     {
       "id": "src_chyormoz_factory_archives",
@@ -309,13 +490,24 @@
       "title": "Кадровые и административные фонды Чёрмозского завода",
       "url": "https://archives.permkrai.ru/archive1/funds/308746",
       "document_urls": [
-        {"type": "fond_R75", "url": "https://archives.permkrai.ru/archive1/funds/308746"},
-        {"type": "inventory_R75_1", "url": "https://archives.permkrai.ru/archive1/inventory/308780"},
-        {"type": "fond_280_context", "url": "https://www.permgaspi.ru/publikatsii/konferentsii/arhivy-v-regionalnom-informatsionnom-prostranstve/dokumentirovanie-deyatelnosti-permskih-predprinimatelej-i-metsenatov-dorevolyutsionnoj-rossii.html"}
+        {
+          "type": "fond_R75",
+          "url": "https://archives.permkrai.ru/archive1/funds/308746"
+        },
+        {
+          "type": "inventory_R75_1",
+          "url": "https://archives.permkrai.ru/archive1/inventory/308780"
+        },
+        {
+          "type": "fond_280_context",
+          "url": "https://www.permgaspi.ru/publikatsii/konferentsii/arhivy-v-regionalnom-informatsionnom-prostranstve/dokumentirovanie-deyatelnosti-permskih-predprinimatelej-i-metsenatov-dorevolyutsionnoj-rossii.html"
+        }
       ],
       "source_quality": "finding_aid",
       "accessed_at": "2026-09-04",
-      "notes": ["Фонд Р-75 охватывает деятельность Чёрмозского металлургического завода в 1912–1956 годах и включает кадровые материалы; фонд 280 относится к имению Абамелек-Лазаревых и Чёрмозским заводам до национализации."]
+      "notes": [
+        "Фонд Р-75 охватывает деятельность Чёрмозского металлургического завода в 1912–1956 годах и включает кадровые материалы; фонд 280 относится к имению Абамелек-Лазаревых и Чёрмозским заводам до национализации."
+      ]
     },
     {
       "id": "src_syrchiki_history",
@@ -331,8 +523,14 @@
       "title": "История Чёрмоза, музея и металлургического завода",
       "url": "https://smgrf.ru/portfolio/chyormoz/",
       "document_urls": [
-        {"type": "museum_profile", "url": "https://w.histrf.ru/articles/chermozskiy-kraevedcheskiy-muzey"},
-        {"type": "factory_history", "url": "https://nashural.ru/interesnoe/stranitsy-istorii-chermozskogo-metallurgicheskogo-zavoda-k-yubileyu-osnovaniya-zavoda-chast-iii/"}
+        {
+          "type": "museum_profile",
+          "url": "https://w.histrf.ru/articles/chermozskiy-kraevedcheskiy-muzey"
+        },
+        {
+          "type": "factory_history",
+          "url": "https://nashural.ru/interesnoe/stranitsy-istorii-chermozskogo-metallurgicheskogo-zavoda-k-yubileyu-osnovaniya-zavoda-chast-iii/"
+        }
       ],
       "source_quality": "secondary",
       "accessed_at": "2026-09-04"
@@ -344,7 +542,9 @@
       "url": "https://vkr.pspu.ru/uploads/3106/Ol%27hova_vkr.pdf",
       "source_quality": "secondary",
       "accessed_at": "2026-09-04",
-      "notes": ["Связывает названия Сырчики, Верхняя и Нижняя Сырчикова с коми-пермяцким словом «сырчик» — «трясогузка», со ссылкой на работы Кривощёковой-Гантман."]
+      "notes": [
+        "Связывает названия Сырчики, Верхняя и Нижняя Сырчикова с коми-пермяцким словом «сырчик» — «трясогузка», со ссылкой на работы Кривощёковой-Гантман."
+      ]
     },
     {
       "id": "src_ivanovskoye_parish_context",
@@ -352,11 +552,17 @@
       "title": "Ивановское и Иоанно-Предтеченская церковь Соликамского уезда",
       "url": "https://ru.wikipedia.org/wiki/%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B5_(%D0%9F%D0%B5%D1%80%D0%BC%D1%81%D0%BA%D0%B8%D0%B9_%D0%BA%D1%80%D0%B0%D0%B9)",
       "document_urls": [
-        {"type": "church_personnel_context", "url": "https://www.pravperm.ru/svyatye/ioann-shveczov-protoierej-svyashhennomuchenik/"}
+        {
+          "type": "church_personnel_context",
+          "url": "https://www.pravperm.ru/svyatye/ioann-shveczov-protoierej-svyashhennomuchenik/"
+        }
       ],
       "source_quality": "secondary_route_finding",
       "accessed_at": "2026-09-05",
-      "notes": ["Ивановское стало центром Ивановской волости в 1861 году; Иоанно-Предтеченская церковь была освящена в 1851 году.", "Сырчики указаны среди соседних деревень. Поэтому Ивановский приход считается главным кандидатом для поиска рождения в Сырчиках в 1898 году, но принадлежность деревни к приходу прямо не подтверждена."]
+      "notes": [
+        "Ивановское стало центром Ивановской волости в 1861 году; Иоанно-Предтеченская церковь была освящена в 1851 году.",
+        "Сырчики указаны среди соседних деревень. Поэтому Ивановский приход считается главным кандидатом для поиска рождения в Сырчиках в 1898 году, но принадлежность деревни к приходу прямо не подтверждена."
+      ]
     },
     {
       "id": "src_ustinovo_metric_routes",
@@ -364,8 +570,14 @@
       "title": "Ссылки на метрические книги Вознесенской церкви села Устиновского",
       "url": "https://test.pravoslavnoe-duhovenstvo.ru/person/3260/",
       "document_urls": [
-        {"type": "local_history_with_archive_references", "url": "https://proza.ru/2016/07/11/1321"},
-        {"type": "church_property_and_parish_context", "url": "https://www.vitaboyarsh.ru/moi_proekty/iz_istorii_religii_v_prikame/939-2060_dokumenty_o_finansovo-hozyajstvennom_polozhenii_i_imucshestve_cerkvej_monastyrej_i_pr.html"}
+        {
+          "type": "local_history_with_archive_references",
+          "url": "https://proza.ru/2016/07/11/1321"
+        },
+        {
+          "type": "church_property_and_parish_context",
+          "url": "https://www.vitaboyarsh.ru/moi_proekty/iz_istorii_religii_v_prikame/939-2060_dokumenty_o_finansovo-hozyajstvennom_polozhenii_i_imucshestve_cerkvej_monastyrej_i_pr.html"
+        }
       ],
       "archive_references": [
         "ГАПК, ф. 37, оп. 3, д. 13в — Вознесенская церковь с. Устиновского, 1852",
@@ -375,7 +587,10 @@
       ],
       "source_quality": "finding_aid",
       "accessed_at": "2026-09-05",
-      "notes": ["Тюремка входила в Устиновскую волость; направление поиска через Вознесенский приход Устиново подтверждается указателем населённых пунктов.", "Точное дело с метрической книгой за 1899 год в открытом каталоге не установлено. Возможные архивные направления сохранены для справки, но документы сейчас не запрашиваются."]
+      "notes": [
+        "Тюремка входила в Устиновскую волость; направление поиска через Вознесенский приход Устиново подтверждается указателем населённых пунктов.",
+        "Точное дело с метрической книгой за 1899 год в открытом каталоге не установлено. Возможные архивные направления сохранены для справки, но документы сейчас не запрашиваются."
+      ]
     },
     {
       "id": "src_tyuremka_school_records",
@@ -390,7 +605,9 @@
       ],
       "source_quality": "finding_aid",
       "accessed_at": "2026-09-05",
-      "notes": ["Дела относятся к Тишковской церковной школе Устиновского прихода: документы об открытии и учителях за 1898–1900 годы, а также отчёты за 1909–1910 годы. Это дополнительные источники; родственники Аспидовых в них пока не найдены."]
+      "notes": [
+        "Дела относятся к Тишковской церковной школе Устиновского прихода: документы об открытии и учителях за 1898–1900 годы, а также отчёты за 1909–1910 годы. Это дополнительные источники; родственники Аспидовых в них пока не найдены."
+      ]
     },
     {
       "id": "src_familio_vasily_ilyich_syrchikov",
@@ -398,12 +615,21 @@
       "title": "Персональная страница Сырчикова Василия Ильича в Familio",
       "url": "https://familio.org/persons/67b955c0-1557-479b-993f-b3f940bb67ea",
       "document_urls": [
-        {"type": "duplicate_user_tree_page", "url": "https://familio.org/persons/38b2692a-9e7d-4c6c-b8d0-d7b310f75d2b"},
-        {"type": "father_page", "url": "https://familio.org/persons/7d523b9f-f61f-4a2b-ad6e-4d1a93408022"}
+        {
+          "type": "duplicate_user_tree_page",
+          "url": "https://familio.org/persons/38b2692a-9e7d-4c6c-b8d0-d7b310f75d2b"
+        },
+        {
+          "type": "father_page",
+          "url": "https://familio.org/persons/7d523b9f-f61f-4a2b-ad6e-4d1a93408022"
+        }
       ],
       "source_quality": "clue_only",
       "accessed_at": "2026-09-05",
-      "notes": ["Указаны рождение 08.01.1895 в Сырчиках, родители Сырчиков Илья Гаврилович и Евдокия Михайловна, а также жена Сырчикова Мария Сергеевна, родившаяся 28.04.1898.", "Эта боковая семья может помочь отличить нужных Сырчиковых, но не доказывает прямую материнскую линию."]
+      "notes": [
+        "Указаны рождение 08.01.1895 в Сырчиках, родители Сырчиков Илья Гаврилович и Евдокия Михайловна, а также жена Сырчикова Мария Сергеевна, родившаяся 28.04.1898.",
+        "Эта боковая семья может помочь отличить нужных Сырчиковых, но не доказывает прямую материнскую линию."
+      ]
     },
     {
       "id": "src_gapk_official",
@@ -428,7 +654,9 @@
       "url": "https://yandex.ru/archive?lang=ru",
       "source_quality": "discovery_tool",
       "accessed_at": "2026-09-05",
-      "notes": ["Полезен для полнотекстового поиска по распознанным документам участвующих архивов. Открытое описание покрытия не гарантирует наличие фондов Пермского края, поэтому отсутствие результата не опровергает существование человека."]
+      "notes": [
+        "Полезен для полнотекстового поиска по распознанным документам участвующих архивов. Открытое описание покрытия не гарантирует наличие фондов Пермского края, поэтому отсутствие результата не опровергает существование человека."
+      ]
     },
     {
       "id": "src_pamyat_naroda",
@@ -441,29 +669,38 @@
     {
       "id": "src_family_testimony_vitaly_birth_1935",
       "category": "family_testimony",
-      "title": "Воспоминание пользователя о дате рождения Аспидова Виталия Михайловича",
+      "title": "Воспоминание Аллы о дате рождения Аспидова Виталия Михайловича",
       "repository": "Частные семейные сведения",
       "source_quality": "direct_testimony_unverified_date",
       "accessed_at": "2026-09-05",
-      "notes": ["По воспоминанию пользователя Аспидов Виталий Михайлович родился 3 января 1935 года.", "Эта дата заменяет прежнюю приблизительную оценку 1934 года. В проекте семейное свидетельство считается подтверждением; актовая запись сейчас не запрашивается."]
+      "notes": [
+        "По воспоминанию Аллы Аспидов Виталий Михайлович родился 3 января 1935 года.",
+        "Эта дата заменяет прежнюю приблизительную оценку 1934 года. В проекте семейное свидетельство считается подтверждением; актовая запись сейчас не запрашивается."
+      ]
     },
     {
       "id": "src_family_testimony_lyudmila_birth_1959",
       "category": "family_testimony",
-      "title": "Подтверждение пользователем даты рождения Тукачевой Людмилы Михайловны",
+      "title": "Подтверждение Аллой даты рождения Тукачевой Людмилы Михайловны",
       "repository": "Частные семейные сведения",
       "source_quality": "direct_testimony",
       "accessed_at": "2026-09-05",
-      "notes": ["Пользователь прямо подтверждает, что Тукачева Людмила Михайловна родилась 25 сентября 1959 года.", "Ранее указанное место рождения — Чёрмоз. В проекте семейное свидетельство считается подтверждением; актовая запись сейчас не запрашивается."]
+      "notes": [
+        "Алла прямо подтверждает, что Тукачева Людмила Михайловна родилась 25 сентября 1959 года.",
+        "Ранее указанное место рождения — Чёрмоз. В проекте семейное свидетельство считается подтверждением; актовая запись сейчас не запрашивается."
+      ]
     },
     {
       "id": "src_family_correction_vera_zhdanova",
       "category": "family_testimony",
-      "title": "Исправление пользователем девичьей фамилии Веры Николаевны",
+      "title": "Исправление Аллой девичьей фамилии Веры Николаевны",
       "repository": "Частные семейные сведения",
       "source_quality": "direct_testimony",
       "accessed_at": "2026-09-05",
-      "notes": ["Правильное имя — Жданова Вера Николаевна.", "Форма «Жданкова» в профиле Familio прямо отвергнута как ошибочная."]
+      "notes": [
+        "Правильное имя — Жданова Вера Николаевна.",
+        "Форма «Жданкова» в профиле Familio прямо отвергнута как ошибочная."
+      ]
     },
     {
       "id": "src_osinsky_wwii_aspidov_candidates",
@@ -471,25 +708,77 @@
       "title": "Возможные родственники Аспидовых в военных списках Осинского района",
       "url": "https://osagen.ru/users/1/content/kp1941/prizv1940",
       "document_urls": [
-        {"type": "local_school_wartime_history", "url": "https://multiurok.ru/files/pust-znaiut-i-pomniat-potomki-kraevedchesskii-mate.html"},
-        {"type": "perm_book_of_memory", "url": "https://www.permgaspi.ru/membook/index.php?char=%D0%90&page=68"},
-        {"type": "nikolai_mikhailovich_official_detail", "url": "https://www.permgaspi.ru/membook/index.php?id=6792"},
-        {"type": "pavel_mikhailovich_official_detail", "url": "https://www.permgaspi.ru/membook/index.php?id=6793"},
-        {"type": "wartime_name_summary_anatoly_aspidov", "url": "https://may1945pobeda.narod.ru/tom12-as.htm"}
+        {
+          "type": "local_school_wartime_history",
+          "url": "https://multiurok.ru/files/pust-znaiut-i-pomniat-potomki-kraevedchesskii-mate.html"
+        },
+        {
+          "type": "perm_book_of_memory",
+          "url": "https://www.permgaspi.ru/membook/index.php?char=%D0%90&page=68"
+        },
+        {
+          "type": "nikolai_mikhailovich_official_detail",
+          "url": "https://www.permgaspi.ru/membook/index.php?id=6792"
+        },
+        {
+          "type": "pavel_mikhailovich_official_detail",
+          "url": "https://www.permgaspi.ru/membook/index.php?id=6793"
+        },
+        {
+          "type": "wartime_name_summary_anatoly_aspidov",
+          "url": "https://may1945pobeda.narod.ru/tom12-as.htm"
+        }
       ],
       "source_quality": "candidate_discovery_only",
       "accessed_at": "2026-09-05",
-      "notes": ["Аспидов Николай Михайлович, родившийся в 1926 году в Устиново, географически подходит на роль возможного родственника Виталия и Михаила Николаевича, но его мать и связь с конкретным хозяйством не указаны. Официальная карточка ПермГАСПИ указывает призыв в 1943 году и смерть от ран в сентябре 1945 года; цифры 1941/1946 в краеведческой публикации считаются ошибочными.", "Аспидов Анатолий Михайлович, родившийся в 1926 году и призванный Осинским РВК, — ещё один возможный боковой родственник; открытые сводки расходятся в дате смерти и не устанавливают место рождения или родителей.", "Аспидов Иван Михайлович, родившийся в 1917 году в Верх-Чумкасной, относится к другому населённому пункту и не присоединён к семье из Тюремки.", "В краеведческом перечне по Устиновскому/Паклинскому сельсовету указаны 34 военные потери из Тюремки (Красной Горки); это показывает масштаб утрат, но не устанавливает родство."]
+      "notes": [
+        "Аспидов Николай Михайлович, родившийся в 1926 году в Устиново, географически подходит на роль возможного родственника Виталия и Михаила Николаевича, но его мать и связь с конкретным хозяйством не указаны. Официальная карточка ПермГАСПИ указывает призыв в 1943 году и смерть от ран в сентябре 1945 года; цифры 1941/1946 в краеведческой публикации считаются ошибочными.",
+        "Аспидов Анатолий Михайлович, родившийся в 1926 году и призванный Осинским РВК, — ещё один возможный боковой родственник; открытые сводки расходятся в дате смерти и не устанавливают место рождения или родителей.",
+        "Аспидов Иван Михайлович, родившийся в 1917 году в Верх-Чумкасной, относится к другому населённому пункту и не присоединён к семье из Тюремки.",
+        "В краеведческом перечне по Устиновскому/Паклинскому сельсовету указаны 34 военные потери из Тюремки (Красной Горки); это показывает масштаб утрат, но не устанавливает родство."
+      ]
     },
     {
       "id": "src_familio_maternal_second_tree_2026",
       "category": "user_generated_genealogy_database",
-      "title": "Второе пользовательское дерево Familio по Тукачевым, Ждановым и Сырчиковым",
+      "title": "Второе любительское дерево Familio по Тукачевым, Ждановым и Сырчиковым",
       "url": "https://familio.org/persons/1b26a2e7-d058-44d6-b097-3c6aecac8634",
-      "document_urls": [{"type": "mikhail_tukachev", "url": "https://familio.org/persons/1b26a2e7-d058-44d6-b097-3c6aecac8634"}, {"type": "vera_nikolaevna_zhdanova", "url": "https://familio.org/persons/453ee9df-fee6-4b12-8595-dc3720962467"}, {"type": "maria_stepanovna_syrchikova", "url": "https://familio.org/persons/adadcee2-ba80-4b76-9ab5-8a6479115f74"}, {"type": "stepan_sergeevich_syrchikov", "url": "https://familio.org/persons/aff11fd1-e2d0-4ac5-bb9f-90ff94fe86ff"}, {"type": "sergey_yakovlevich_syrchikov", "url": "https://familio.org/persons/c8b53f9a-17ce-4cb5-8689-99206b6cdf12"}, {"type": "agrippina_spiridonovna_mikova", "url": "https://familio.org/persons/d8d5499d-0079-4fd5-a554-8f55b317a311"}, {"type": "maria_sergeevna_syrchikova_1898", "url": "https://familio.org/persons/12e51971-77b8-4ef9-b4b7-02d98973dd19"}],
+      "document_urls": [
+        {
+          "type": "mikhail_tukachev",
+          "url": "https://familio.org/persons/1b26a2e7-d058-44d6-b097-3c6aecac8634"
+        },
+        {
+          "type": "vera_nikolaevna_zhdanova",
+          "url": "https://familio.org/persons/453ee9df-fee6-4b12-8595-dc3720962467"
+        },
+        {
+          "type": "maria_stepanovna_syrchikova",
+          "url": "https://familio.org/persons/adadcee2-ba80-4b76-9ab5-8a6479115f74"
+        },
+        {
+          "type": "stepan_sergeevich_syrchikov",
+          "url": "https://familio.org/persons/aff11fd1-e2d0-4ac5-bb9f-90ff94fe86ff"
+        },
+        {
+          "type": "sergey_yakovlevich_syrchikov",
+          "url": "https://familio.org/persons/c8b53f9a-17ce-4cb5-8689-99206b6cdf12"
+        },
+        {
+          "type": "agrippina_spiridonovna_mikova",
+          "url": "https://familio.org/persons/d8d5499d-0079-4fd5-a554-8f55b317a311"
+        },
+        {
+          "type": "maria_sergeevna_syrchikova_1898",
+          "url": "https://familio.org/persons/12e51971-77b8-4ef9-b4b7-02d98973dd19"
+        }
+      ],
       "source_quality": "corroborating_user_tree_clue",
       "accessed_at": "2026-09-05",
-      "notes": ["Дерево другого автора повторяет цепочку Мария Степановна — Степан Сергеевич — Сергей Яковлевич и Агриппина Спиридоновна, а также форму фамилии Веры «Жданова». Это полезное совпадение, но пользовательские деревья могли копировать друг друга и не заменяют архивный документ.", "В этом дереве отец Агриппины не показан, поэтому Спиридон Данилович Миков им не подтверждается."]
+      "notes": [
+        "Дерево другого автора повторяет цепочку Мария Степановна — Степан Сергеевич — Сергей Яковлевич и Агриппина Спиридоновна, а также форму фамилии Веры «Жданова». Это полезное совпадение, но любительские деревья могли копировать друг друга и не заменяют архивный документ.",
+        "В этом дереве отец Агриппины не показан, поэтому Спиридон Данилович Миков им не подтверждается."
+      ]
     },
     {
       "id": "src_obd_petr_fedorovich_politov_503665796",
@@ -501,7 +790,9 @@
       "local_transcription": "../evidence/transcriptions/OBD-503665796-transcription-ru.md",
       "source_quality": "primary_index_and_scan",
       "accessed_at": "2026-09-05",
-      "notes": ["1925 год рождения; место рождения распознано как «д. Тартена», вероятно ошибочное OCR названия Мартелы; призван в 1943 году Верещагинским РВК; красноармеец 1-й гвардейской воздушно-десантной дивизии; погиб 13.10.1943; захоронение — Мишурин Рог."]
+      "notes": [
+        "1925 год рождения; место рождения распознано как «д. Тартена», вероятно ошибочное OCR названия Мартелы; призван в 1943 году Верещагинским РВК; красноармеец 1-й гвардейской воздушно-десантной дивизии; погиб 13.10.1943; захоронение — Мишурин Рог."
+      ]
     },
     {
       "id": "src_vereshchagino_memory_book_petr_politov",
@@ -510,7 +801,9 @@
       "url": "https://www.leocdn.ru/uploadsForSiteId/202508/content/133802f6-4012-477e-aae9-aa4ecd105c33.pdf",
       "source_quality": "secondary_derivative",
       "accessed_at": "2026-09-05",
-      "notes": ["Указаны 1925 год рождения, деревня Мартелы, призыв в 1943 году, 6-й стрелковый полк 1-й воздушно-десантной дивизии, гибель 18.10.1943 и захоронение в Михайловке. Дата и место захоронения расходятся с записью ОБД."]
+      "notes": [
+        "Указаны 1925 год рождения, деревня Мартелы, призыв в 1943 году, 6-й стрелковый полк 1-й воздушно-десантной дивизии, гибель 18.10.1943 и захоронение в Михайловке. Дата и место захоронения расходятся с записью ОБД."
+      ]
     },
     {
       "id": "src_permgaspi_syrchikov_candidates",
@@ -518,10 +811,22 @@
       "title": "Книга памяти Пермского края: возможные родственники Сырчиковы",
       "repository": "ПермГАСПИ",
       "url": "https://www.permgaspi.ru/membook/index.php?char=%D0%A1&page=174",
-      "document_urls": [{"type": "ivan_sergeevich_syrchikov", "url": "https://www.permgaspi.ru/membook/index.php?id=172010"}, {"type": "ivan_stepanovich_syrchikov", "url": "https://www.permgaspi.ru/membook/index.php?id=172012"}],
+      "document_urls": [
+        {
+          "type": "ivan_sergeevich_syrchikov",
+          "url": "https://www.permgaspi.ru/membook/index.php?id=172010"
+        },
+        {
+          "type": "ivan_stepanovich_syrchikov",
+          "url": "https://www.permgaspi.ru/membook/index.php?id=172012"
+        }
+      ],
       "source_quality": "secondary_derivative",
       "accessed_at": "2026-09-05",
-      "notes": ["Иван Сергеевич, 1901, Васильевский сельсовет Ильинского района, пропал без вести в декабре 1941 года. Возможный, но не доказанный брат Степана Сергеевича или Марии Сергеевны.", "Иван Степанович, 1907, Ильинский район; призван в 1941 году в Чёрмозе; 46-я стрелковая бригада; пропал без вести в декабре 1941 года у Гаврилова. Возможный, но не доказанный брат Марии Степановны."]
+      "notes": [
+        "Иван Сергеевич, 1901, Васильевский сельсовет Ильинского района, пропал без вести в декабре 1941 года. Возможный, но не доказанный брат Степана Сергеевича или Марии Сергеевны.",
+        "Иван Степанович, 1907, Ильинский район; призван в 1941 году в Чёрмозе; 46-я стрелковая бригада; пропал без вести в декабре 1941 года у Гаврилова. Возможный, но не доказанный брат Марии Степановны."
+      ]
     },
     {
       "id": "src_obd_ivan_stepanovich_syrchikov_551438577",
@@ -533,29 +838,45 @@
       "local_transcription": "../evidence/transcriptions/OBD-551438577-transcription-ru.md",
       "source_quality": "primary_index_and_scan",
       "accessed_at": "2026-09-05",
-      "notes": ["Запись указывает гибель 29.12.1941 и захоронение у Гаврилова. Названия места рождения и военкомата в индексе искажены OCR; их нельзя автоматически принимать за точную географию. Книга памяти формулирует исход как «пропал без вести»."]
+      "notes": [
+        "Запись указывает гибель 29.12.1941 и захоронение у Гаврилова. Названия места рождения и военкомата в индексе искажены OCR; их нельзя автоматически принимать за точную географию. Книга памяти формулирует исход как «пропал без вести»."
+      ]
     },
     {
       "id": "src_otechestvo_ivan_sergeevich_syrchikov",
       "category": "search_team_publication",
       "title": "Сведения о найденных останках Сырчикова Ивана Сергеевича",
       "url": "https://otechestvort.ru/izdat/book12/017.htm",
-      "document_urls": [{"type": "obd_burial_summary", "url": "https://obd-memorial.ru/html/info.htm?id=589448511"}],
+      "document_urls": [
+        {
+          "type": "obd_burial_summary",
+          "url": "https://obd-memorial.ru/html/info.htm?id=589448511"
+        }
+      ],
       "archive_reference": "ЦАМО РФ, ф. 58, оп. 18004, д. 2391, л. 46",
       "source_quality": "secondary_with_archival_reference",
       "accessed_at": "2026-09-05",
-      "notes": ["1901 год рождения, Васильевский сельсовет Ильинского района; жена Анна Алексеевна; пропал без вести в декабре 1941 года. Останки обнаружены в апреле 2012 года близ Беззаботы Ельнинского района и 05.05.2012 перезахоронены в Яковлеве Глинковского района Смоленской области."]
+      "notes": [
+        "1901 год рождения, Васильевский сельсовет Ильинского района; жена Анна Алексеевна; пропал без вести в декабре 1941 года. Останки обнаружены в апреле 2012 года близ Беззаботы Ельнинского района и 05.05.2012 перезахоронены в Яковлеве Глинковского района Смоленской области."
+      ]
     },
     {
       "id": "src_svrt_wwi_ivan_andreevich_aspidov",
       "category": "published_military_index",
       "title": "Именной список потерь Первой мировой войны: Аспидов Иван Андреевич",
       "url": "https://1914.svrt.ru/extsearch.php?surname=%D0%90%D1%81%D0%BF",
-      "document_urls": [{"type": "perm_volume_pdf", "url": "https://svrt.ru/1914/perm/1914-perm-a.pdf"}],
+      "document_urls": [
+        {
+          "type": "perm_volume_pdf",
+          "url": "https://svrt.ru/1914/perm/1914-perm-a.pdf"
+        }
+      ],
       "archive_reference": "Запись СВРТ 533847; именной список № 1358, с. 21713",
       "source_quality": "derivative_military_index",
       "accessed_at": "2026-09-05",
-      "notes": ["Православный, женат, рядовой, Осинский уезд Пермской губернии; пропал без вести 01.03.1915. Деревня, возраст и родители не указаны, поэтому к дереву не присоединён."]
+      "notes": [
+        "Православный, женат, рядовой, Осинский уезд Пермской губернии; пропал без вести 01.03.1915. Деревня, возраст и родители не указаны, поэтому к дереву не присоединён."
+      ]
     },
     {
       "id": "src_perm_memorial_syrchikova_alexandra_1904",
@@ -565,7 +886,9 @@
       "archive_reference": "ПермГАНИ, ф. 643/2, оп. 1, д. 8363",
       "source_quality": "derivative_index",
       "accessed_at": "2026-09-05",
-      "notes": ["Родилась в 1904 году в деревне Сырчики Чёрмозского района; арестована 22.10.1936, осуждена 03.03.1937 на три года лишения свободы, впоследствии реабилитирована. Возможная местная родственница; связи с прямой линией нет."]
+      "notes": [
+        "Родилась в 1904 году в деревне Сырчики Чёрмозского района; арестована 22.10.1936, осуждена 03.03.1937 на три года лишения свободы, впоследствии реабилитирована. Возможная местная родственница; связи с прямой линией нет."
+      ]
     },
     {
       "id": "src_perm_memorial_pavel_andreevich_aspidov_1917",
@@ -574,7 +897,9 @@
       "url": "https://pmem.ru/4198.html",
       "source_quality": "derivative_index",
       "accessed_at": "2026-09-05",
-      "notes": ["Родился в 1917 году в Устиново; в июле 1945 года поступил в фильтрационный лагерь, освобождён 22.09.1945 с разрешением жить в Осе. Родственная связь с семьёй из Тюремки не установлена."]
+      "notes": [
+        "Родился в 1917 году в Устиново; в июле 1945 года поступил в фильтрационный лагерь, освобождён 22.09.1945 с разрешением жить в Осе. Родственная связь с семьёй из Тюремки не установлена."
+      ]
     },
     {
       "id": "src_shumilov_asidov_1834",
@@ -583,7 +908,9 @@
       "url": "https://ocher.biblioteka-perm.ru/upload/pages/42199/dat_1697703723116.pdf",
       "source_quality": "published_secondary_reference",
       "accessed_at": "2026-09-05",
-      "notes": ["В справочнике фамилия приведена в форме «Асидов», без буквы «п». Автор указывает, что Асидовы жили в 1834 году в Тюремке, Новозалесновской, Щелкановке, Чумкасной, Тишкове и Устинове. Это создаёт обязательный дополнительный вариант поиска в документах XIX века, но само по себе не доказывает, что «Асидов» и «Аспидов» всегда обозначают одну семью."]
+      "notes": [
+        "В справочнике фамилия приведена в форме «Асидов», без буквы «п». Автор указывает, что Асидовы жили в 1834 году в Тюремке, Новозалесновской, Щелкановке, Чумкасной, Тишкове и Устинове. Это создаёт обязательный дополнительный вариант поиска в документах XIX века, но само по себе не доказывает, что «Асидов» и «Аспидов» всегда обозначают одну семью."
+      ]
     },
     {
       "id": "src_perm_memorial_anna_yakovlevna_aspidova_1903",
@@ -593,7 +920,9 @@
       "archive_reference": "ПермГАНИ, ф. 641/1, оп. 1, д. 7519",
       "source_quality": "derivative_index_with_archive_reference",
       "accessed_at": "2026-09-05",
-      "notes": ["Родилась в 1903 году в деревне Кряж Осинского района; работала сторожем начальной школы; арестована 19.11.1937 в Устинове, 24.06.1938 приговорена к двухлетнему гласному надзору по месту жительства, впоследствии реабилитирована. Связь с семьёй из Тюремки не установлена."]
+      "notes": [
+        "Родилась в 1903 году в деревне Кряж Осинского района; работала сторожем начальной школы; арестована 19.11.1937 в Устинове, 24.06.1938 приговорена к двухлетнему гласному надзору по месту жительства, впоследствии реабилитирована. Связь с семьёй из Тюремки не установлена."
+      ]
     },
     {
       "id": "src_perm_memorial_fedor_ilyich_politov_1885",
@@ -603,7 +932,9 @@
       "archive_reference": "ПермГАНИ, ф. 643/2, оп. 1, д. 7174",
       "source_quality": "derivative_index_with_archive_reference",
       "accessed_at": "2026-09-05",
-      "notes": ["Родился и жил в деревне Мартелы Верещагинского района; плотник, колхозник; арестован 27.09.1937, 17.10.1937 приговорён к десяти годам лишения свободы, впоследствии реабилитирован. Совпадение редкой для проекта фамилии и деревни делает его кандидатом в расширенный род Политовых, но он не отождествлён с Фёдором Кирилловичем и не присоединён к прямой линии."]
+      "notes": [
+        "Родился и жил в деревне Мартелы Верещагинского района; плотник, колхозник; арестован 27.09.1937, 17.10.1937 приговорён к десяти годам лишения свободы, впоследствии реабилитирован. Совпадение редкой для проекта фамилии и деревни делает его кандидатом в расширенный род Политовых, но он не отождествлён с Фёдором Кирилловичем и не присоединён к прямой линии."
+      ]
     },
     {
       "id": "src_familio_vasily_syrchikov_second_tree",
@@ -612,7 +943,9 @@
       "url": "https://familio.org/persons/38b2692a-9e7d-4c36-b0e6-7690dadc5774",
       "source_quality": "user_contributed_lead",
       "accessed_at": "2026-09-05",
-      "notes": ["Повторяет дату рождения Василия Ильича 08.01.1895 по старому стилю и деревню Сырчики. Называет детей: Пётр Васильевич, родившийся 17.09.1927, Анастасия Васильевна Кузнецова, Екатерина Васильевна Сырчикова и Людмила Васильевна Сакулина. В другом пользовательском дереве первая дочь названа Таисией, поэтому имя дочери остаётся конфликтным. Эти сведения описывают боковую семью и не подтверждают прямую линию Марии Степановны."]
+      "notes": [
+        "Повторяет дату рождения Василия Ильича 08.01.1895 по старому стилю и деревню Сырчики. Называет детей: Пётр Васильевич, родившийся 17.09.1927, Анастасия Васильевна Кузнецова, Екатерина Васильевна Сырчикова и Людмила Васильевна Сакулина. В другом любительском дереве первая дочь названа Таисией, поэтому имя дочери остаётся конфликтным. Эти сведения описывают боковую семью и не подтверждают прямую линию Марии Степановны."
+      ]
     },
     {
       "id": "src_permgaspi_ivan_fedorovich_tukachev_unrelated",
@@ -621,16 +954,24 @@
       "url": "https://bank.permgaspi.ru/card.php?e=4517&i=27",
       "source_quality": "official_index",
       "accessed_at": "2026-09-05",
-      "notes": ["В 1942 году ему был 21 год; родился и жил в деревне Тукачево Юсьвинского района, коми-пермяк, колхозник. География и биографические данные не связывают его с семьёй Михаила Тукачева из Чёрмоза. Запись сохранена только для документирования исключения ложного совпадения по фамилии."]
+      "notes": [
+        "В 1942 году ему был 21 год; родился и жил в деревне Тукачево Юсьвинского района, коми-пермяк, колхозник. География и биографические данные не связывают его с семьёй Михаила Тукачева из Чёрмоза. Запись сохранена только для документирования исключения ложного совпадения по фамилии."
+      ]
     },
     {
       "id": "src_family_confirmation_p01_p19_m01_m17_2026_09_05",
       "category": "family_testimony",
-      "title": "Подтверждение пользователем карточек P01–P19 и M01–M16 после уточнения M17",
+      "title": "Подтверждение Аллой карточек P01–P19 и M01–M16 после уточнения M17",
       "url": null,
       "source_quality": "family_confirmed",
       "accessed_at": "2026-09-05",
-      "notes": ["Пользователь подтвердил родственников и семейные связи, перечисленные в таблицах под кодами P01–P19 и M01–M16.", "Первоначальное подтверждение включало M17, но владелец позднее уточнил, что родство Александры Михайловны Сырчиковой не подтверждено. Она остаётся однофамилицей из деревни Сырчики и гипотезой без связи с древом.", "Отчество Марии Аспидовой окончательно подтверждено как Владимировна.", "Под кодом P19 подтверждён старший брат Виталия — Николай Михайлович Аспидов. Военная карточка Николая Михайловича 1926 года из Устинова относится к другому человеку: настоящий брат Виталия умер в Перми от старости; точные даты рождения и смерти не подтверждены.", "Для M15 подтверждено принадлежание к семье; положение Ивана Сергеевича следует отображать только согласно зафиксированным связям."]
+      "notes": [
+        "Алла подтвердила родственников и семейные связи, перечисленные в таблицах под кодами P01–P19 и M01–M16.",
+        "Первоначальное подтверждение включало M17, но владелец позднее уточнил, что родство Александры Михайловны Сырчиковой не подтверждено. Она остаётся однофамилицей из деревни Сырчики и гипотезой без связи с древом.",
+        "Отчество Марии Аспидовой окончательно подтверждено как Владимировна.",
+        "Под кодом P19 подтверждён старший брат Виталия — Николай Михайлович Аспидов. Военная карточка Николая Михайловича 1926 года из Устинова относится к другому человеку: настоящий брат Виталия умер в Перми от старости; точные даты рождения и смерти не подтверждены.",
+        "Для M15 подтверждено принадлежание к семье; положение Ивана Сергеевича следует отображать только согласно зафиксированным связям."
+      ]
     },
     {
       "id": "src_family_testimony_alla_aspidova_1987",
@@ -639,7 +980,9 @@
       "url": null,
       "source_quality": "first_person_family_confirmed",
       "accessed_at": "2026-09-05",
-      "notes": ["Аспидова Алла Владимировна сообщила, что родилась в 1987 году в Перми, является дочерью Аспидова Владимира Витальевича и Тукачевой Людмилы Михайловны и переехала в Москву вместе с родителями. Позднее год переезда уточнён как 2000 и записан отдельным семейным свидетельством."]
+      "notes": [
+        "Аспидова Алла Владимировна сообщила, что родилась в 1987 году в Перми, является дочерью Аспидова Владимира Витальевича и Тукачевой Людмилы Михайловны и переехала в Москву вместе с родителями. Позднее год переезда уточнён как 2000 и записан отдельным семейным свидетельством."
+      ]
     },
     {
       "id": "src_family_testimony_alexander_vitalievich_aspidov_1966",
@@ -648,7 +991,10 @@
       "url": null,
       "source_quality": "family_confirmed",
       "accessed_at": "2026-09-06",
-      "notes": ["Аспидов Александр Витальевич — родной брат Аспидова Владимира Витальевича, сын Виталия Михайловича Аспидова и Анны Фёдоровны Политовой, дядя Аллы Владимировны.", "Родился в 1966 году. В 1990-х годах окончил Пермский государственный политехнический институт. Точный год окончания и специальность не сообщены."]
+      "notes": [
+        "Аспидов Александр Витальевич — родной брат Аспидова Владимира Витальевича, сын Виталия Михайловича Аспидова и Анны Фёдоровны Политовой, дядя Аллы Владимировны.",
+        "Родился в 1966 году. В 1990-х годах окончил Пермский государственный политехнический институт. Точный год окончания и специальность не сообщены."
+      ]
     },
     {
       "id": "src_family_testimony_nikolai_trofimovich_zhdanov",
@@ -657,7 +1003,9 @@
       "url": null,
       "source_quality": "family_confirmed",
       "accessed_at": "2026-09-06",
-      "notes": ["Пользователь сообщил и подтвердил полное имя прадеда по материнской линии: Жданов Николай Трофимович. Ранее отчество в базе отсутствовало."]
+      "notes": [
+        "Алла сообщила и подтвердила полное имя прадеда по материнской линии: Жданов Николай Трофимович. Ранее отчество в базе отсутствовало."
+      ]
     },
     {
       "id": "src_family_testimony_moscow_move_2000",
@@ -666,7 +1014,9 @@
       "url": null,
       "source_quality": "first_person_family_confirmed",
       "accessed_at": "2026-09-06",
-      "notes": ["Алла Владимировна лично сообщила, что она, Владимир Витальевич и Людмила Михайловна переехали в Москву в 2000 году."]
+      "notes": [
+        "Алла Владимировна лично сообщила, что она, Владимир Витальевич и Людмила Михайловна переехали в Москву в 2000 году."
+      ]
     },
     {
       "id": "src_owner_correction_alexandra_syrchikova_unconfirmed",
@@ -675,7 +1025,9 @@
       "url": null,
       "source_quality": "direct_testimony",
       "accessed_at": "2026-09-06",
-      "notes": ["Владелец проекта уточнил, что родство Александры Михайловны Сырчиковой 1904 года рождения не подтверждено. Она считается однофамилицей из деревни Сырчики и сохраняется как гипотеза без связи с древом."]
+      "notes": [
+        "Владелец проекта уточнил, что родство Александры Михайловны Сырчиковой 1904 года рождения не подтверждено. Она считается однофамилицей из деревни Сырчики и сохраняется как гипотеза без связи с древом."
+      ]
     },
     {
       "id": "src_family_testimony_politov_siblings_martely",
@@ -684,7 +1036,22 @@
       "url": null,
       "source_quality": "family_confirmed",
       "accessed_at": "2026-09-06",
-      "notes": ["Алла Владимировна подтвердила, что её бабушка Анна Фёдоровна Политова и родные братья и сёстры Анны, Михаил, Пётр, Кирилл, Степанида и Лукерия, родились в деревне Мартелы.", "Правильное написание названия деревни: Мартелы. Прежнее написание в выгрузке исправлено."]
+      "notes": [
+        "Алла Владимировна подтвердила, что её бабушка Анна Фёдоровна Политова и родные братья и сёстры Анны, Михаил, Пётр, Кирилл, Степанида и Лукерия, родились в деревне Мартелы.",
+        "Правильное написание названия деревни: Мартелы. Прежнее написание в выгрузке исправлено."
+      ]
+    },
+    {
+      "id": "src_family_testimony_zhanna_igor_tukachev",
+      "category": "family_testimony",
+      "title": "Сведения Аллы Владимировны о детях Валерия и Татьяны Тукачевых",
+      "url": null,
+      "source_quality": "family_confirmed",
+      "accessed_at": "2026-09-06",
+      "notes": [
+        "Алла Владимировна подтвердила, что старшая дочь Валерия и Татьяны носит имя Жанна Тукачева, а младший сын носит имя Игорь Тукачев.",
+        "Подтверждены имена, пол и родство с Валерием и Татьяной. Точные даты рождения и отчества отдельно не сообщались и сохраняют прежнюю степень доказанности."
+      ]
     },
     {
       "id": "src_obd_zhdanov_nikolai_trofimovich_62252334",
@@ -692,13 +1059,78 @@
       "title": "ОБД Мемориал: Жданов Николай Трофимович, 1910 года рождения, Чермозский район",
       "url": "https://obd-memorial.ru/html/info.htm?id=62252334",
       "document_urls": [
-        {"type": "record_page", "url": "https://obd-memorial.ru/html/info.htm?id=62252334"},
-        {"type": "original_scan", "url": "https://obd-memorial.ru/html/images3?id=62252269&id1=afb22f93fc1d6fb25659aa2c40ded03c&path=Z/006/058-0977520-0483/00000204.jpg"}
+        {
+          "type": "record_page",
+          "url": "https://obd-memorial.ru/html/info.htm?id=62252334"
+        },
+        {
+          "type": "original_scan",
+          "url": "https://obd-memorial.ru/html/images3?id=62252269&id1=afb22f93fc1d6fb25659aa2c40ded03c&path=Z/006/058-0977520-0483/00000204.jpg"
+        }
       ],
       "archive_reference": "ЦАМО, ф. 58, оп. 977520, д. 483",
       "source_quality": "primary_index_and_scan",
       "accessed_at": "2026-09-06",
-      "notes": ["В документе указан Жданов Николай Трофимович, 1910 года рождения, уроженец деревни Сенино Ивановского сельсовета Чермозского района Молотовской области.", "Призван 22.07.1941 Чермозским РВК, рядовой, пропал без вести в январе 1942 года.", "Полное имя и география делают запись сильным кандидатом на прадеда семьи, но документ не называет супругу Марию Степановну или дочь Веру. Тождество пока не подтверждено."]
+      "notes": [
+        "В документе указан Жданов Николай Трофимович, 1910 года рождения, уроженец деревни Сенино Ивановского сельсовета Чермозского района Молотовской области.",
+        "Призван 22.07.1941 Чермозским РВК, рядовой, пропал без вести в январе 1942 года.",
+        "Полное имя и география делают запись сильным кандидатом на прадеда семьи, но документ не называет супругу Марию Степановну или дочь Веру. Тождество пока не подтверждено."
+      ]
+    },
+    {
+      "id": "src_family_confirmation_new_spouses_and_children_2026_09_06",
+      "category": "family_testimony",
+      "title": "Подтверждение Аллы Владимировны о супругах и детях боковых ветвей",
+      "url": null,
+      "source_quality": "first_person_family_confirmed",
+      "accessed_at": "2026-09-06",
+      "notes": [
+        "Алла Владимировна подтвердила правильность всех недавно добавленных сведений о супругах и детях Татьяны Михайловны и Валерия Михайловича Тукачевых, включая даты и места из Familio.",
+        "Она сообщила, что супруга Александра Витальевича Аспидова носит имя Елена Уткина, а их сын носит имя Святослав Аспидов.",
+        "Мария и Катя Аспидовы являются дочерьми Александра от другого брака, не дочерьми Елены Уткиной; обе живут в Испании."
+      ]
+    },
+    {
+      "id": "src_catalan_gymnastics_maria_aspidova_2022",
+      "category": "official_sports_federation",
+      "title": "Федерация гимнастики Каталонии: результат Марии Аспидовой на чемпионате Испании 2022 года",
+      "url": "https://gimcat.com/noticia.html?noticia=1117",
+      "source_quality": "official_federation_report",
+      "accessed_at": "2026-09-06",
+      "notes": [
+        "Федерация сообщает, что Мария Аспидова из клуба «Ритмика Бланес» выиграла открытый зачёт чемпионата Испании по художественной гимнастике 2022 года в Оренсе.",
+        "Имя и проживание в Испании согласуются с семейным сообщением, но тождество с дочерью Александра Витальевича пока не подтверждено."
+      ]
+    },
+    {
+      "id": "src_rfeg_maria_ekaterina_aspidova_2022",
+      "category": "official_sports_federation",
+      "title": "Королевская федерация гимнастики Испании: Мария и Екатерина Аспидовы в клубе «Ритмика Бланес»",
+      "url": "https://rfegimnasia.es/getdata/Getfilenoattachmentmicrosites/name/61a7f1828906a7b6a6343fc43c6e7813.pdf",
+      "document_urls": [
+        {
+          "type": "official_competition_document",
+          "url": "https://rfegimnasia.es/getdata/Getfilenoattachmentmicrosites/name/61a7f1828906a7b6a6343fc43c6e7813.pdf"
+        }
+      ],
+      "source_quality": "official_competition_document",
+      "accessed_at": "2026-09-06",
+      "notes": [
+        "В официальном документе Лиги Ибердрола 2022 года Мария Аспидова и Екатерина Аспидова указаны в одной команде клуба «Ритмика Бланес» в Каталонии.",
+        "Это сильная подсказка для проверки публичных биографий Марии и Кати, но документ не называет их родителями и не доказывает тождество с дочерьми Александра Витальевича."
+      ]
+    },
+    {
+      "id": "src_family_recollection_alexander_children_activities_2026_09_06",
+      "category": "family_testimony",
+      "title": "Семейное воспоминание о занятиях детей Александра Витальевича Аспидова",
+      "url": null,
+      "source_quality": "family_history_recollection",
+      "accessed_at": "2026-09-06",
+      "notes": [
+        "Алла Владимировна уточнила, что Святослав Аспидов является студентом.",
+        "Мария и Катя Аспидовы являются гимнастками и студентками. Эти сведения разрешено обозначать на сайте как семейное воспоминание."
+      ]
     }
   ]
 }

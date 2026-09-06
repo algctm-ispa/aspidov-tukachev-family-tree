@@ -15,10 +15,11 @@
     "CONFIRMED_BY_FAMILY": "Подтверждено семьёй",
     "HYPOTHESIS": "Гипотеза",
     "REJECTED": "Отвергнуто",
+    "REJECTED_BY_FAMILY": "Отвергнуто семьёй",
     "REPORTED_BY_FAMILY_MEMORY": "Подтверждено семейным воспоминанием",
-    "USER_TREE_VALUE": "Сведения из пользовательского дерева",
+    "USER_TREE_VALUE": "Сведения из любительского дерева",
     "GENERATION_ESTIMATE": "Ориентировочная оценка поколения",
-    "MATCHING_USER_TREE_AND_MILITARY_RECORD": "Совпадение пользовательского дерева и военной записи",
+    "MATCHING_USER_TREE_AND_MILITARY_RECORD": "Совпадение любительского дерева и военной записи",
     "SOURCE_CONFLICT": "Источники расходятся"
   },
   "sex": {
@@ -39,7 +40,7 @@
     "documentary_clue": "Имя из найденной подсказки",
     "constructed": "Рабочая форма имени",
     "probable_expansion": "Предполагаемая полная форма",
-    "user_tree_clue": "Подсказка из пользовательского дерева",
+    "user_tree_clue": "Подсказка из любительского дерева",
     "patronymic_inference": "Имя, выведенное из отчества",
     "combined_clue": "Совпавшие сведения из нескольких источников",
     "memorial_record": "Имя из книги памяти",
@@ -70,7 +71,7 @@
   },
   "source_quality": {
     "primary": "Первичный источник",
-    "direct_testimony": "Прямое семейное свидетельство",
+    "direct_testimony": "Рассказала семья",
     "direct_testimony_unverified_date": "Дата из семейного воспоминания",
     "clue_only": "Только исследовательская подсказка",
     "candidate_discovery_only": "Источник возможного совпадения",
@@ -82,10 +83,11 @@
     "official_portal": "Официальный портал",
     "discovery_tool": "Поисковый инструмент",
     "secondary_route_finding": "Вторичный источник для определения направления поиска",
-    "corroborating_user_tree_clue": "Сходная подсказка из второго пользовательского дерева",
+    "corroborating_user_tree_clue": "Сходная подсказка из второго любительского дерева",
     "primary_index_and_scan": "Первичный документ и его архивный указатель",
     "secondary_with_archival_reference": "Вторичная публикация с архивным шифром",
-    "derivative_military_index": "Производный указатель военных потерь"
+    "derivative_military_index": "Производный указатель военных потерь",
+    "family_history_recollection": "Семейное воспоминание"
   },
   "date_labels": {
     "birth": "Рождение",
@@ -122,8 +124,8 @@
     "village_or_selo": "Село или деревня"
   },
   "source_category": {
-    "family_testimony": "Семейное свидетельство",
-    "user_generated_genealogy_database": "Пользовательская генеалогическая база",
+    "family_testimony": "Со слов семьи",
+    "user_generated_genealogy_database": "Любительская генеалогическая база",
     "primary_archival_evidence": "Первичный архивный документ",
     "archival_index": "Архивный указатель",
     "published_memorial_index": "Опубликованный список памяти",
@@ -150,7 +152,7 @@
     "anna_person_page": "Персональная страница Анны",
     "vitaly_person_page": "Персональная страница Виталия",
     "father_page": "Страница отца",
-    "duplicate_user_tree_page": "Другая страница пользовательского дерева",
+    "duplicate_user_tree_page": "Другая страница любительского дерева",
     "surname_index": "Указатель фамилии",
     "politov_surname_index": "Указатель фамилии Политов",
     "dictionary_entry": "Словарная статья",
@@ -203,6 +205,7 @@
     "show_hypotheses": "Показать гипотезы",
     "no_data": "Сведения пока не найдены",
     "family_confirmed": "Подтверждено семьёй",
+    "family_history_recollection": "Семейное воспоминание",
     "hypothesis": "Гипотеза"
   }
 }

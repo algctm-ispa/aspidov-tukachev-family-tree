@@ -102,10 +102,44 @@ function renderSources(person, familyData) {
           </div>
         </li>`;
     }).join("");
+  // Источники никуда не деваются, но встречать человека они не должны:
+  // сначала рассказ, и только потом, по желанию, доказательства.
+  return `
+    <details class="dialog-section dialog-sources">
+      <summary><h6>Откуда мы это знаем</h6></summary>
+      <ul class="source-list">${items}</ul>
+    </details>`;
+}
+
+// Чем человек занят сейчас: со слов семьи, без документов и без деталей.
+function renderLifeNow(person) {
+  const lines = [];
+  for (const item of person.education || []) {
+    if (item && item.current_status) lines.push(item.current_status);
+  }
+  for (const item of person.activities || []) {
+    const text = [item && item.role, item && item.activity].filter(Boolean).join(", ");
+    if (text) lines.push(text);
+  }
+  if (!lines.length) return "";
+  return `<p class="research-note">${escapeHtml(lines.join(". "))}.</p>`;
+}
+
+// Совпадения с публичными упоминаниями остаются версиями, а не фактами, и
+// латинское написание имени из источника посетителю не показывается.
+function renderPublicMatches(person) {
+  const matches = (person.publicMatches || []).filter(m => m && (m.name || m.description));
+  if (!matches.length) return "";
+  const cards = matches.map(m => `
+    <div class="conflict-card">
+      <div class="conflict-title">${escapeHtml(m.name || "Возможное совпадение")} <span class="tag tag-hypothesis">Гипотеза</span></div>
+      ${m.description ? `<div class="conflict-line">${escapeHtml(m.description)}</div>` : ""}
+    </div>`).join("");
   return `
     <section class="dialog-section">
-      <h6>Источники</h6>
-      <ul class="source-list">${items}</ul>
+      <h6>Возможные совпадения</h6>
+      <p class="research-note">Семья это пока не подтверждала.</p>
+      ${cards}
     </section>`;
 }
 
@@ -155,8 +189,14 @@ function renderPersonDetail(person, familyData, kinshipLabel, hasPhoto) {
     dates.push(`<div>${escapeHtml(moveSentence(move, person.sex))}</div>`);
   }
 
-  const notesHtml = person.notes && person.notes.length
-    ? `<section class="dialog-section"><h6>Заметки исследования</h6>${person.notes.map(n => `<p class="research-note">${escapeHtml(n)}</p>`).join("")}</section>`
+  // Учёба и занятия уже описаны словами в notes, поэтому отдельной строкой
+  // они не дублируются: renderLifeNow остаётся на случай, когда notes пусты.
+  const notes = person.notes || [];
+  const storyBody = notes.length
+    ? notes.map(n => `<p class="research-note">${escapeHtml(n)}</p>`).join("")
+    : renderLifeNow(person);
+  const notesHtml = storyBody
+    ? `<section class="dialog-section dialog-story"><h6>Что мы знаем</h6>${storyBody}</section>`
     : "";
 
   const candidateHtml = person.candidateRole
@@ -177,14 +217,15 @@ function renderPersonDetail(person, familyData, kinshipLabel, hasPhoto) {
     </div>
     <div class="hr"></div>
     <div class="dialog-layout${photoHtml ? "" : " is-textonly"}">
-      ${photoHtml}
       <div class="dialog-main">
-      ${candidateHtml}
-      <div class="dialog-dates">${dates.join("")}</div>
+        ${candidateHtml}
+        <div class="dialog-dates">${dates.join("")}</div>
+        ${photoHtml}
+        ${notesHtml}
         ${renderAttributeConflicts(person)}
+        ${renderPublicMatches(person)}
         ${renderMilitary(person)}
         ${renderNameVariants(person)}
-        ${notesHtml}
         ${renderSources(person, familyData)}
         <div class="dialog-actions">
           <a class="btn btn-primary btn-block" href="${escapeHtml(formUrl || "#")}" target="_blank" rel="noopener">Изменить данные или добавить фото</a>

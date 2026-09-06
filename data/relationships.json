@@ -3,8 +3,13 @@
   "family_confirmation_events": [
     {
       "source_id": "src_family_confirmation_p01_p19_m01_m17_2026_09_05",
-      "confirmed_table_codes": ["P01–P19", "M01–M16"],
-      "excluded_after_owner_correction": ["M17"],
+      "confirmed_table_codes": [
+        "P01–P19",
+        "M01–M16"
+      ],
+      "excluded_after_owner_correction": [
+        "M17"
+      ],
       "note": "Все однозначно определённые родительские и супружеские связи в этих диапазонах подтверждены семьёй. M17 оставлена гипотезой без связи с древом после позднейшей правки владельца."
     }
   ],
@@ -15,7 +20,9 @@
       "parent_id": "vladimir_vitalievich_aspidov",
       "child_id": "alla_vladimirovna_aspidova_1987",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_testimony_alla_aspidova_1987"]
+      "evidence_source_ids": [
+        "src_family_testimony_alla_aspidova_1987"
+      ]
     },
     {
       "id": "rel_lyudmila_mother_alla",
@@ -23,7 +30,9 @@
       "parent_id": "lyudmila_mikhailovna_tukacheva",
       "child_id": "alla_vladimirovna_aspidova_1987",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_testimony_alla_aspidova_1987"]
+      "evidence_source_ids": [
+        "src_family_testimony_alla_aspidova_1987"
+      ]
     },
     {
       "id": "rel_vitaly_father_alexander_1966",
@@ -31,7 +40,9 @@
       "parent_id": "vitaly_mikhailovich_aspidov",
       "child_id": "alexander_vitalievich_aspidov_1966",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_testimony_alexander_vitalievich_aspidov_1966"]
+      "evidence_source_ids": [
+        "src_family_testimony_alexander_vitalievich_aspidov_1966"
+      ]
     },
     {
       "id": "rel_anna_mother_alexander_1966",
@@ -39,7 +50,9 @@
       "parent_id": "anna_fedorovna_politova",
       "child_id": "alexander_vitalievich_aspidov_1966",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_testimony_alexander_vitalievich_aspidov_1966"]
+      "evidence_source_ids": [
+        "src_family_testimony_alexander_vitalievich_aspidov_1966"
+      ]
     },
     {
       "id": "rel_vitaly_anna_spouses",
@@ -47,7 +60,9 @@
       "person_1_id": "vitaly_mikhailovich_aspidov",
       "person_2_id": "anna_fedorovna_politova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_testimony_aspidov"]
+      "evidence_source_ids": [
+        "src_family_testimony_aspidov"
+      ]
     },
     {
       "id": "rel_mikhail_nikolaevich_father_vitaly",
@@ -55,7 +70,10 @@
       "parent_id": "mikhail_nikolaevich_aspidov_1899",
       "child_id": "vitaly_mikhailovich_aspidov",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_obd_58253101"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_obd_58253101"
+      ]
     },
     {
       "id": "rel_maria_mother_vitaly",
@@ -63,7 +81,10 @@
       "parent_id": "maria_vladimirovna_aspidova",
       "child_id": "vitaly_mikhailovich_aspidov",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_obd_58253101"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_obd_58253101"
+      ]
     },
     {
       "id": "rel_mikhail_nikolaevich_maria_vladimirovna_spouses",
@@ -71,7 +92,9 @@
       "person_1_id": "mikhail_nikolaevich_aspidov_1899",
       "person_2_id": "maria_vladimirovna_aspidova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_obd_58253101"]
+      "evidence_source_ids": [
+        "src_obd_58253101"
+      ]
     },
     {
       "id": "rel_vitaly_father_vladimir",
@@ -79,7 +102,9 @@
       "parent_id": "vitaly_mikhailovich_aspidov",
       "child_id": "vladimir_vitalievich_aspidov",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_testimony_current_generation"]
+      "evidence_source_ids": [
+        "src_family_testimony_current_generation"
+      ]
     },
     {
       "id": "rel_anna_mother_vladimir",
@@ -87,7 +112,9 @@
       "parent_id": "anna_fedorovna_politova",
       "child_id": "vladimir_vitalievich_aspidov",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2"
+      ]
     },
     {
       "id": "rel_mikhail_tukachev_father_lyudmila",
@@ -95,7 +122,10 @@
       "parent_id": "mikhail_tukachev_father_of_lyudmila",
       "child_id": "lyudmila_mikhailovna_tukacheva",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_lyudmila_tukacheva"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_familio_lyudmila_tukacheva"
+      ]
     },
     {
       "id": "rel_vera_zhdanova_mother_lyudmila",
@@ -103,7 +133,12 @@
       "parent_id": "vera_nikolaevna_zhdanova",
       "child_id": "lyudmila_mikhailovna_tukacheva",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_family_correction_vera_zhdanova", "src_familio_lyudmila_tukacheva", "src_familio_vera_zhdanova_profile"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_family_correction_vera_zhdanova",
+        "src_familio_lyudmila_tukacheva",
+        "src_familio_vera_zhdanova_profile"
+      ]
     },
     {
       "id": "rel_mikhail_tukachev_vera_zhdanova_spouses",
@@ -111,7 +146,12 @@
       "person_1_id": "mikhail_tukachev_father_of_lyudmila",
       "person_2_id": "vera_nikolaevna_zhdanova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_family_correction_vera_zhdanova", "src_familio_mikhail_tukachev", "src_familio_vera_zhdanova_profile"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_family_correction_vera_zhdanova",
+        "src_familio_mikhail_tukachev",
+        "src_familio_vera_zhdanova_profile"
+      ]
     },
     {
       "id": "rel_mikhail_tukachev_father_tatyana",
@@ -119,7 +159,10 @@
       "parent_id": "mikhail_tukachev_father_of_lyudmila",
       "child_id": "tatyana_mikhailovna_tukacheva",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_mikhail_tukachev"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_familio_mikhail_tukachev"
+      ]
     },
     {
       "id": "rel_mikhail_tukachev_father_valery",
@@ -127,7 +170,10 @@
       "parent_id": "mikhail_tukachev_father_of_lyudmila",
       "child_id": "valery_mikhailovich_tukachev_1964",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_mikhail_tukachev"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_familio_mikhail_tukachev"
+      ]
     },
     {
       "id": "rel_nikolai_zhdanov_father_vera",
@@ -135,7 +181,12 @@
       "parent_id": "nikolai_zhdanov",
       "child_id": "vera_nikolaevna_zhdanova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_family_correction_vera_zhdanova", "src_familio_vera_zhdanova_profile", "src_familio_nikolai_zhdanov"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_family_correction_vera_zhdanova",
+        "src_familio_vera_zhdanova_profile",
+        "src_familio_nikolai_zhdanov"
+      ]
     },
     {
       "id": "rel_maria_syrchikova_mother_vera",
@@ -143,7 +194,12 @@
       "parent_id": "maria_stepanovna_syrchikova",
       "child_id": "vera_nikolaevna_zhdanova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_family_correction_vera_zhdanova", "src_familio_vera_zhdanova_profile", "src_familio_maria_syrchikova"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_family_correction_vera_zhdanova",
+        "src_familio_vera_zhdanova_profile",
+        "src_familio_maria_syrchikova"
+      ]
     },
     {
       "id": "rel_stepan_syrchikov_father_maria",
@@ -151,7 +207,10 @@
       "parent_id": "candidate_stepan_sergeevich_syrchikov",
       "child_id": "maria_stepanovna_syrchikova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_maria_syrchikova", "src_familio_stepan_syrchikov"]
+      "evidence_source_ids": [
+        "src_familio_maria_syrchikova",
+        "src_familio_stepan_syrchikov"
+      ]
     },
     {
       "id": "rel_sergey_syrchikov_father_stepan",
@@ -159,7 +218,9 @@
       "parent_id": "candidate_sergey_yakovlevich_syrchikov",
       "child_id": "candidate_stepan_sergeevich_syrchikov",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_stepan_syrchikov"]
+      "evidence_source_ids": [
+        "src_familio_stepan_syrchikov"
+      ]
     },
     {
       "id": "rel_agrippina_mikova_mother_stepan",
@@ -167,7 +228,9 @@
       "parent_id": "candidate_agrippina_spiridonovna_mikova",
       "child_id": "candidate_stepan_sergeevich_syrchikov",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_stepan_syrchikov"]
+      "evidence_source_ids": [
+        "src_familio_stepan_syrchikov"
+      ]
     },
     {
       "id": "rel_vera_mother_tatyana",
@@ -175,7 +238,10 @@
       "parent_id": "vera_nikolaevna_zhdanova",
       "child_id": "tatyana_mikhailovna_tukacheva",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_tatyana_tukacheva"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_familio_tatyana_tukacheva"
+      ]
     },
     {
       "id": "rel_vera_mother_valery",
@@ -183,7 +249,10 @@
       "parent_id": "vera_nikolaevna_zhdanova",
       "child_id": "valery_mikhailovich_tukachev_1964",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_valery_tukachev"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_familio_valery_tukachev"
+      ]
     },
     {
       "id": "rel_nikolai_maria_syrchikova_spouses",
@@ -191,7 +260,10 @@
       "person_1_id": "nikolai_zhdanov",
       "person_2_id": "maria_stepanovna_syrchikova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_nikolai_zhdanov"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_familio_nikolai_zhdanov"
+      ]
     },
     {
       "id": "rel_fedor_agafya_spouses",
@@ -199,7 +271,10 @@
       "person_1_id": "fedor_kirillovich_politov",
       "person_2_id": "agafya_vasilievna_politova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_fedor_politov"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_familio_fedor_politov"
+      ]
     },
     {
       "id": "rel_fedor_father_anna",
@@ -207,7 +282,10 @@
       "parent_id": "fedor_kirillovich_politov",
       "child_id": "anna_fedorovna_politova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_fedor_politov"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_familio_fedor_politov"
+      ]
     },
     {
       "id": "rel_agafya_mother_anna",
@@ -215,7 +293,10 @@
       "parent_id": "agafya_vasilievna_politova",
       "child_id": "anna_fedorovna_politova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_agafya_politova"]
+      "evidence_source_ids": [
+        "src_family_confirmation_round2",
+        "src_familio_agafya_politova"
+      ]
     },
     {
       "id": "rel_kirill_father_fedor",
@@ -223,7 +304,10 @@
       "parent_id": "candidate_kirill_politov",
       "child_id": "fedor_kirillovich_politov",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_kirill_politov", "src_familio_fedor_politov"]
+      "evidence_source_ids": [
+        "src_familio_kirill_politov",
+        "src_familio_fedor_politov"
+      ]
     },
     {
       "id": "rel_pelageya_mother_fedor",
@@ -231,7 +315,10 @@
       "parent_id": "candidate_pelageya_kirillovna_politova",
       "child_id": "fedor_kirillovich_politov",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_pelageya_politova", "src_familio_fedor_politov"]
+      "evidence_source_ids": [
+        "src_familio_pelageya_politova",
+        "src_familio_fedor_politov"
+      ]
     },
     {
       "id": "rel_spiridon_father_agrippina",
@@ -239,7 +326,10 @@
       "parent_id": "candidate_spiridon_danilovich_mikov",
       "child_id": "candidate_agrippina_spiridonovna_mikova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_spiridon_mikov", "src_familio_agrippina_mikova"]
+      "evidence_source_ids": [
+        "src_familio_spiridon_mikov",
+        "src_familio_agrippina_mikova"
+      ]
     },
     {
       "id": "rel_sergey_father_maria_sergeevna",
@@ -247,7 +337,9 @@
       "parent_id": "candidate_sergey_yakovlevich_syrchikov",
       "child_id": "candidate_maria_sergeevna_syrchikova_1898",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_maria_sergeevna_syrchikova"]
+      "evidence_source_ids": [
+        "src_familio_maria_sergeevna_syrchikova"
+      ]
     },
     {
       "id": "rel_agrippina_mother_maria_sergeevna",
@@ -255,7 +347,9 @@
       "parent_id": "candidate_agrippina_spiridonovna_mikova",
       "child_id": "candidate_maria_sergeevna_syrchikova_1898",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_maria_sergeevna_syrchikova"]
+      "evidence_source_ids": [
+        "src_familio_maria_sergeevna_syrchikova"
+      ]
     },
     {
       "id": "rel_nikolai_aspidov_father_mikhail_1899",
@@ -263,7 +357,10 @@
       "parent_id": "candidate_nikolai_aspidov_father_of_mikhail",
       "child_id": "mikhail_nikolaevich_aspidov_1899",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_obd_58253101", "src_osagen_aspidov"]
+      "evidence_source_ids": [
+        "src_obd_58253101",
+        "src_osagen_aspidov"
+      ]
     },
     {
       "id": "rel_vladimir_unknown_father_maria_aspidova",
@@ -271,7 +368,9 @@
       "parent_id": "candidate_vladimir_father_of_maria_aspidova",
       "child_id": "maria_vladimirovna_aspidova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_obd_58253101"]
+      "evidence_source_ids": [
+        "src_obd_58253101"
+      ]
     },
     {
       "id": "rel_vasily_unknown_father_agafya",
@@ -279,7 +378,9 @@
       "parent_id": "candidate_vasily_father_of_agafya",
       "child_id": "agafya_vasilievna_politova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_agafya_politova"]
+      "evidence_source_ids": [
+        "src_familio_agafya_politova"
+      ]
     },
     {
       "id": "rel_yakov_syrchikov_father_sergey",
@@ -287,7 +388,9 @@
       "parent_id": "candidate_yakov_syrchikov_father_of_sergey",
       "child_id": "candidate_sergey_yakovlevich_syrchikov",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_stepan_syrchikov"]
+      "evidence_source_ids": [
+        "src_familio_stepan_syrchikov"
+      ]
     },
     {
       "id": "rel_danil_mikov_father_spiridon",
@@ -295,7 +398,9 @@
       "parent_id": "candidate_danil_mikov_father_of_spiridon",
       "child_id": "candidate_spiridon_danilovich_mikov",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_spiridon_mikov"]
+      "evidence_source_ids": [
+        "src_familio_spiridon_mikov"
+      ]
     },
     {
       "id": "rel_kirill_pelageya_spouses",
@@ -303,7 +408,10 @@
       "person_1_id": "candidate_kirill_politov",
       "person_2_id": "candidate_pelageya_kirillovna_politova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_kirill_politov", "src_familio_pelageya_politova"]
+      "evidence_source_ids": [
+        "src_familio_kirill_politov",
+        "src_familio_pelageya_politova"
+      ]
     },
     {
       "id": "rel_fedor_father_mikhail_fedorovich_politov",
@@ -311,7 +419,9 @@
       "parent_id": "fedor_kirillovich_politov",
       "child_id": "candidate_mikhail_fedorovich_politov_1924",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_fedor_politov"]
+      "evidence_source_ids": [
+        "src_familio_fedor_politov"
+      ]
     },
     {
       "id": "rel_agafya_mother_mikhail_fedorovich_politov",
@@ -319,7 +429,10 @@
       "parent_id": "agafya_vasilievna_politova",
       "child_id": "candidate_mikhail_fedorovich_politov_1924",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_fedor_politov", "src_familio_agafya_politova"]
+      "evidence_source_ids": [
+        "src_familio_fedor_politov",
+        "src_familio_agafya_politova"
+      ]
     },
     {
       "id": "rel_fedor_father_petr_fedorovich_politov",
@@ -327,7 +440,10 @@
       "parent_id": "fedor_kirillovich_politov",
       "child_id": "candidate_petr_fedorovich_politov_1925",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_fedor_politov", "src_obd_petr_fedorovich_politov_503665796"]
+      "evidence_source_ids": [
+        "src_familio_fedor_politov",
+        "src_obd_petr_fedorovich_politov_503665796"
+      ]
     },
     {
       "id": "rel_agafya_mother_petr_fedorovich_politov",
@@ -335,7 +451,11 @@
       "parent_id": "agafya_vasilievna_politova",
       "child_id": "candidate_petr_fedorovich_politov_1925",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_fedor_politov", "src_familio_agafya_politova", "src_obd_petr_fedorovich_politov_503665796"]
+      "evidence_source_ids": [
+        "src_familio_fedor_politov",
+        "src_familio_agafya_politova",
+        "src_obd_petr_fedorovich_politov_503665796"
+      ]
     },
     {
       "id": "rel_fedor_father_kirill_fedorovich_politov",
@@ -343,7 +463,9 @@
       "parent_id": "fedor_kirillovich_politov",
       "child_id": "candidate_kirill_fedorovich_politov_1927",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_fedor_politov"]
+      "evidence_source_ids": [
+        "src_familio_fedor_politov"
+      ]
     },
     {
       "id": "rel_agafya_mother_kirill_fedorovich_politov",
@@ -351,7 +473,10 @@
       "parent_id": "agafya_vasilievna_politova",
       "child_id": "candidate_kirill_fedorovich_politov_1927",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_fedor_politov", "src_familio_agafya_politova"]
+      "evidence_source_ids": [
+        "src_familio_fedor_politov",
+        "src_familio_agafya_politova"
+      ]
     },
     {
       "id": "rel_fedor_father_stepanida_politova",
@@ -359,7 +484,9 @@
       "parent_id": "fedor_kirillovich_politov",
       "child_id": "candidate_stepanida_fedorovna_politova_1930",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_fedor_politov"]
+      "evidence_source_ids": [
+        "src_familio_fedor_politov"
+      ]
     },
     {
       "id": "rel_agafya_mother_stepanida_politova",
@@ -367,7 +494,10 @@
       "parent_id": "agafya_vasilievna_politova",
       "child_id": "candidate_stepanida_fedorovna_politova_1930",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_fedor_politov", "src_familio_agafya_politova"]
+      "evidence_source_ids": [
+        "src_familio_fedor_politov",
+        "src_familio_agafya_politova"
+      ]
     },
     {
       "id": "rel_fedor_father_lukeriya_politova",
@@ -375,7 +505,9 @@
       "parent_id": "fedor_kirillovich_politov",
       "child_id": "candidate_lukeriya_fedorovna_politova_1939",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_fedor_politov"]
+      "evidence_source_ids": [
+        "src_familio_fedor_politov"
+      ]
     },
     {
       "id": "rel_agafya_mother_lukeriya_politova",
@@ -383,7 +515,10 @@
       "parent_id": "agafya_vasilievna_politova",
       "child_id": "candidate_lukeriya_fedorovna_politova_1939",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_fedor_politov", "src_familio_agafya_politova"]
+      "evidence_source_ids": [
+        "src_familio_fedor_politov",
+        "src_familio_agafya_politova"
+      ]
     },
     {
       "id": "rel_kirill_father_zinaida_politova",
@@ -391,7 +526,9 @@
       "parent_id": "candidate_kirill_politov",
       "child_id": "candidate_zinaida_kirillovna_politova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_kirill_politov"]
+      "evidence_source_ids": [
+        "src_familio_kirill_politov"
+      ]
     },
     {
       "id": "rel_pelageya_mother_zinaida_politova",
@@ -399,7 +536,10 @@
       "parent_id": "candidate_pelageya_kirillovna_politova",
       "child_id": "candidate_zinaida_kirillovna_politova",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_familio_kirill_politov", "src_familio_pelageya_politova"]
+      "evidence_source_ids": [
+        "src_familio_kirill_politov",
+        "src_familio_pelageya_politova"
+      ]
     },
     {
       "id": "rel_mikhail_nikolaevich_father_nikolai_older_brother",
@@ -407,7 +547,9 @@
       "parent_id": "mikhail_nikolaevich_aspidov_1899",
       "child_id": "nikolai_mikhailovich_aspidov_older_brother",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05"]
+      "evidence_source_ids": [
+        "src_family_confirmation_p01_p19_m01_m17_2026_09_05"
+      ]
     },
     {
       "id": "rel_maria_mother_nikolai_older_brother",
@@ -415,7 +557,9 @@
       "parent_id": "maria_vladimirovna_aspidova",
       "child_id": "nikolai_mikhailovich_aspidov_older_brother",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05"]
+      "evidence_source_ids": [
+        "src_family_confirmation_p01_p19_m01_m17_2026_09_05"
+      ]
     },
     {
       "id": "rel_sergey_father_ivan_sergeevich",
@@ -423,7 +567,9 @@
       "parent_id": "candidate_sergey_yakovlevich_syrchikov",
       "child_id": "candidate_ivan_sergeevich_syrchikov_1901",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05"]
+      "evidence_source_ids": [
+        "src_family_confirmation_p01_p19_m01_m17_2026_09_05"
+      ]
     },
     {
       "id": "rel_agrippina_mother_ivan_sergeevich",
@@ -431,7 +577,9 @@
       "parent_id": "candidate_agrippina_spiridonovna_mikova",
       "child_id": "candidate_ivan_sergeevich_syrchikov_1901",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05"]
+      "evidence_source_ids": [
+        "src_family_confirmation_p01_p19_m01_m17_2026_09_05"
+      ]
     },
     {
       "id": "rel_stepan_father_ivan_stepanovich",
@@ -439,88 +587,174 @@
       "parent_id": "candidate_stepan_sergeevich_syrchikov",
       "child_id": "candidate_ivan_stepanovich_syrchikov_1907",
       "status": "CONFIRMED",
-      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05"]
+      "evidence_source_ids": [
+        "src_family_confirmation_p01_p19_m01_m17_2026_09_05"
+      ]
     },
     {
       "id": "rel_tatyana_tukacheva_andrey_popchenko_spouses",
       "type": "spouse",
       "person_1_id": "tatyana_mikhailovna_tukacheva",
       "person_2_id": "andrey_nikolaevich_popchenko",
-      "status": "HYPOTHESIS",
-      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_familio_tatyana_tukacheva",
+        "src_family_confirmation_new_spouses_and_children_2026_09_06"
+      ]
     },
     {
       "id": "rel_tatyana_mother_anna_popchenko",
       "type": "biological_parent",
       "parent_id": "tatyana_mikhailovna_tukacheva",
       "child_id": "anna_andreevna_popchenko",
-      "status": "HYPOTHESIS",
-      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_familio_tatyana_tukacheva",
+        "src_family_confirmation_new_spouses_and_children_2026_09_06"
+      ]
     },
     {
       "id": "rel_andrey_father_anna_popchenko",
       "type": "biological_parent",
       "parent_id": "andrey_nikolaevich_popchenko",
       "child_id": "anna_andreevna_popchenko",
-      "status": "HYPOTHESIS",
-      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_familio_tatyana_tukacheva",
+        "src_family_confirmation_new_spouses_and_children_2026_09_06"
+      ]
     },
     {
       "id": "rel_tatyana_mother_anton_popchenko",
       "type": "biological_parent",
       "parent_id": "tatyana_mikhailovna_tukacheva",
       "child_id": "anton_andreevich_popchenko",
-      "status": "HYPOTHESIS",
-      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_familio_tatyana_tukacheva",
+        "src_family_confirmation_new_spouses_and_children_2026_09_06"
+      ]
     },
     {
       "id": "rel_andrey_father_anton_popchenko",
       "type": "biological_parent",
       "parent_id": "andrey_nikolaevich_popchenko",
       "child_id": "anton_andreevich_popchenko",
-      "status": "HYPOTHESIS",
-      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_familio_tatyana_tukacheva",
+        "src_family_confirmation_new_spouses_and_children_2026_09_06"
+      ]
     },
     {
       "id": "rel_valery_tukachev_tatyana_kozlova_spouses",
       "type": "spouse",
       "person_1_id": "valery_mikhailovich_tukachev_1964",
       "person_2_id": "tatyana_anatolyevna_kozlova_1964",
-      "marriage": {"date": "1987-06-05", "place_id": "chyormoz"},
-      "status": "HYPOTHESIS",
-      "evidence_source_ids": ["src_familio_valery_tukachev"]
+      "marriage": {
+        "date": "1987-06-05",
+        "place_id": "chyormoz",
+        "status": "CONFIRMED_BY_FAMILY"
+      },
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_familio_valery_tukachev",
+        "src_family_confirmation_new_spouses_and_children_2026_09_06"
+      ]
     },
     {
       "id": "rel_valery_parent_private_child_1987",
       "type": "biological_parent",
       "parent_id": "valery_mikhailovich_tukachev_1964",
       "child_id": "private_child_of_valery_tukachev_1987",
-      "status": "HYPOTHESIS",
-      "evidence_source_ids": ["src_familio_valery_tukachev"]
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_familio_valery_tukachev",
+        "src_family_testimony_zhanna_igor_tukachev"
+      ]
     },
     {
       "id": "rel_tatyana_kozlova_parent_private_child_1987",
       "type": "biological_parent",
       "parent_id": "tatyana_anatolyevna_kozlova_1964",
       "child_id": "private_child_of_valery_tukachev_1987",
-      "status": "HYPOTHESIS",
-      "evidence_source_ids": ["src_familio_valery_tukachev"]
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_familio_valery_tukachev",
+        "src_family_testimony_zhanna_igor_tukachev"
+      ]
     },
     {
       "id": "rel_valery_parent_private_child_1996",
       "type": "biological_parent",
       "parent_id": "valery_mikhailovich_tukachev_1964",
       "child_id": "private_child_of_valery_tukachev_1996",
-      "status": "HYPOTHESIS",
-      "evidence_source_ids": ["src_familio_valery_tukachev"]
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_familio_valery_tukachev",
+        "src_family_testimony_zhanna_igor_tukachev"
+      ]
     },
     {
       "id": "rel_tatyana_kozlova_parent_private_child_1996",
       "type": "biological_parent",
       "parent_id": "tatyana_anatolyevna_kozlova_1964",
       "child_id": "private_child_of_valery_tukachev_1996",
-      "status": "HYPOTHESIS",
-      "evidence_source_ids": ["src_familio_valery_tukachev"]
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_familio_valery_tukachev",
+        "src_family_testimony_zhanna_igor_tukachev"
+      ]
+    },
+    {
+      "id": "rel_alexander_aspidov_elena_utkina_spouses",
+      "type": "spouse",
+      "person_1_id": "alexander_vitalievich_aspidov_1966",
+      "person_2_id": "elena_utkina_spouse_of_alexander_aspidov",
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_family_confirmation_new_spouses_and_children_2026_09_06"
+      ]
+    },
+    {
+      "id": "rel_alexander_father_sviatoslav_aspidov",
+      "type": "biological_parent",
+      "parent_id": "alexander_vitalievich_aspidov_1966",
+      "child_id": "sviatoslav_aspidov_son_of_alexander",
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_family_confirmation_new_spouses_and_children_2026_09_06"
+      ]
+    },
+    {
+      "id": "rel_elena_mother_sviatoslav_aspidov",
+      "type": "biological_parent",
+      "parent_id": "elena_utkina_spouse_of_alexander_aspidov",
+      "child_id": "sviatoslav_aspidov_son_of_alexander",
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_family_confirmation_new_spouses_and_children_2026_09_06"
+      ]
+    },
+    {
+      "id": "rel_alexander_father_maria_aspidova",
+      "type": "biological_parent",
+      "parent_id": "alexander_vitalievich_aspidov_1966",
+      "child_id": "maria_aspidova_daughter_of_alexander",
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_family_confirmation_new_spouses_and_children_2026_09_06"
+      ]
+    },
+    {
+      "id": "rel_alexander_father_katya_aspidova",
+      "type": "biological_parent",
+      "parent_id": "alexander_vitalievich_aspidov_1966",
+      "child_id": "katya_aspidova_daughter_of_alexander",
+      "status": "CONFIRMED",
+      "evidence_source_ids": [
+        "src_family_confirmation_new_spouses_and_children_2026_09_06"
+      ]
     }
   ]
 }

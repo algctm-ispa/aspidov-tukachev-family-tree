@@ -6,12 +6,12 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Родословное древо Аспидовых и Тукачёвых · 40 лет вместе</title>
 
-<meta name="description" content="Родословное древо двух семей: 49 человек, 12 мест на карте, самый ранний год рождения 1885.">
+<meta name="description" content="Родословное древо двух семей: 53 человека, 12 мест на карте, самый ранний год рождения 1885.">
 
 <!-- Ссылку пересылают в мессенджерах, поэтому у неё своё превью. -->
 <meta property="og:site_name" content="Аспидовы и Тукачёвы">
 <meta property="og:title" content="40 лет вместе · Аспидовы и Тукачёвы">
-<meta property="og:description" content="Родословное древо двух семей: 49 человек, 12 мест на карте, самый ранний год рождения 1885.">
+<meta property="og:description" content="Родословное древо двух семей: 53 человека, 12 мест на карте, самый ранний год рождения 1885.">
 <meta property="og:image" content="https://algctm-ispa.github.io/aspidov-tukachev-family-tree/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -21,7 +21,7 @@
 <meta property="og:locale" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="40 лет вместе · Аспидовы и Тукачёвы">
-<meta name="twitter:description" content="Родословное древо двух семей: 49 человек, 12 мест на карте, самый ранний год рождения 1885.">
+<meta name="twitter:description" content="Родословное древо двух семей: 53 человека, 12 мест на карте, самый ранний год рождения 1885.">
 <meta name="twitter:image" content="https://algctm-ispa.github.io/aspidov-tukachev-family-tree/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,9 +36,10 @@
   <a href="#tree" aria-current="page">Древо</a>
   <a href="#news">Вестник нашей семьи</a>
   <a href="#chronicle">Хроника</a>
+  <a href="#memorial">Не вернулись</a>
   <a href="#places">Места</a>
   <a href="#route">Путь рода</a>
-  <a class="btn btn-primary nav-cta" href="#contribute">Добавить своё</a>
+  <a class="btn btn-primary nav-cta" href="#contribute">Дополнить древо</a>
 </nav>
 
 <div id="top" class="page">
@@ -91,7 +92,8 @@
       <div class="tree-toolbar-actions">
         <div class="legend">
           <span class="tag tag-confirmed">Подтверждено семьёй</span>
-          <span class="tag tag-outline">Гипотеза</span>
+          <button type="button" class="tag tag-outline" id="toggle-hypotheses" aria-pressed="false">Гипотеза</button>
+          <span class="legend-note">Эти связи мы ещё проверяем по документам.</span>
         </div>
         <button class="btn btn-secondary btn-icon" id="zoom-out" title="Отдалить" aria-label="Отдалить">−</button>
         <button class="btn btn-secondary btn-icon" id="zoom-in" title="Приблизить" aria-label="Приблизить">+</button>
@@ -132,6 +134,13 @@
   <section id="chronicle" class="section">
     <h2>Хроника рода</h2>
     <div id="chronicle-track" class="chronicle-track"></div>
+  </section>
+
+  <section id="memorial" class="section memorial" hidden>
+    <h2>Не вернулись</h2>
+    <p class="memorial-lede" id="memorial-lede"></p>
+    <ul class="memorial-list" id="memorial-list"></ul>
+    <p class="memorial-found">Ивана Сергеевича Сырчикова искали семьдесят лет. В 2012 году его останки нашли поисковики и перезахоронили в деревне Яковлево Смоленской области. <a href="https://otechestvort.ru/izdat/book12/017.htm" target="_blank" rel="noopener">Публикация поискового движения</a></p>
   </section>
 
   <section id="places" class="section">
@@ -196,13 +205,13 @@
     <div class="contribute-inner">
       <div>
         <div class="kicker" style="color:inherit">Это древо растёт вместе с нами</div>
-        <div class="contribute-headline">Добавьте фотографию, дату или нового родственника, и род станет полнее</div>
-        <p class="contribute-lede">Любая мелочь важна: подпись на обороте снимка, название деревни, имя, которое помнит только бабушка.</p>
+        <div class="contribute-headline">Расскажите то, что помните только вы</div>
+        <p class="contribute-lede">Подпись на обороте снимка, название деревни, имя, которое помнит только бабушка. Из таких мелочей и собралась эта страница.</p>
       </div>
       <div class="contribute-actions">
-        <button class="btn btn-block contribute-btn-invert" id="contribute-add">Добавить нового родственника</button>
-        <a class="btn btn-block contribute-btn-outline" id="contribute-change" href="#" target="_blank" rel="noopener">Изменить данные или фото</a>
-        <div class="contribute-note">Всё, что вы пришлёте, мы проверим и добавим в древо вручную.</div>
+        <button class="btn btn-block contribute-btn-invert" id="contribute-add">Рассказать о родственнике</button>
+        <a class="btn btn-block contribute-btn-outline" id="contribute-change" href="#" target="_blank" rel="noopener">Прислать фотографию или поправку</a>
+        <div class="contribute-note">Мы добавим всё вручную и вернёмся к вам с вопросами.</div>
       </div>
     </div>
   </section>

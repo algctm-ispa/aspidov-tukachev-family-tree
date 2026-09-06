@@ -1,6 +1,6 @@
 {
   "locale": "ru-RU",
-  "rule": "На сайте разрешён только русскоязычный пользовательский текст.",
+  "rule": "На сайте разрешён только русскоязычный Аллаский текст.",
   "content_files": [
     "../../data/people.json",
     "../../data/relationships.json",
@@ -10,10 +10,74 @@
     "./ui-labels-ru.json"
   ],
   "allowed_visible_fields": {
-    "people": ["names.display", "names.native", "notes", "birth.date", "birth.year", "birth.before", "birth.estimated_range", "birth.approximate", "birth.place_id", "birth.place_as_recorded", "death.date", "death.year", "death.date_unknown", "death.date_variants", "death.approximate", "death.cause", "death.place_as_recorded", "residence.as_recorded", "residence_history.event", "residence_history.from_place_id", "residence_history.to_place_id", "residence_history.year", "residence_history.date_unknown", "education.institution", "education.graduation_period", "education.graduation_year_unknown", "education.specialty_unknown", "military.call_up_date", "military.call_up_year", "military.call_up_authority", "military.call_up_place", "military.rank", "military.role_as_recorded", "military.unit", "military.loss_date", "military.war", "attributes.patronymic.document_text", "attributes.patronymic.full_form", "attributes.rejected_alternative.value"],
-    "places": ["names.name", "names.native", "historical_administration.description", "parish_history.period", "parish_history.parish", "historical_notes"],
-    "sources": ["title", "repository", "archive_reference", "archive_references", "notes", "url", "document_urls.url", "document_urls.note"],
-    "hypotheses": ["claim", "supports", "conflicts", "unresolved"]
+    "people": [
+      "names.display",
+      "names.native",
+      "notes",
+      "birth.date",
+      "birth.year",
+      "birth.before",
+      "birth.estimated_range",
+      "birth.approximate",
+      "birth.place_id",
+      "birth.place_as_recorded",
+      "death.date",
+      "death.year",
+      "death.date_unknown",
+      "death.date_variants",
+      "death.approximate",
+      "death.cause",
+      "death.place_as_recorded",
+      "residence.as_recorded",
+      "residence_history.event",
+      "residence_history.from_place_id",
+      "residence_history.to_place_id",
+      "residence_history.year",
+      "residence_history.date_unknown",
+      "education.institution",
+      "education.current_status",
+      "education.graduation_period",
+      "education.graduation_year_unknown",
+      "education.specialty_unknown",
+      "activities.role",
+      "activities.activity",
+      "military.call_up_date",
+      "military.call_up_year",
+      "military.call_up_authority",
+      "military.call_up_place",
+      "military.rank",
+      "military.role_as_recorded",
+      "military.unit",
+      "military.loss_date",
+      "military.war",
+      "attributes.patronymic.document_text",
+      "attributes.patronymic.full_form",
+      "attributes.rejected_alternative.value"
+    ],
+    "places": [
+      "names.name",
+      "names.native",
+      "historical_administration.description",
+      "parish_history.period",
+      "parish_history.parish",
+      "historical_notes"
+    ],
+    "sources": [
+      "title",
+      "repository",
+      "archive_reference",
+      "archive_references",
+      "notes",
+      "url",
+      "document_urls.url",
+      "document_urls.note"
+    ],
+    "hypotheses": [
+      "claim",
+      "supports",
+      "conflicts",
+      "unresolved"
+    ]
   },
   "technical_fields_never_visible": [
     "id",
@@ -22,12 +86,16 @@
     "schema_version",
     "type",
     "status",
+    "information_status",
     "sex",
     "category",
     "source_quality",
     "candidate_role",
-    "loss_date_precision"
+    "loss_date_precision",
+    "disposition",
+    "excluded_from_website"
   ],
+  "source_exclusion_rule": "Источники с excluded_from_website: true полностью исключать из карточек, списков ссылок, поиска и любого видимого текста сайта.",
   "localization_rule": "Для каждого технического значения сначала искать русский перевод в ui-labels-ru.json. Если перевода нет, не показывать значение посетителю.",
   "typography": {
     "rule": "В видимом тексте не использовать дефис или тире как разделитель, знак диапазона или знак препинания.",

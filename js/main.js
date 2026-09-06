@@ -1,11 +1,22 @@
+// Шапка липкая и на узком экране переносится на несколько строк, поэтому её
+// высота меряется, а не задаётся числом: на неё опираются якоря секций.
+function syncNavHeight() {
+  const nav = document.querySelector(".nav");
+  if (!nav) return;
+  document.documentElement.style.setProperty("--nav-h", Math.round(nav.getBoundingClientRect().height) + "px");
+}
+
 async function main() {
+  syncNavHeight();
+  window.addEventListener("resize", syncNavHeight);
   const loading = document.getElementById("tree-loading");
   try {
     const familyData = await loadFamilyData();
-    const { generation: generations } = computeGenerations(familyData);
-    const sides = computeSides(familyData);
-    const directAncestors = computeDirectAncestors(familyData);
-    const kinship = buildKinship(familyData, generations, sides, directAncestors);
+    const kinshipFor = data => {
+      const { generation } = computeGenerations(data);
+      return buildKinship(data, generation, computeSides(data), computeDirectAncestors(data));
+    };
+    const kinship = kinshipFor(familyData);
     const photoAvailability = await computePhotoAvailability(familyData);
 
     const overlay = document.getElementById("detail-overlay");
@@ -56,9 +67,41 @@ async function main() {
       }
     }
 
-    renderTree(familyData, openPerson, kinship, photoAvailability);
+    // Подарок открывается на том, что семья подтвердила. Непроверенные версии
+    // никуда не деваются, но ждут за переключателем «Гипотеза».
+    const hypothesesToggle = document.getElementById("toggle-hypotheses");
+    const unlinkedPanel = document.getElementById("unlinked-panel");
+    let showHypotheses = false;
+
+    function drawTree() {
+      const view = showHypotheses
+        ? familyData
+        : filterFamilyData(familyData, p => p.statusTier === "confirmed");
+      renderTree(view, openPerson, showHypotheses ? kinship : kinshipFor(view), photoAvailability);
+      if (unlinkedPanel && !showHypotheses) unlinkedPanel.hidden = true;
+      if (hypothesesToggle) hypothesesToggle.setAttribute("aria-pressed", String(showHypotheses));
+    }
+
+    if (hypothesesToggle) {
+      hypothesesToggle.addEventListener("click", () => {
+        showHypotheses = !showHypotheses;
+        drawTree();
+      });
+    }
+
+    drawTree();
     renderStats(familyData);
     renderChronicle(familyData);
+    renderMemorial(familyData);
+    const memorialList = document.getElementById("memorial-list");
+    if (memorialList) {
+      memorialList.addEventListener("click", (e) => {
+        const el = e.target.closest("[data-id]");
+        if (!el) return;
+        const person = familyData.people.get(el.dataset.id);
+        if (person) openPerson(person);
+      });
+    }
     if (typeof renderNews === "function") renderNews("news-list", 3);
     if (typeof renderRouteMap === "function") renderRouteMap();
     loading.style.display = "none";

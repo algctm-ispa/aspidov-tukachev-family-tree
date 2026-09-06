@@ -168,3 +168,109 @@ function renderStats(familyData) {
       <div class="stat-label">${escapeHtml(s.label)}</div>
     </div>`).join("");
 }
+
+// ---------------------------------------------------------------------------
+// Не вернулись
+// ---------------------------------------------------------------------------
+
+// Кто ушёл на войну и не вернулся. Список считается из тех же данных, что и
+// хроника: военная запись либо утрата в военные годы. Никого не названо
+// вручную, поэтому новая находка попадает сюда сама.
+const MONTH_PREPOSITIONAL = {
+  "января": "январе", "февраля": "феврале", "марта": "марте", "апреля": "апреле",
+  "мая": "мае", "июня": "июне", "июля": "июле", "августа": "августе",
+  "сентября": "сентябре", "октября": "октябре", "ноября": "ноябре", "декабря": "декабре",
+  "январь": "январе", "февраль": "феврале", "март": "марте", "апрель": "апреле",
+  "май": "мае", "июнь": "июне", "июль": "июле", "август": "августе",
+  "сентябрь": "сентябре", "октябрь": "октябре", "ноябрь": "ноябре", "декабрь": "декабре"
+};
+
+// В памятном списке дата читается фразой, а не выпиской из документа. Если
+// источники расходятся в числе, остаётся месяц; если и в месяце, остаётся год.
+function memorialWhen(display, year) {
+  const variants = String(display || "").split(" или ").map(s => s.trim()).filter(Boolean);
+  const parsed = variants.map(v => {
+    const m = v.match(/^(?:(\d{1,2})\s+)?([А-Яа-яЁё]+)?\s*(\d{4})$/);
+    return m ? { day: m[1] || null, month: m[2] || null, year: m[3] } : null;
+  });
+  if (!parsed.length || parsed.some(x => !x)) return year != null ? `в ${year} году` : "";
+  const first = parsed[0];
+  const sameDay = parsed.every(x => x.day === first.day && x.month === first.month);
+  const sameMonth = parsed.every(x => x.month === first.month && x.year === first.year);
+  if (sameDay && first.day && first.month) return `${first.day} ${first.month} ${first.year} года`;
+  if (sameMonth && first.month) {
+    const month = MONTH_PREPOSITIONAL[first.month.toLowerCase()] || first.month;
+    return `в ${month} ${first.year} года`;
+  }
+  return `в ${first.year} году`;
+}
+
+function buildMemorialEntries(familyData) {
+  const entries = [];
+  for (const person of familyData.people.values()) {
+    if (person.sex === "female") continue;
+    const lossYear = person.militaryLossYear != null ? person.militaryLossYear : person.deathYear;
+    if (lossYear == null) continue;
+    const inWarYears = (lossYear >= 1914 && lossYear <= 1918) || (lossYear >= 1939 && lossYear <= 1945);
+    if (!person.hasMilitaryRecord && !inWarYears) continue;
+
+    const wasKilled = String(person.militaryOutcome || "").includes("killed");
+    const wentMissing = String(person.militaryOutcome || "").includes("missing")
+      || /пропал/i.test(person.deathStatusLabel || "");
+    const when = memorialWhen(person.militaryLossDisplay || person.deathDisplay, lossYear);
+    const war = person.militaryWar && WAR_GENITIVE[person.militaryWar] && person.militaryWar !== "Великая Отечественная война"
+      ? `, на фронте ${WAR_GENITIVE[person.militaryWar]}`
+      : "";
+    const where = person.deathPlace ? `, ${person.deathPlace}` : "";
+    const verb = wasKilled ? "Погиб на фронте" : wentMissing ? "Пропал без вести" : "Не вернулся с фронта";
+    const fact = `${verb} ${when}${where}${war}`.replace(/\s+/g, " ").trim();
+
+    const born = person.birthYear;
+    const years = born != null ? `с ${born} по ${lossYear}` : String(lossYear);
+
+    entries.push({
+      id: person.id,
+      name: person.displayName,
+      years,
+      fact,
+      lossYear,
+      unconfirmed: person.statusTier !== "confirmed"
+    });
+  }
+  entries.sort((a, b) => a.lossYear - b.lossYear);
+  return entries;
+}
+
+function memorialCount(n) {
+  const words = { 1: "Один мужчина", 2: "Двое мужчин", 3: "Трое мужчин", 4: "Четверо мужчин", 5: "Пятеро мужчин", 6: "Шестеро мужчин", 7: "Семеро мужчин", 8: "Восьмеро мужчин" };
+  return words[n] || `${n} ${pluralRu(n, ["мужчина", "мужчины", "мужчин"])}`;
+}
+
+function renderMemorial(familyData) {
+  const section = document.getElementById("memorial");
+  const list = document.getElementById("memorial-list");
+  const lede = document.getElementById("memorial-lede");
+  if (!section || !list) return;
+  const entries = buildMemorialEntries(familyData);
+  if (!entries.length) { section.hidden = true; return; }
+  section.hidden = false;
+
+  const wars = new Set(entries.map(e => (e.lossYear <= 1918 ? "первая" : "вторая")));
+  const warsWord = wars.size > 1 ? "на две войны" : "на войну";
+  if (lede) {
+    lede.textContent = `${memorialCount(entries.length)} нашего рода ушли ${warsWord} и не вернулись домой. Одного из них искали семьдесят лет.`;
+  }
+
+  list.innerHTML = entries.map(e => {
+    const note = e.unconfirmed
+      ? `<div class="memorial-note">Родство с этим человеком мы ещё проверяем по документам.</div>`
+      : "";
+    return `
+    <li class="memorial-item">
+      <button type="button" class="memorial-name" data-id="${escapeHtml(e.id)}">${escapeHtml(e.name)}</button>
+      <div class="memorial-years">${escapeHtml(e.years)}</div>
+      <div class="memorial-fact">${escapeHtml(e.fact)}</div>
+      ${note}
+    </li>`;
+  }).join("");
+}

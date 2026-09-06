@@ -4,73 +4,258 @@
     {
       "id": "tyuremka",
       "names": [
-        {"name": "Тюремка", "native": "Тюремка", "type": "historical"},
-        {"name": "Красные Горки", "native": "Красные Горки", "type": "modern", "from_year": 1962}
+        {
+          "name": "Тюремка",
+          "native": "Тюремка",
+          "type": "historical"
+        },
+        {
+          "name": "Красные Горки",
+          "native": "Красные Горки",
+          "type": "modern",
+          "from_year": 1962
+        }
       ],
       "settlement_type": "village_or_pochinok",
       "founded_year": 1827,
-      "parent_place_ids": ["osinsky_district", "perm_region"],
+      "parent_place_ids": [
+        "osinsky_district",
+        "perm_region"
+      ],
       "historical_administration": [
-        {"year": 1834, "description": "Пермское удельное имение, Устиновское удельное управление"},
-        {"year": 1850, "description": "Пермское удельное имение, Устиновское удельное управление"},
-        {"year": 1858, "description": "Пермское удельное имение, Устиновское удельное управление"},
-        {"year": 1904, "description": "Пермская губерния, Осинский уезд, Устиновская волость, Паклинское сельское общество"},
-        {"year": 1981, "description": "Устиновский сельсовет, Осинский район"}
+        {
+          "year": 1834,
+          "description": "Пермское удельное имение, Устиновское удельное управление"
+        },
+        {
+          "year": 1850,
+          "description": "Пермское удельное имение, Устиновское удельное управление"
+        },
+        {
+          "year": 1858,
+          "description": "Пермское удельное имение, Устиновское удельное управление"
+        },
+        {
+          "year": 1904,
+          "description": "Пермская губерния, Осинский уезд, Устиновская волость, Паклинское сельское общество"
+        },
+        {
+          "year": 1981,
+          "description": "Устиновский сельсовет, Осинский район"
+        }
       ],
       "parish_history": [
-        {"period": "XIX — начало XX века", "parish": "Вознесенская церковь села Устиновского (Устиново)", "status": "supported_by_locality_and_parish_finding_aids"}
+        {
+          "period": "XIX — начало XX века",
+          "parish": "Вознесенская церковь села Устиновского (Устиново)",
+          "status": "supported_by_locality_and_parish_finding_aids"
+        }
       ]
     },
-    {"id": "shchelkanovka", "names": [{"name": "Щелкановка", "native": "Щелкановка"}], "parent_place_ids": ["osinsky_district", "perm_region"]},
+    {
+      "id": "shchelkanovka",
+      "names": [
+        {
+          "name": "Щелкановка",
+          "native": "Щелкановка"
+        }
+      ],
+      "parent_place_ids": [
+        "osinsky_district",
+        "perm_region"
+      ]
+    },
     {
       "id": "chyormoz",
-      "names": [{"name": "Чёрмоз", "native": "Чёрмоз"}, {"name": "Чермоз", "native": "Чермоз", "type": "search_variant"}],
+      "names": [
+        {
+          "name": "Чёрмоз",
+          "native": "Чёрмоз"
+        },
+        {
+          "name": "Чермоз",
+          "native": "Чермоз",
+          "type": "search_variant"
+        }
+      ],
       "settlement_type": "city",
-      "parent_place_ids": ["ilyinsky_district", "perm_region"],
-      "historical_notes": ["Город развивался вокруг Чёрмозского металлургического завода, основанного в 1763 году и некогда входившего в число крупных уральских железоделательных предприятий.", "Старый завод и часть города были снесены или затоплены при создании Камского водохранилища; завод закрыли в 1956 году.", "До 1917 года события жителей заводского посёлка фиксировались в метрических книгах Рождество-Богородицкой церкви; для окрестных деревень необходимо учитывать границы их приходов. Кадровые документы завода могут содержать сведения о профессиях и составе семей."]
+      "parent_place_ids": [
+        "ilyinsky_district",
+        "perm_region"
+      ],
+      "historical_notes": [
+        "Город развивался вокруг Чёрмозского металлургического завода, основанного в 1763 году и некогда входившего в число крупных уральских железоделательных предприятий.",
+        "Старый завод и часть города были снесены или затоплены при создании Камского водохранилища; завод закрыли в 1956 году.",
+        "До 1917 года события жителей заводского посёлка фиксировались в метрических книгах Рождество-Богородицкой церкви; для окрестных деревень необходимо учитывать границы их приходов. Кадровые документы завода могут содержать сведения о профессиях и составе семей."
+      ]
     },
     {
       "id": "syrchiki",
       "names": [
-        {"name": "Сырчики", "native": "Сырчики", "type": "modern"},
-        {"name": "Сырчикова Нижняя", "native": "Сырчикова Нижняя", "type": "historical"},
-        {"name": "Сырчикова Верхняя", "native": "Сырчикова Верхняя", "type": "historical"}
+        {
+          "name": "Сырчики",
+          "native": "Сырчики",
+          "type": "modern"
+        },
+        {
+          "name": "Сырчикова Нижняя",
+          "native": "Сырчикова Нижняя",
+          "type": "historical"
+        },
+        {
+          "name": "Сырчикова Верхняя",
+          "native": "Сырчикова Верхняя",
+          "type": "historical"
+        }
       ],
       "settlement_type": "village",
-      "parent_place_ids": ["ilyinsky_district", "perm_region"],
+      "parent_place_ids": [
+        "ilyinsky_district",
+        "perm_region"
+      ],
       "historical_administration": [
-        {"period": "конец XIX — начало XX века", "description": "Ивановская волость, Соликамский уезд, Пермская губерния"}
+        {
+          "period": "конец XIX — начало XX века",
+          "description": "Ивановская волость, Соликамский уезд, Пермская губерния"
+        }
       ],
       "parish_history": [
-        {"period": "конец XIX — начало XX века", "parish": "Иоанно-Предтеченская церковь села Ивановского", "status": "probable_route_to_verify_in_clerical_or_metric_records"}
+        {
+          "period": "конец XIX — начало XX века",
+          "parish": "Иоанно-Предтеченская церковь села Ивановского",
+          "status": "probable_route_to_verify_in_clerical_or_metric_records"
+        }
       ],
-      "historical_notes": ["Исторически населённый пункт состоял из двух небольших деревень: Нижней Сырчиковой (10 дворов в 1869 году) и Верхней Сырчиковой (6 дворов в 1869 году).", "Название могло произойти от коми-пермяцкого слова «сырчик», означающего трясогузку.", "Поскольку Сырчики находились рядом с Ивановским в Ивановской волости, Ивановский приход считается первым направлением поиска; принадлежность к этому приходу пока не подтверждена сохранившимся приходским списком."]
+      "historical_notes": [
+        "Исторически населённый пункт состоял из двух небольших деревень: Нижней Сырчиковой (10 дворов в 1869 году) и Верхней Сырчиковой (6 дворов в 1869 году).",
+        "Название могло произойти от коми-пермяцкого слова «сырчик», означающего трясогузку.",
+        "Поскольку Сырчики находились рядом с Ивановским в Ивановской волости, Ивановский приход считается первым направлением поиска; принадлежность к этому приходу пока не подтверждена сохранившимся приходским списком."
+      ]
     },
     {
       "id": "ivanovskoye_ilyinsky",
-      "names": [{"name": "Ивановское", "native": "Ивановское"}],
+      "names": [
+        {
+          "name": "Ивановское",
+          "native": "Ивановское"
+        }
+      ],
       "settlement_type": "village_or_selo",
-      "parent_place_ids": ["ilyinsky_district", "perm_region"],
-      "historical_administration": [{"period": "с 1861 года", "description": "Административный центр Ивановской волости Соликамского уезда Пермской губернии"}],
-      "historical_notes": ["Иоанно-Предтеченская церковь была построена и освящена в 1851 году.", "Среди соседних деревень указаны Сырчики."]
+      "parent_place_ids": [
+        "ilyinsky_district",
+        "perm_region"
+      ],
+      "historical_administration": [
+        {
+          "period": "с 1861 года",
+          "description": "Административный центр Ивановской волости Соликамского уезда Пермской губернии"
+        }
+      ],
+      "historical_notes": [
+        "Иоанно-Предтеченская церковь была построена и освящена в 1851 году.",
+        "Среди соседних деревень указаны Сырчики."
+      ]
     },
     {
       "id": "martely",
-      "names": [{"name": "Мартелы", "native": "Мартелы"}],
+      "names": [
+        {
+          "name": "Мартелы",
+          "native": "Мартелы"
+        }
+      ],
       "settlement_type": "village",
-      "parent_place_ids": ["perm_region"],
-      "historical_notes": ["Семья подтвердила деревню Мартелы как место рождения Анны Фёдоровны Политовой и её родных братьев и сестёр Михаила, Петра, Кирилла, Степаниды и Лукерии. Название во всех материалах следует писать как Мартелы."]
+      "parent_place_ids": [
+        "perm_region"
+      ],
+      "historical_notes": [
+        "Семья подтвердила деревню Мартелы как место рождения Анны Фёдоровны Политовой и её родных братьев и сестёр Михаила, Петра, Кирилла, Степаниды и Лукерии. Название во всех материалах следует писать как Мартелы."
+      ]
     },
     {
       "id": "selezni_ilyinsky",
-      "names": [{"name": "Селезни", "native": "Селезни"}],
+      "names": [
+        {
+          "name": "Селезни",
+          "native": "Селезни"
+        }
+      ],
       "settlement_type": "village",
-      "parent_place_ids": ["ilyinsky_district", "perm_region"]
+      "parent_place_ids": [
+        "ilyinsky_district",
+        "perm_region"
+      ]
     },
-    {"id": "ilyinsky_district", "names": [{"name": "Ильинский район", "native": "Ильинский район"}], "parent_place_ids": ["perm_region"]},
-    {"id": "osinsky_district", "names": [{"name": "Осинский район", "native": "Осинский район"}], "parent_place_ids": ["perm_region"]},
-    {"id": "perm_region", "names": [{"name": "Пермский край", "native": "Пермский край"}, {"name": "Молотовская область", "native": "Молотовская область", "type": "historical"}]},
-    {"id": "perm_city", "names": [{"name": "Пермь", "native": "Пермь"}], "settlement_type": "city", "parent_place_ids": ["perm_region"]},
-    {"id": "moscow_city", "names": [{"name": "Москва", "native": "Москва"}], "settlement_type": "city"}
+    {
+      "id": "ilyinsky_district",
+      "names": [
+        {
+          "name": "Ильинский район",
+          "native": "Ильинский район"
+        }
+      ],
+      "parent_place_ids": [
+        "perm_region"
+      ]
+    },
+    {
+      "id": "osinsky_district",
+      "names": [
+        {
+          "name": "Осинский район",
+          "native": "Осинский район"
+        }
+      ],
+      "parent_place_ids": [
+        "perm_region"
+      ]
+    },
+    {
+      "id": "perm_region",
+      "names": [
+        {
+          "name": "Пермский край",
+          "native": "Пермский край"
+        },
+        {
+          "name": "Молотовская область",
+          "native": "Молотовская область",
+          "type": "historical"
+        }
+      ]
+    },
+    {
+      "id": "perm_city",
+      "names": [
+        {
+          "name": "Пермь",
+          "native": "Пермь"
+        }
+      ],
+      "settlement_type": "city",
+      "parent_place_ids": [
+        "perm_region"
+      ]
+    },
+    {
+      "id": "moscow_city",
+      "names": [
+        {
+          "name": "Москва",
+          "native": "Москва"
+        }
+      ],
+      "settlement_type": "city"
+    },
+    {
+      "id": "spain_country",
+      "names": [
+        {
+          "name": "Испания",
+          "native": "España"
+        }
+      ],
+      "settlement_type": "country"
+    }
   ]
 }

@@ -9,11 +9,11 @@
 // connectors can never cross.
 
 const CARD_W = 208;        // every card is exactly this size...
-const CARD_H = 64;
+const CARD_H = 78;
 // ...except the anniversary couple, who get a slightly larger one. Nothing
 // else varies: this is the single exception the layout knows about.
 const ANCHOR_CARD_W = 248;
-const ANCHOR_CARD_H = 78;
+const ANCHOR_CARD_H = 88;
 const cardWidthFor = gen => (gen === 0 ? ANCHOR_CARD_W : CARD_W);
 const cardHeightFor = gen => (gen === 0 ? ANCHOR_CARD_H : CARD_H);
 const CARD_PHOTO = 40;
@@ -86,7 +86,14 @@ function buildUnitTree(familyData) {
           .map(e => e.childId)
           .filter(c => familyData.people.has(c) && !placed.has(c));
         kids.forEach(c => placed.add(c));
-        return { id: sibId, spouseId: spouse, childIds: kids };
+        // Дети от другого брака не должны выглядеть детьми нынешней супруги,
+        // поэтому линия к ним идёт от родителя, а не от пары.
+        const spouseKids = new Set(spouse
+          ? (familyData.childEdgesByParent.get(spouse) || []).map(e => e.childId)
+          : []);
+        const shared = kids.filter(c => spouseKids.has(c));
+        const own = kids.filter(c => !spouseKids.has(c));
+        return { id: sibId, spouseId: spouse, childIds: own.concat(shared), ownChildIds: own, sharedChildIds: shared };
       });
       unit.members.push({ id, siblings: sibs, families, parentUnit: null });
     }
@@ -140,15 +147,29 @@ function placeFamilies(families, startX, unit, memberId, nodes) {
     if (kids.length) {
       const kidsW = kids.length * CARD_W + (kids.length - 1) * SIB_GAP;
       const kidsX = x + (w - kidsW) / 2;
-      const kidXs = [];
+      const centreOf = new Map();
       kids.forEach((id, i) => {
         const kx = kidsX + i * (CARD_W + SIB_GAP);
-        kidXs.push(kx + CARD_W / 2);
+        centreOf.set(id, kx + CARD_W / 2);
         nodes.push({ id, x: kx, gen: unit.gen - 1, role: "nephew", unit, of: family.id, w: CARD_W, h: CARD_H });
       });
-      family.link = { parentCx: ownX + ownW / 2, parentGen: unit.gen, childXs: kidXs };
+      const own = family.ownChildIds || kids;
+      const shared = family.sharedChildIds || [];
+      // Две линии видно как две, только если они идут на разной высоте.
+      const split = own.length > 0 && shared.length > 0;
       unit.familyLinks = unit.familyLinks || [];
-      unit.familyLinks.push(family.link);
+      if (own.length) {
+        unit.familyLinks.push({
+          parentCx: ownX + CARD_W / 2, parentGen: unit.gen,
+          childXs: own.map(id => centreOf.get(id)), lift: split ? -14 : 0
+        });
+      }
+      if (shared.length) {
+        unit.familyLinks.push({
+          parentCx: ownX + ownW / 2, parentGen: unit.gen,
+          childXs: shared.map(id => centreOf.get(id)), lift: split ? 14 : 0
+        });
+      }
     }
     x += w + SIB_GAP;
   }
@@ -237,11 +258,29 @@ function placeUnit(unit, cx, nodes) {
 
 // Dates live in the dialog now, so the card carries only the relation. That
 // keeps every card the same shape whether or not a birth year is known.
-function cardMeta(person, kinshipLabel) {
-  void person;
+function kinshipRole(kinshipLabel) {
   const segments = (kinshipLabel || "").split(" · ");
   const role = segments.length > 1 ? segments.slice(1).join(" · ") : segments[0];
   return role || " ";
+}
+
+// Вторая строка карточки. Годы жизни говорят о человеке больше, чем степень
+// родства, но есть они меньше чем у половины: у остальных остаётся родство,
+// чтобы карточка не пустела и не меняла высоту.
+function cardYears(person) {
+  const born = person.birthYear;
+  if (born == null) return null;
+  if (person.deathYear != null) return `с ${born} по ${person.deathYear}`;
+  if (person.living) return `род. ${born}`;
+  return String(born);
+}
+
+// Третья строка: только сам населённый пункт, без района и края. Полная
+// запись остаётся в подсказке.
+function cardPlace(person) {
+  if (!person.birthPlace) return null;
+  const short = String(person.birthPlace).split(",")[0].trim();
+  return short ? { short, full: person.birthPlace } : null;
 }
 
 function cardHtml(person, kinship, photoAvailability, extraClass) {
@@ -249,12 +288,22 @@ function cardHtml(person, kinship, photoAvailability, extraClass) {
   const photoHtml = hasPhoto
     ? `<img src="${personPhotoUrl(person.id)}" alt="${escapeHtml(person.displayName)}">`
     : `<span class="person-photo-placeholder">${escapeHtml((person.displayName || "?").trim().charAt(0))}</span>`;
+  // У юбилейной пары своя подпись: сорок лет вместе важнее их годов рождения.
+  const isAnchor = SITE_CONFIG.anchorPersonIds.includes(person.id);
+  const meta = isAnchor
+    ? kinshipRole(kinship.get(person.id))
+    : (cardYears(person) || kinshipRole(kinship.get(person.id)));
+  const place = isAnchor ? null : cardPlace(person);
+  const placeHtml = place
+    ? `<div class="person-place" title="${escapeHtml(place.full)}">${escapeHtml(place.short)}</div>`
+    : `<div class="person-place" aria-hidden="true"></div>`;
   return `
     <div class="tree-card tier-${person.statusTier}${extraClass ? " " + extraClass : ""}" data-id="${escapeHtml(person.id)}" role="button" tabindex="0">
       <div class="person-photo">${photoHtml}</div>
       <div class="person-info">
         <div class="person-name">${escapeHtml(person.displayName)}</div>
-        <div class="person-meta">${escapeHtml(cardMeta(person, kinship.get(person.id)))}</div>
+        <div class="person-meta">${escapeHtml(meta)}</div>
+        ${placeHtml}
       </div>
     </div>`;
 }
@@ -334,7 +383,7 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
     for (const link of u.familyLinks || []) {
       const parentEdge = yOf(link.parentGen);
       const childEdge = yOf(link.parentGen - 1) + cardHeightFor(link.parentGen - 1);
-      const barY = (parentEdge + childEdge) / 2;
+      const barY = (parentEdge + childEdge) / 2 + (link.lift || 0);
       const xs = link.childXs.map(x => x + shift);
       const pcx = link.parentCx + shift;
       paths.push(`M ${pcx} ${parentEdge} L ${pcx} ${barY}`);
@@ -407,6 +456,7 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
   container.style.height = height + "px";
   container.innerHTML = svg + groups.join("") + anchorFrame + labels + cards;
   container.dataset.anchorCx = String(root.cx + shift);
+  container.dataset.anchorCy = String(yOf(root.gen) + ANCHOR_CARD_H / 2);
   container.dataset.anchorW = String(root.boxW);
 
   const open = el => {
@@ -454,6 +504,8 @@ const TREE_ZOOM_MIN = 0.2;
 const TREE_ZOOM_MAX = 1.6;
 const TREE_ZOOM_STEP = 0.15;
 const TREE_DRAG_THRESHOLD = 5;
+// Верхний отступ окна древа, тот же var(--space-6), что в styles.css.
+const TREE_CANVAS_PAD_Y = 24;
 
 function setupTreeCanvas(grid) {
   const wrap = document.getElementById("tree-canvas-wrap");
@@ -463,6 +515,7 @@ function setupTreeCanvas(grid) {
   const naturalWidth = grid.offsetWidth;
   const naturalHeight = grid.offsetHeight;
   const anchorCx = Number(grid.dataset.anchorCx || naturalWidth / 2);
+  const anchorCy = Number(grid.dataset.anchorCy || naturalHeight / 2);
   const anchorW = Number(grid.dataset.anchorW || ANCHOR_CARD_W * 2);
   let zoom = 1;
 
@@ -472,10 +525,11 @@ function setupTreeCanvas(grid) {
     canvas.style.height = Math.round(naturalHeight * zoom) + "px";
   }
 
+  // Первое, что человек видит в древе, должны быть Владимир и Людмила, а не
+  // пустой угол холста. Поэтому окно древа всегда наводится на их пару.
   function centreOnAnchor() {
-    // Only the horizontal axis scrolls inside the canvas; the section's height
-    // grows with the page, so there is nothing to centre vertically.
     wrap.scrollLeft = Math.max(0, anchorCx * zoom - wrap.clientWidth / 2);
+    wrap.scrollTop = Math.max(0, anchorCy * zoom + TREE_CANVAS_PAD_Y - wrap.clientHeight / 2);
   }
 
   function fit() {
@@ -492,8 +546,10 @@ function setupTreeCanvas(grid) {
     zoom = Math.min(TREE_ZOOM_MAX, Math.max(TREE_ZOOM_MIN, Math.round(next * 100) / 100));
     if (zoom === previous) return;
     const ax = wrap.scrollLeft + wrap.clientWidth / 2;
+    const ay = wrap.scrollTop + wrap.clientHeight / 2;
     applyZoom();
     wrap.scrollLeft = Math.max(0, ax * (zoom / previous) - wrap.clientWidth / 2);
+    wrap.scrollTop = Math.max(0, ay * (zoom / previous) - wrap.clientHeight / 2);
   }
 
   const zoomIn = document.getElementById("zoom-in");
@@ -507,7 +563,7 @@ function setupTreeCanvas(grid) {
   let swallowClick = false;
   wrap.addEventListener("pointerdown", (e) => {
     if (e.pointerType !== "mouse" || e.button !== 0) return;
-    drag = { x: e.clientX, y: e.clientY, left: wrap.scrollLeft, top: window.scrollY, moved: false };
+    drag = { x: e.clientX, y: e.clientY, left: wrap.scrollLeft, top: wrap.scrollTop, moved: false };
   });
   window.addEventListener("pointermove", (e) => {
     if (!drag) return;
@@ -516,7 +572,7 @@ function setupTreeCanvas(grid) {
     if (!drag.moved) { drag.moved = true; wrap.classList.add("is-panning"); }
     e.preventDefault();
     wrap.scrollLeft = drag.left - dx;
-    window.scrollTo(0, Math.max(0, drag.top - dy));
+    wrap.scrollTop = Math.max(0, drag.top - dy);
   });
   const endDrag = () => {
     if (!drag) return;
