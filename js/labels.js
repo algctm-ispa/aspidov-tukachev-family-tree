@@ -10,6 +10,17 @@ async function loadUiLabels() {
   return UI_LABELS;
 }
 
+// Site owned Russian labels for enum values the pipeline dictionary does not
+// cover yet. Kept separate so a new data pack never overwrites them, and
+// merged per dictionary so nothing the pipeline does translate is replaced.
+function applyLabelOverlay(overlay) {
+  if (!overlay || !UI_LABELS) return;
+  for (const [dict, table] of Object.entries(overlay)) {
+    if (!table || typeof table !== "object") continue;
+    UI_LABELS[dict] = Object.assign({}, table, UI_LABELS[dict] || {});
+  }
+}
+
 function isCyrillicText(value) {
   return typeof value === "string" && /[а-яА-ЯёЁ]/.test(value);
 }

@@ -198,17 +198,28 @@
       "category": "user_generated_genealogy_database",
       "title": "Персональная страница Тукачевой (Попченко) Татьяны Михайловны в Familio",
       "url": "https://familio.org/persons/1b01c881-eb82-4307-b996-3763df6a7413",
+      "document_urls": [
+        {"type": "tatyana_profile", "url": "https://familio.org/persons/1b01c881-eb82-4307-b996-3763df6a7413"},
+        {"type": "spouse_andrey_profile", "url": "https://familio.org/persons/7649dcce-3c3c-4019-a072-6ad6cd660600"},
+        {"type": "daughter_anna_profile", "url": "https://familio.org/persons/d07bb76b-e4b5-46bd-a106-3e713c3d1d46"},
+        {"type": "son_anton_profile", "url": "https://familio.org/persons/0889944f-81f1-4dc3-8313-8c396da60741"}
+      ],
       "source_quality": "clue_only",
-      "accessed_at": "2026-09-04"
+      "accessed_at": "2026-09-06",
+      "notes": ["Профили называют супругом Татьяны Андрея Николаевича Попченко, дочерью Анну Андреевну Попченко и сыном Антона Андреевича Попченко. Даты рождения, место жительства и дата брака не указаны. Это пользовательское дерево без независимого документа."]
     },
     {
       "id": "src_familio_valery_tukachev",
       "category": "user_generated_genealogy_database",
       "title": "Персональная страница Тукачева Валерия Михайловича в Familio",
       "url": "https://familio.org/persons/fa8a1454-5e79-4868-9af6-b574ec629c41",
+      "document_urls": [
+        {"type": "valery_profile", "url": "https://familio.org/persons/fa8a1454-5e79-4868-9af6-b574ec629c41"},
+        {"type": "spouse_tatyana_kozlova_profile", "url": "https://familio.org/persons/b6b46843-2713-4d2d-b337-2ce604c7f87e"}
+      ],
       "source_quality": "clue_only",
-      "accessed_at": "2026-09-04",
-      "notes": ["Указаны рождение 26.01.1964 в Чёрмозе, брак 05.06.1987 в Чёрмозе с Козловой Татьяной Анатольевной и двое детей, чьи имена скрыты настройками приватности."]
+      "accessed_at": "2026-09-06",
+      "notes": ["Указаны рождение Валерия 26 января 1964 года в Чёрмозе и брак 5 июня 1987 года в Чёрмозе с Козловой Татьяной Анатольевной.", "Профиль Татьяны указывает рождение 31 марта 1964 года в деревне Селезни Ильинского района.", "Показаны двое детей с датами рождения 18 ноября 1987 года и 3 апреля 1996 года. Имя и пол каждого ребёнка скрыты настройками приватности. Событие 1996 года связано с Чёрмозом."]
     },
     {
       "id": "src_familio_fedor_politov",

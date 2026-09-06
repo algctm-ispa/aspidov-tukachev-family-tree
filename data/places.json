@@ -61,6 +61,12 @@
       "parent_place_ids": ["perm_region"],
       "historical_notes": ["Семья подтвердила деревню Мартелы как место рождения Анны Фёдоровны Политовой и её родных братьев и сестёр Михаила, Петра, Кирилла, Степаниды и Лукерии. Название во всех материалах следует писать как Мартелы."]
     },
+    {
+      "id": "selezni_ilyinsky",
+      "names": [{"name": "Селезни", "native": "Селезни"}],
+      "settlement_type": "village",
+      "parent_place_ids": ["ilyinsky_district", "perm_region"]
+    },
     {"id": "ilyinsky_district", "names": [{"name": "Ильинский район", "native": "Ильинский район"}], "parent_place_ids": ["perm_region"]},
     {"id": "osinsky_district", "names": [{"name": "Осинский район", "native": "Осинский район"}], "parent_place_ids": ["perm_region"]},
     {"id": "perm_region", "names": [{"name": "Пермский край", "native": "Пермский край"}, {"name": "Молотовская область", "native": "Молотовская область", "type": "historical"}]},

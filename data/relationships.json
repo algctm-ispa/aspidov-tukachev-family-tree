@@ -440,6 +440,87 @@
       "child_id": "candidate_ivan_stepanovich_syrchikov_1907",
       "status": "CONFIRMED",
       "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05"]
+    },
+    {
+      "id": "rel_tatyana_tukacheva_andrey_popchenko_spouses",
+      "type": "spouse",
+      "person_1_id": "tatyana_mikhailovna_tukacheva",
+      "person_2_id": "andrey_nikolaevich_popchenko",
+      "status": "HYPOTHESIS",
+      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+    },
+    {
+      "id": "rel_tatyana_mother_anna_popchenko",
+      "type": "biological_parent",
+      "parent_id": "tatyana_mikhailovna_tukacheva",
+      "child_id": "anna_andreevna_popchenko",
+      "status": "HYPOTHESIS",
+      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+    },
+    {
+      "id": "rel_andrey_father_anna_popchenko",
+      "type": "biological_parent",
+      "parent_id": "andrey_nikolaevich_popchenko",
+      "child_id": "anna_andreevna_popchenko",
+      "status": "HYPOTHESIS",
+      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+    },
+    {
+      "id": "rel_tatyana_mother_anton_popchenko",
+      "type": "biological_parent",
+      "parent_id": "tatyana_mikhailovna_tukacheva",
+      "child_id": "anton_andreevich_popchenko",
+      "status": "HYPOTHESIS",
+      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+    },
+    {
+      "id": "rel_andrey_father_anton_popchenko",
+      "type": "biological_parent",
+      "parent_id": "andrey_nikolaevich_popchenko",
+      "child_id": "anton_andreevich_popchenko",
+      "status": "HYPOTHESIS",
+      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+    },
+    {
+      "id": "rel_valery_tukachev_tatyana_kozlova_spouses",
+      "type": "spouse",
+      "person_1_id": "valery_mikhailovich_tukachev_1964",
+      "person_2_id": "tatyana_anatolyevna_kozlova_1964",
+      "marriage": {"date": "1987-06-05", "place_id": "chyormoz"},
+      "status": "HYPOTHESIS",
+      "evidence_source_ids": ["src_familio_valery_tukachev"]
+    },
+    {
+      "id": "rel_valery_parent_private_child_1987",
+      "type": "biological_parent",
+      "parent_id": "valery_mikhailovich_tukachev_1964",
+      "child_id": "private_child_of_valery_tukachev_1987",
+      "status": "HYPOTHESIS",
+      "evidence_source_ids": ["src_familio_valery_tukachev"]
+    },
+    {
+      "id": "rel_tatyana_kozlova_parent_private_child_1987",
+      "type": "biological_parent",
+      "parent_id": "tatyana_anatolyevna_kozlova_1964",
+      "child_id": "private_child_of_valery_tukachev_1987",
+      "status": "HYPOTHESIS",
+      "evidence_source_ids": ["src_familio_valery_tukachev"]
+    },
+    {
+      "id": "rel_valery_parent_private_child_1996",
+      "type": "biological_parent",
+      "parent_id": "valery_mikhailovich_tukachev_1964",
+      "child_id": "private_child_of_valery_tukachev_1996",
+      "status": "HYPOTHESIS",
+      "evidence_source_ids": ["src_familio_valery_tukachev"]
+    },
+    {
+      "id": "rel_tatyana_kozlova_parent_private_child_1996",
+      "type": "biological_parent",
+      "parent_id": "tatyana_anatolyevna_kozlova_1964",
+      "child_id": "private_child_of_valery_tukachev_1996",
+      "status": "HYPOTHESIS",
+      "evidence_source_ids": ["src_familio_valery_tukachev"]
     }
   ]
 }

@@ -236,6 +236,8 @@ async function loadFamilyData() {
     loadUiLabels()
   ]);
 
+  if (corrections && corrections.ui_labels) applyLabelOverlay(corrections.ui_labels);
+
   if (corrections && corrections.people) {
     for (const raw of peopleRaw.people || []) {
       const patch = corrections.people[raw.id];
@@ -278,6 +280,10 @@ async function loadFamilyData() {
     people.set(raw.id, {
       id: raw.id,
       sex: raw.sex || null,
+      // The family withheld some names on purpose. Those people belong in the
+      // tree, but nothing on the site may put words in their mouths or guess
+      // at what was left out.
+      nameWithheld: (raw.names || []).every(n => n.type === "privacy_protected"),
       displayName: primaryName.native || primaryName.display,
       nameVariants,
       identityStatus: raw.identity_status || null,

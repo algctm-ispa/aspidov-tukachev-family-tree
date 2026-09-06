@@ -40,6 +40,9 @@ function buildChronicleEvents(familyData) {
   const events = [];
 
   for (const person of familyData.people.values()) {
+    // A withheld name has no place in a narrative timeline: every line here
+    // names someone, and these people asked not to be named.
+    if (person.nameWithheld) continue;
     // Russian marks gender on the verb, so each line is built from the
     // person's recorded sex rather than falling back on "родился(ась)".
     const female = person.sex === "female";

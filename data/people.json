@@ -138,11 +138,11 @@
     },
     {
       "id": "tatyana_mikhailovna_tukacheva",
-      "names": [{"type": "birth", "display": "Тукачева Татьяна Михайловна", "native": "Тукачева Татьяна Михайловна"}],
+      "names": [{"type": "birth", "display": "Тукачева Татьяна Михайловна", "native": "Тукачева Татьяна Михайловна"}, {"type": "possible_married", "display": "Попченко Татьяна Михайловна", "native": "Попченко Татьяна Михайловна", "status": "HYPOTHESIS"}],
       "sex": "female",
       "birth": {"place_id": "chyormoz", "date_unknown": true, "status": "CONFIRMED_BY_FAMILY"},
       "identity_status": "CONFIRMED",
-      "notes": ["Пользователь подтвердил, что Татьяна — сестра Людмилы. В Familio указаны фамилия в браке Попченко, супруг Андрей Николаевич Попченко и дети Анна и Антон; эти сведения пока остаются только подсказками."],
+      "notes": ["Пользователь подтвердил, что Татьяна является сестрой Людмилы. Familio называет её супругом Андрея Николаевича Попченко, а детьми Анну Андреевну и Антона Андреевича Попченко. Эти три связи требуют подтверждения семьи."],
       "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_tatyana_tukacheva"]
     },
     {
@@ -151,8 +151,67 @@
       "sex": "male",
       "birth": {"date": "1964-01-26", "place_id": "chyormoz", "status": "CONFIRMED_BY_FAMILY"},
       "identity_status": "CONFIRMED",
-      "notes": ["Пользователь подтвердил, что Валерий — брат Людмилы. В Familio указаны брак с Татьяной Анатольевной Козловой 5 июня 1987 года в Чёрмозе и двое детей, чьи имена скрыты настройками приватности; эти сведения остаются подсказками до отдельного подтверждения."],
+      "notes": ["Пользователь подтвердил, что Валерий является братом Людмилы. Familio указывает брак с Татьяной Анатольевной Козловой 5 июня 1987 года в Чёрмозе и двоих детей. Имена детей скрыты настройками приватности источника. Супружество и родительство требуют подтверждения семьи."],
       "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_valery_tukachev"]
+    },
+    {
+      "id": "andrey_nikolaevich_popchenko",
+      "names": [{"type": "user_tree_clue", "display": "Попченко Андрей Николаевич", "native": "Попченко Андрей Николаевич"}],
+      "sex": "male",
+      "identity_status": "HYPOTHESIS",
+      "candidate_role": "possible_spouse_of_tatyana_mikhailovna_tukacheva",
+      "notes": ["Familio называет Андрея Николаевича супругом Татьяны Михайловны Тукачевой и отцом Анны Андреевны и Антона Андреевича Попченко. Даты и места не указаны. Семья пока не подтверждала эти сведения."],
+      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+    },
+    {
+      "id": "anna_andreevna_popchenko",
+      "names": [{"type": "user_tree_clue", "display": "Попченко Анна Андреевна", "native": "Попченко Анна Андреевна"}],
+      "sex": "female",
+      "birth": {"date_unknown": true, "status": "USER_TREE_VALUE"},
+      "identity_status": "HYPOTHESIS",
+      "candidate_role": "possible_daughter_of_tatyana_and_andrey_popchenko",
+      "notes": ["Familio называет Анну Андреевну дочерью Татьяны Михайловны Тукачевой и Андрея Николаевича Попченко. Дата и место рождения не указаны. Родство требует подтверждения семьи."],
+      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+    },
+    {
+      "id": "anton_andreevich_popchenko",
+      "names": [{"type": "user_tree_clue", "display": "Попченко Антон Андреевич", "native": "Попченко Антон Андреевич"}],
+      "sex": "male",
+      "birth": {"date_unknown": true, "status": "USER_TREE_VALUE"},
+      "identity_status": "HYPOTHESIS",
+      "candidate_role": "possible_son_of_tatyana_and_andrey_popchenko",
+      "notes": ["Familio называет Антона Андреевича сыном Татьяны Михайловны Тукачевой и Андрея Николаевича Попченко. Дата и место рождения не указаны. Родство требует подтверждения семьи."],
+      "evidence_source_ids": ["src_familio_tatyana_tukacheva"]
+    },
+    {
+      "id": "tatyana_anatolyevna_kozlova_1964",
+      "names": [{"type": "birth", "display": "Козлова Татьяна Анатольевна", "native": "Козлова Татьяна Анатольевна"}, {"type": "possible_married", "display": "Тукачева Татьяна Анатольевна", "native": "Тукачева Татьяна Анатольевна", "status": "HYPOTHESIS"}],
+      "sex": "female",
+      "birth": {"date": "1964-03-31", "place_id": "selezni_ilyinsky", "place_as_recorded": "деревня Селезни, Ильинский район", "status": "USER_TREE_VALUE"},
+      "identity_status": "HYPOTHESIS",
+      "candidate_role": "possible_spouse_of_valery_mikhailovich_tukachev",
+      "notes": ["Familio называет Татьяну Анатольевну супругой Валерия Михайловича Тукачева. Указаны рождение 31 марта 1964 года в деревне Селезни и брак 5 июня 1987 года в Чёрмозе. Семья пока не подтверждала эти сведения."],
+      "evidence_source_ids": ["src_familio_valery_tukachev"]
+    },
+    {
+      "id": "private_child_of_valery_tukachev_1987",
+      "names": [{"type": "privacy_protected", "display": "Старший ребёнок Валерия и Татьяны, имя скрыто", "native": "Старший ребёнок Валерия и Татьяны, имя скрыто"}],
+      "birth": {"date": "1987-11-18", "status": "USER_TREE_VALUE"},
+      "identity_status": "HYPOTHESIS",
+      "privacy": {"name_hidden_by_source": true},
+      "candidate_role": "possible_child_of_valery_and_tatyana_tukachev",
+      "notes": ["Familio показывает ребёнка Валерия Михайловича и Татьяны Анатольевны с датой рождения 18 ноября 1987 года, но намеренно скрывает имя и пол. Не пытаться устанавливать личность по косвенным данным. Родство требует подтверждения семьи."],
+      "evidence_source_ids": ["src_familio_valery_tukachev"]
+    },
+    {
+      "id": "private_child_of_valery_tukachev_1996",
+      "names": [{"type": "privacy_protected", "display": "Младший ребёнок Валерия и Татьяны, имя скрыто", "native": "Младший ребёнок Валерия и Татьяны, имя скрыто"}],
+      "birth": {"date": "1996-04-03", "place_id": "chyormoz", "status": "USER_TREE_VALUE"},
+      "identity_status": "HYPOTHESIS",
+      "privacy": {"name_hidden_by_source": true},
+      "candidate_role": "possible_child_of_valery_and_tatyana_tukachev",
+      "notes": ["Familio показывает ребёнка Валерия Михайловича и Татьяны Анатольевны с датой рождения 3 апреля 1996 года и связывает событие с Чёрмозом, но намеренно скрывает имя и пол. Не пытаться устанавливать личность по косвенным данным. Родство требует подтверждения семьи."],
+      "evidence_source_ids": ["src_familio_valery_tukachev"]
     },
     {
       "id": "nikolai_zhdanov",

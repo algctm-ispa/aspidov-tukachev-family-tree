@@ -75,7 +75,20 @@ function buildUnitTree(familyData) {
       const sibs = childrenOfParents(parentsOf(id, familyData), familyData)
         .filter(c => c !== id && !memberIds.includes(c) && !placed.has(c));
       sibs.forEach(s => placed.add(s));
-      unit.members.push({ id, siblings: sibs, parentUnit: null });
+      // A brother or sister may bring a spouse and children of their own. They
+      // hang off that sibling rather than off the direct line.
+      const families = sibs.map(sibId => {
+        const spouse = (familyData.spouseEdgesByPerson.get(sibId) || [])
+          .map(e => e.spouseId)
+          .find(sp => familyData.people.has(sp) && !placed.has(sp)) || null;
+        if (spouse) placed.add(spouse);
+        const kids = (familyData.childEdgesByParent.get(sibId) || [])
+          .map(e => e.childId)
+          .filter(c => familyData.people.has(c) && !placed.has(c));
+        kids.forEach(c => placed.add(c));
+        return { id: sibId, spouseId: spouse, childIds: kids };
+      });
+      unit.members.push({ id, siblings: sibs, families, parentUnit: null });
     }
     for (const member of unit.members) {
       const p = parentsOf(member.id, familyData);
@@ -98,19 +111,63 @@ function buildUnitTree(familyData) {
 // reaches to the left and to the right of the unit's own centre line.
 // ---------------------------------------------------------------------------
 
+function siblingFootprint(family) {
+  const own = (1 + (family.spouseId ? 1 : 0)) * CARD_W;
+  const kids = family.childIds.length
+    ? family.childIds.length * CARD_W + (family.childIds.length - 1) * SIB_GAP
+    : 0;
+  return Math.max(own, kids);
+}
+
+function sideFootprint(families) {
+  return families.reduce((sum, f) => sum + siblingFootprint(f) + SIB_GAP, 0);
+}
+
+// Lays a run of sibling blocks left to right from startX. Each block centres
+// the sibling (with a spouse alongside, when there is one) over its children.
+function placeFamilies(families, startX, unit, memberId, nodes) {
+  let x = startX;
+  for (const family of families) {
+    const w = siblingFootprint(family);
+    const ownW = (1 + (family.spouseId ? 1 : 0)) * CARD_W;
+    const ownX = x + (w - ownW) / 2;
+    nodes.push({ id: family.id, x: ownX, gen: unit.gen, role: "sibling", unit, of: memberId, w: CARD_W, h: CARD_H });
+    if (family.spouseId) {
+      nodes.push({ id: family.spouseId, x: ownX + CARD_W, gen: unit.gen, role: "sibling-spouse", unit, of: family.id, w: CARD_W, h: CARD_H });
+    }
+    family.frame = { left: ownX, width: ownW, gen: unit.gen };
+    const kids = family.childIds;
+    if (kids.length) {
+      const kidsW = kids.length * CARD_W + (kids.length - 1) * SIB_GAP;
+      const kidsX = x + (w - kidsW) / 2;
+      const kidXs = [];
+      kids.forEach((id, i) => {
+        const kx = kidsX + i * (CARD_W + SIB_GAP);
+        kidXs.push(kx + CARD_W / 2);
+        nodes.push({ id, x: kx, gen: unit.gen - 1, role: "nephew", unit, of: family.id, w: CARD_W, h: CARD_H });
+      });
+      family.link = { parentCx: ownX + ownW / 2, parentGen: unit.gen, childXs: kidXs };
+      unit.familyLinks = unit.familyLinks || [];
+      unit.familyLinks.push(family.link);
+    }
+    x += w + SIB_GAP;
+  }
+}
+
 function measureUnit(unit) {
   const boxW = unit.members.length * cardWidthFor(unit.gen);
-  const leftSibs = unit.members[0] ? unit.members[0].siblings.length : 0;
-  const rightSibs = unit.members.length > 1
-    ? unit.members[1].siblings.length
-    : 0;
-  // A single-member unit puts its siblings on both sides so it stays centred.
-  const soloSibs = unit.members.length === 1 ? unit.members[0].siblings.length : 0;
-  const soloLeft = Math.floor(soloSibs / 2);
-  const soloRight = soloSibs - soloLeft;
-
-  const ownLeft = boxW / 2 + (unit.members.length === 1 ? soloLeft : leftSibs) * (CARD_W + SIB_GAP);
-  const ownRight = boxW / 2 + (unit.members.length === 1 ? soloRight : rightSibs) * (CARD_W + SIB_GAP);
+  const famOf = i => (unit.members[i] ? unit.members[i].families || [] : []);
+  let ownLeft, ownRight;
+  if (unit.members.length === 1) {
+    // A single-member unit puts its siblings on both sides so it stays centred.
+    const all = famOf(0);
+    const half = Math.floor(all.length / 2);
+    ownLeft = boxW / 2 + sideFootprint(all.slice(0, half));
+    ownRight = boxW / 2 + sideFootprint(all.slice(half));
+  } else {
+    ownLeft = boxW / 2 + sideFootprint(famOf(0));
+    ownRight = boxW / 2 + sideFootprint(famOf(1));
+  }
 
   const above = unit.parents.map(measureUnit);
   let aboveLeft = 0, aboveRight = 0;
@@ -133,6 +190,7 @@ function measureUnit(unit) {
 
 function placeUnit(unit, cx, nodes) {
   unit.cx = cx;
+  unit.familyLinks = [];
   const unitCardW = cardWidthFor(unit.gen);
   const boxW = unit.members.length * unitCardW;
   const boxLeft = cx - boxW / 2;
@@ -144,26 +202,20 @@ function placeUnit(unit, cx, nodes) {
     nodes.push({ id: member.id, x: member.x, gen: unit.gen, role: "unit", unit, w: unitCardW, h: cardHeightFor(unit.gen) });
   });
 
-  // Siblings sit beside the box, on their own member's side.
+  // Siblings sit beside the box, on their own member's side. Each brings the
+  // spouse and children the data gives them, laid out as a small block.
+  const famOf = i => (unit.members[i] ? unit.members[i].families || [] : []);
   if (unit.members.length === 1) {
-    const sibs = unit.members[0].siblings;
-    const leftCount = Math.floor(sibs.length / 2);
-    sibs.forEach((id, i) => {
-      const x = i < leftCount
-        ? boxLeft - (leftCount - i) * (CARD_W + SIB_GAP)
-        : boxLeft + boxW + SIB_GAP + (i - leftCount) * (CARD_W + SIB_GAP);
-      nodes.push({ id, x, gen: unit.gen, role: "sibling", unit, of: unit.members[0].id, w: CARD_W, h: CARD_H });
-    });
+    const all = famOf(0);
+    const half = Math.floor(all.length / 2);
+    const leftSide = all.slice(0, half);
+    const rightSide = all.slice(half);
+    placeFamilies(leftSide, boxLeft - sideFootprint(leftSide), unit, unit.members[0].id, nodes);
+    placeFamilies(rightSide, boxLeft + boxW + SIB_GAP, unit, unit.members[0].id, nodes);
   } else {
-    unit.members[0].siblings.forEach((id, i) => {
-      const n = unit.members[0].siblings.length;
-      const x = boxLeft - (n - i) * (CARD_W + SIB_GAP);
-      nodes.push({ id, x, gen: unit.gen, role: "sibling", unit, of: unit.members[0].id, w: CARD_W, h: CARD_H });
-    });
-    unit.members[1].siblings.forEach((id, i) => {
-      const x = boxLeft + boxW + SIB_GAP + i * (CARD_W + SIB_GAP);
-      nodes.push({ id, x, gen: unit.gen, role: "sibling", unit, of: unit.members[1].id, w: CARD_W, h: CARD_H });
-    });
+    const leftSide = famOf(0);
+    placeFamilies(leftSide, boxLeft - sideFootprint(leftSide), unit, unit.members[0].id, nodes);
+    placeFamilies(famOf(1), boxLeft + boxW + SIB_GAP, unit, unit.members[1].id, nodes);
   }
 
   const above = unit.measured.above;
@@ -277,6 +329,18 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
       paths.push(`M ${Math.min(...xs, pcx)} ${barY} L ${Math.max(...xs, pcx)} ${barY}`);
       for (const x of xs) paths.push(`M ${x} ${barY} L ${x} ${childEdge}`);
     }
+    // A brother or sister with children of their own gets the same elbow,
+    // drawn from their block down to their own row of children.
+    for (const link of u.familyLinks || []) {
+      const parentEdge = yOf(link.parentGen);
+      const childEdge = yOf(link.parentGen - 1) + cardHeightFor(link.parentGen - 1);
+      const barY = (parentEdge + childEdge) / 2;
+      const xs = link.childXs.map(x => x + shift);
+      const pcx = link.parentCx + shift;
+      paths.push(`M ${pcx} ${parentEdge} L ${pcx} ${barY}`);
+      paths.push(`M ${Math.min(...xs, pcx)} ${barY} L ${Math.max(...xs, pcx)} ${barY}`);
+      for (const x of xs) paths.push(`M ${x} ${barY} L ${x} ${childEdge}`);
+    }
     u.parents.forEach(collect);
   })(root);
 
@@ -302,6 +366,13 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
     if (u.members.length > 1) {
       groups.push(`<div class="tree-couple-frame" style="left:${u.boxLeft + shift}px;top:${yOf(u.gen)}px;width:${u.boxW}px;height:${cardHeightFor(u.gen)}px"></div>`);
     }
+    for (const member of u.members) {
+      for (const family of member.families || []) {
+        if (family.spouseId && family.frame) {
+          groups.push(`<div class="tree-couple-frame" style="left:${family.frame.left + shift}px;top:${yOf(family.frame.gen)}px;width:${family.frame.width}px;height:${CARD_H}px"></div>`);
+        }
+      }
+    }
     u.parents.forEach(collectGroups);
   })(root);
 
@@ -312,7 +383,7 @@ function renderTree(familyData, onPersonClick, kinship, photoAvailability) {
 
   const cards = nodes.map(n => {
     const person = familyData.people.get(n.id);
-    const extra = SITE_CONFIG.anchorPersonIds.includes(n.id) ? "is-anchor" : (n.role === "sibling" || n.role === "child" ? "is-collateral" : "");
+    const extra = SITE_CONFIG.anchorPersonIds.includes(n.id) ? "is-anchor" : (n.role === "unit" ? "" : "is-collateral");
     // Chips mark the direct line only. A unit is built from someone's parents,
     // so every unit member above the couple is a blood ancestor; brothers,
     // sisters and the couple's own generation get none. The couple's children
