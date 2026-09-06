@@ -3,8 +3,9 @@
   "family_confirmation_events": [
     {
       "source_id": "src_family_confirmation_p01_p19_m01_m17_2026_09_05",
-      "confirmed_table_codes": ["P01–P19", "M01–M17"],
-      "note": "Подтверждение относится к родственным ролям из таблицы; приблизительные даты и места сохраняют прежнюю степень точности. Для P19 данные военного однофамильца 1926–1945 годов исключены."
+      "confirmed_table_codes": ["P01–P19", "M01–M16"],
+      "excluded_after_owner_correction": ["M17"],
+      "note": "Подтверждение относится к родственным ролям из таблицы; приблизительные даты и места сохраняют прежнюю степень точности. Для P19 данные военного однофамильца 1926–1945 годов исключены. Позднейшая правка владельца исключает M17 из подтверждённых родственников."
     }
   ],
   "people": [
@@ -14,11 +15,11 @@
       "sex": "female",
       "birth": {"year": 1987, "place_id": "perm_city", "status": "CONFIRMED_BY_FIRST_PERSON"},
       "residence_history": [
-        {"event": "переезд", "from_place_id": "perm_city", "to_place_id": "moscow_city", "date_unknown": true, "with_family": ["vladimir_vitalievich_aspidov", "lyudmila_mikhailovna_tukacheva"], "status": "CONFIRMED_BY_FIRST_PERSON"}
+        {"event": "переезд", "from_place_id": "perm_city", "to_place_id": "moscow_city", "year": 2000, "with_family": ["vladimir_vitalievich_aspidov", "lyudmila_mikhailovna_tukacheva"], "status": "CONFIRMED_BY_FIRST_PERSON"}
       ],
       "identity_status": "CONFIRMED",
-      "notes": ["Центральная персона семейного дерева. Родилась в 1987 году в Перми. Переехала в Москву вместе с родителями; дата переезда пока неизвестна."],
-      "evidence_source_ids": ["src_family_testimony_alla_aspidova_1987"]
+      "notes": ["Центральная персона семейного дерева. Родилась в 1987 году в Перми. В 2000 году переехала в Москву вместе с родителями."],
+      "evidence_source_ids": ["src_family_testimony_alla_aspidova_1987", "src_family_testimony_moscow_move_2000"]
     },
     {
       "id": "vitaly_mikhailovich_aspidov",
@@ -55,10 +56,10 @@
         {"type": "birth", "display": "Политова Анна Фёдоровна", "native": "Политова Анна Фёдоровна"}
       ],
       "sex": "female",
-      "birth": {"year": 1934, "approximate": true, "place_id": "perm_region"},
+      "birth": {"year": 1934, "approximate": true, "place_id": "martely", "place_as_recorded": "деревня Мартелы", "place_status": "CONFIRMED_BY_FAMILY"},
       "identity_status": "CONFIRMED",
-      "notes": ["Пользователь подтвердил, что Анна была матерью Владимира Витальевича Аспидова."],
-      "evidence_source_ids": ["src_family_testimony_aspidov", "src_family_confirmation_round2", "src_familio_vitaly_anna"]
+      "notes": ["Пользователь подтвердил, что Анна была матерью Владимира Витальевича Аспидова.", "Семья подтвердила, что Анна родилась в деревне Мартелы, как и её родные братья и сёстры."],
+      "evidence_source_ids": ["src_family_testimony_aspidov", "src_family_confirmation_round2", "src_familio_vitaly_anna", "src_family_testimony_politov_siblings_martely"]
     },
     {
       "id": "mikhail_nikolaevich_aspidov_1899",
@@ -99,9 +100,9 @@
       "names": [{"type": "primary", "display": "Аспидов Владимир Витальевич", "native": "Аспидов Владимир Витальевич"}],
       "sex": "male",
       "identity_status": "CONFIRMED",
-      "residence_history": [{"event": "переезд", "to_place_id": "moscow_city", "date_unknown": true, "with_family": ["alla_vladimirovna_aspidova_1987", "lyudmila_mikhailovna_tukacheva"], "status": "CONFIRMED_BY_FAMILY"}],
-      "notes": ["Отец Аллы Владимировны; пользователь прямо подтвердил, что он сын Виталия Михайловича Аспидова. Вместе с Людмилой и Аллой переехал в Москву; дата переезда неизвестна."],
-      "evidence_source_ids": ["src_family_testimony_current_generation", "src_family_testimony_alla_aspidova_1987"]
+      "residence_history": [{"event": "переезд", "to_place_id": "moscow_city", "year": 2000, "with_family": ["alla_vladimirovna_aspidova_1987", "lyudmila_mikhailovna_tukacheva"], "status": "CONFIRMED_BY_FAMILY"}],
+      "notes": ["Отец Аллы Владимировны; пользователь прямо подтвердил, что он сын Виталия Михайловича Аспидова. В 2000 году вместе с Людмилой и Аллой переехал в Москву."],
+      "evidence_source_ids": ["src_family_testimony_current_generation", "src_family_testimony_alla_aspidova_1987", "src_family_testimony_moscow_move_2000"]
     },
     {
       "id": "lyudmila_mikhailovna_tukacheva",
@@ -112,9 +113,9 @@
       "sex": "female",
       "birth": {"date": "1959-09-25", "place_id": "chyormoz", "status": "CONFIRMED_BY_FAMILY"},
       "identity_status": "CONFIRMED",
-      "residence_history": [{"event": "переезд", "to_place_id": "moscow_city", "date_unknown": true, "with_family": ["alla_vladimirovna_aspidova_1987", "vladimir_vitalievich_aspidov"], "status": "CONFIRMED_BY_FAMILY"}],
-      "notes": ["Мать Аллы Владимировны. Пользователь подтвердил личность, дату и место рождения, родителей, а также братьев и сестёр, указанных в Familio. Вместе с Владимиром и Аллой переехала в Москву; дата переезда неизвестна."],
-      "evidence_source_ids": ["src_family_testimony_current_generation", "src_family_confirmation_round2", "src_family_testimony_lyudmila_birth_1959", "src_family_testimony_alla_aspidova_1987", "src_familio_lyudmila_tukacheva"]
+      "residence_history": [{"event": "переезд", "to_place_id": "moscow_city", "year": 2000, "with_family": ["alla_vladimirovna_aspidova_1987", "vladimir_vitalievich_aspidov"], "status": "CONFIRMED_BY_FAMILY"}],
+      "notes": ["Мать Аллы Владимировны. Пользователь подтвердил личность, дату и место рождения, родителей, а также братьев и сестёр, указанных в Familio. В 2000 году вместе с Владимиром и Аллой переехала в Москву."],
+      "evidence_source_ids": ["src_family_testimony_current_generation", "src_family_confirmation_round2", "src_family_testimony_lyudmila_birth_1959", "src_family_testimony_alla_aspidova_1987", "src_family_testimony_moscow_move_2000", "src_familio_lyudmila_tukacheva"]
     },
     {
       "id": "mikhail_tukachev_father_of_lyudmila",
@@ -155,11 +156,11 @@
     },
     {
       "id": "nikolai_zhdanov",
-      "names": [{"type": "user_tree_clue", "display": "Жданов Николай", "native": "Жданов Николай"}],
+      "names": [{"type": "primary", "display": "Жданов Николай Трофимович", "native": "Жданов Николай Трофимович"}],
       "sex": "male",
       "identity_status": "CONFIRMED",
-      "notes": ["Пользователь подтвердил, что Николай — отец Веры Николаевны. Отчество, даты и места пока неизвестны."],
-      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_nikolai_zhdanov"]
+      "notes": ["Пользователь подтвердил, что Николай Трофимович — отец Веры Николаевны. Отчество Трофимович подтверждено семейным свидетельством; даты и места пока неизвестны."],
+      "evidence_source_ids": ["src_family_confirmation_round2", "src_familio_nikolai_zhdanov", "src_family_testimony_nikolai_trofimovich_zhdanov"]
     },
     {
       "id": "maria_stepanovna_syrchikova",
@@ -312,51 +313,53 @@
       "id": "candidate_mikhail_fedorovich_politov_1924",
       "names": [{"type": "user_tree_clue", "display": "Политов Михаил Фёдорович", "native": "Политов Михаил Фёдорович"}],
       "sex": "male",
-      "birth": {"year": 1924, "approximate": true, "status": "USER_TREE_VALUE"},
+      "birth": {"year": 1924, "approximate": true, "place_id": "martely", "place_as_recorded": "деревня Мартелы", "place_status": "CONFIRMED_BY_FAMILY", "status": "USER_TREE_VALUE"},
       "identity_status": "CONFIRMED",
       "candidate_role": "brother_of_anna_fedorovna_politova_confirmed_by_family",
-      "notes": ["Назван одним из шести детей Фёдора Кирилловича и Агафьи Васильевны в Familio; независимого подтверждения пока нет."],
-      "evidence_source_ids": ["src_familio_fedor_politov"]
+      "notes": ["Назван одним из шести детей Фёдора Кирилловича и Агафьи Васильевны в Familio; независимого подтверждения даты пока нет.", "Семья подтвердила деревню Мартелы как место рождения Михаила и остальных детей Фёдора Кирилловича и Агафьи Васильевны."],
+      "evidence_source_ids": ["src_familio_fedor_politov", "src_family_testimony_politov_siblings_martely"]
     },
     {
       "id": "candidate_petr_fedorovich_politov_1925",
       "names": [{"type": "combined_clue", "display": "Политов Пётр Фёдорович", "native": "Политов Пётр Фёдорович"}],
       "sex": "male",
-      "birth": {"year": 1925, "place_as_recorded": "деревня Мартели", "status": "MATCHING_USER_TREE_AND_MILITARY_RECORD"},
+      "birth": {"year": 1925, "place_id": "martely", "place_as_recorded": "деревня Мартелы", "place_status": "CONFIRMED_BY_FAMILY", "status": "MATCHING_USER_TREE_AND_MILITARY_RECORD"},
       "death": {"year": 1943, "status": "SOURCE_CONFLICT", "date_variants": ["1943-10-13", "1943-10-18"]},
       "military": {"call_up_year": 1943, "call_up_authority": "Верещагинский РВК", "rank": "красноармеец", "unit": "1-я гвардейская воздушно-десантная дивизия", "status": "killed_in_action"},
       "identity_status": "CONFIRMED",
       "candidate_role": "brother_of_anna_fedorovna_politova_confirmed_by_family",
-      "notes": ["Совпадение полного имени, года и деревни Мартели делает связь сильной, но родители в военной записи не названы.", "ОБД и районная книга памяти расходятся в дате гибели и месте захоронения; обе версии сохранены."],
-      "evidence_source_ids": ["src_familio_fedor_politov", "src_obd_petr_fedorovich_politov_503665796", "src_vereshchagino_memory_book_petr_politov"]
+      "notes": ["Совпадение полного имени, года и деревни Мартелы делает связь сильной, но родители в военной записи не названы.", "ОБД и районная книга памяти расходятся в дате гибели и месте захоронения; обе версии сохранены.", "Семья подтвердила деревню Мартелы как место рождения Петра и остальных детей Фёдора Кирилловича и Агафьи Васильевны."],
+      "evidence_source_ids": ["src_familio_fedor_politov", "src_obd_petr_fedorovich_politov_503665796", "src_vereshchagino_memory_book_petr_politov", "src_family_testimony_politov_siblings_martely"]
     },
     {
       "id": "candidate_kirill_fedorovich_politov_1927",
       "names": [{"type": "user_tree_clue", "display": "Политов Кирилл Фёдорович", "native": "Политов Кирилл Фёдорович"}],
       "sex": "male",
-      "birth": {"year": 1927, "approximate": true, "status": "USER_TREE_VALUE"},
+      "birth": {"year": 1927, "approximate": true, "place_id": "martely", "place_as_recorded": "деревня Мартелы", "place_status": "CONFIRMED_BY_FAMILY", "status": "USER_TREE_VALUE"},
       "identity_status": "CONFIRMED",
       "candidate_role": "brother_of_anna_fedorovna_politova_confirmed_by_family",
-      "evidence_source_ids": ["src_familio_fedor_politov"]
+      "notes": ["Семья подтвердила деревню Мартелы как место рождения Кирилла и остальных детей Фёдора Кирилловича и Агафьи Васильевны."],
+      "evidence_source_ids": ["src_familio_fedor_politov", "src_family_testimony_politov_siblings_martely"]
     },
     {
       "id": "candidate_stepanida_fedorovna_politova_1930",
       "names": [{"type": "birth", "display": "Политова Степанида Фёдоровна", "native": "Политова Степанида Фёдоровна"}, {"type": "married", "display": "Шмырина Степанида Фёдоровна", "native": "Шмырина Степанида Фёдоровна", "status": "USER_TREE_VALUE"}],
       "sex": "female",
-      "birth": {"year": 1930, "status": "USER_TREE_VALUE"},
+      "birth": {"year": 1930, "place_id": "martely", "place_as_recorded": "деревня Мартелы", "place_status": "CONFIRMED_BY_FAMILY", "status": "USER_TREE_VALUE"},
       "identity_status": "CONFIRMED",
       "candidate_role": "sister_of_anna_fedorovna_politova_confirmed_by_family",
-      "evidence_source_ids": ["src_familio_fedor_politov"]
+      "notes": ["Семья подтвердила деревню Мартелы как место рождения Степаниды и остальных детей Фёдора Кирилловича и Агафьи Васильевны."],
+      "evidence_source_ids": ["src_familio_fedor_politov", "src_family_testimony_politov_siblings_martely"]
     },
     {
       "id": "candidate_lukeriya_fedorovna_politova_1939",
       "names": [{"type": "birth", "display": "Политова Лукерия (Гликерия) Фёдоровна", "native": "Политова Лукерия (Гликерия) Фёдоровна"}, {"type": "married", "display": "Самусенко Лукерия Фёдоровна", "native": "Самусенко Лукерия Фёдоровна", "status": "USER_TREE_VALUE"}],
       "sex": "female",
-      "birth": {"date": "1939-05-20", "place_as_recorded": "деревня Мартели", "status": "USER_TREE_VALUE"},
+      "birth": {"date": "1939-05-20", "place_id": "martely", "place_as_recorded": "деревня Мартелы", "place_status": "CONFIRMED_BY_FAMILY", "status": "USER_TREE_VALUE"},
       "identity_status": "CONFIRMED",
       "candidate_role": "sister_of_anna_fedorovna_politova_confirmed_by_family",
-      "notes": ["Имя в пользовательском дереве передано вариантами Лукерия/Гликерия; до проверки акта сохранены обе формы."],
-      "evidence_source_ids": ["src_familio_fedor_politov"]
+      "notes": ["Имя в пользовательском дереве передано вариантами Лукерия/Гликерия; до проверки акта сохранены обе формы.", "Семья подтвердила правильное написание места рождения: деревня Мартелы. Там же родились Анна и остальные родные братья и сёстры Лукерии."],
+      "evidence_source_ids": ["src_familio_fedor_politov", "src_family_testimony_politov_siblings_martely"]
     },
     {
       "id": "candidate_zinaida_kirillovna_politova",
@@ -438,10 +441,10 @@
       "names": [{"type": "repression_index", "display": "Сырчикова Александра Михайловна", "native": "Сырчикова Александра Михайловна"}],
       "sex": "female",
       "birth": {"year": 1904, "place_id": "syrchiki"},
-      "identity_status": "CONFIRMED",
-      "candidate_role": "family_relative_exact_connection_unknown",
-      "notes": ["Пользователь подтвердил принадлежность Александры Михайловны к семье, но точная родственная линия пока не указана. Арестована 22.10.1936, осуждена 03.03.1937 на три года лишения свободы, впоследствии реабилитирована."],
-      "evidence_source_ids": ["src_family_confirmation_p01_p19_m01_m17_2026_09_05", "src_perm_memorial_syrchikova_alexandra_1904"]
+      "identity_status": "HYPOTHESIS",
+      "candidate_role": "regional_syrchikov_relative_lead",
+      "notes": ["Однофамилица из деревни Сырчики. Владелец проекта не уверен, что Александра Михайловна принадлежит семье; показывать только как гипотезу без связи с древом. Арестована 22.10.1936, осуждена 03.03.1937 на три года лишения свободы, впоследствии реабилитирована."],
+      "evidence_source_ids": ["src_owner_correction_alexandra_syrchikova_unconfirmed", "src_perm_memorial_syrchikova_alexandra_1904"]
     },
     {
       "id": "candidate_anna_yakovlevna_aspidova_1903",

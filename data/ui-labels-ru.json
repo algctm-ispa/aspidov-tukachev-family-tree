@@ -5,8 +5,9 @@
   "formatting": {
     "unknown_value": "Неизвестно",
     "no_information": "Сведения пока не найдены",
-    "range_separator": "–",
-    "sentence_dash": "—",
+    "range_from": "с",
+    "range_to": "по",
+    "sentence_separator": ",",
     "metadata_separator": "·"
   },
   "status": {
@@ -89,6 +90,7 @@
   "date_labels": {
     "birth": "Рождение",
     "death": "Смерть",
+    "year": "Год",
     "approximate": "Приблизительно",
     "estimated_range": "Ориентировочный период рождения",
     "old_style": "По старому стилю",

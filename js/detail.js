@@ -109,6 +109,30 @@ function renderSources(person, familyData) {
     </section>`;
 }
 
+// Russian wants the destination in the accusative and the verb gendered, so
+// the move is written as a sentence rather than assembled from a label and a
+// value. Inanimate place names take the accusative predictably enough: a
+// feminine ending shifts, everything else stays as it is.
+function placeAccusative(place) {
+  const parts = String(place).split(",");
+  parts[0] = parts[0].trim()
+    .replace(/([^\s])а$/u, "$1у")
+    .replace(/([^\s])я$/u, "$1ю");
+  return parts.map(x => x.trim()).join(", ");
+}
+
+function moveSentence(move, sex) {
+  const verb = sex === "female" ? "переехала" : "переехал";
+  const company = move.withFamily ? " вместе с семьёй" : "";
+  const when = move.year ? `В ${move.year} году ` : "";
+  if (move.to) {
+    const from = move.from && !move.year ? `` : "";
+    void from;
+    return `${when}${when ? verb : verb.charAt(0).toUpperCase() + verb.slice(1)} в ${placeAccusative(move.to)}${company}${move.year ? "" : (move.dateUnknown ? ". Год переезда пока не установлен" : "")}`;
+  }
+  return `${when}${verb}${company}`;
+}
+
 function renderPersonDetail(person, familyData, kinshipLabel, hasPhoto) {
   const formUrl = buildPersonFormUrl(person);
   const newRelativeUrl = buildNewRelativeFormUrl();
@@ -128,12 +152,7 @@ function renderPersonDetail(person, familyData, kinshipLabel, hasPhoto) {
   }
 
   for (const move of person.moves || []) {
-    const route = move.from && move.to ? `${move.from} → ${move.to}` : (move.to || move.from);
-    const when = move.year
-      ? `, ${move.year} год`
-      : (move.dateUnknown ? ` <span class="text-muted">(дата неизвестна)</span>` : "");
-    const label = move.event.charAt(0).toUpperCase() + move.event.slice(1);
-    dates.push(`<div><span class="date-label">${escapeHtml(label)}</span> ${escapeHtml(route)}${when}</div>`);
+    dates.push(`<div>${escapeHtml(moveSentence(move, person.sex))}</div>`);
   }
 
   const notesHtml = person.notes && person.notes.length

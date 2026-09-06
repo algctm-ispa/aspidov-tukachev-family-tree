@@ -142,6 +142,7 @@ function buildResidenceHistory(history, placesById) {
     if (!to && !from) continue;
     moves.push({
       event: event || "Переезд",
+      withFamily: Array.isArray(entry.with_family) && entry.with_family.length > 0,
       from,
       to,
       year: typeof entry.year === "number" ? entry.year : null,
