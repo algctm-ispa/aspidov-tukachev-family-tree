@@ -591,4 +591,17 @@ function setupTreeCanvas(grid) {
 
   fit();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+
+  // Поворот телефона меняет ширину окна, и пара уезжает из кадра. Наводимся
+  // заново, но только когда изменилась именно ширина: на мобильных браузерах
+  // resize срабатывает ещё и от того, что панель адреса прячется при
+  // прокрутке, и перенаводить древо в этот момент было бы навязчиво.
+  let lastWidth = wrap.clientWidth;
+  let refitTimer = null;
+  window.addEventListener("resize", () => {
+    if (wrap.clientWidth === lastWidth) return;
+    lastWidth = wrap.clientWidth;
+    clearTimeout(refitTimer);
+    refitTimer = setTimeout(fit, 150);
+  });
 }
