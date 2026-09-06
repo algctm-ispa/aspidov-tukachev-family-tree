@@ -150,18 +150,70 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 .hero-actions { display: flex; gap: var(--space-2); margin-top: var(--space-6); flex-wrap: wrap; }
 .hero-actions .btn { padding: var(--space-3) var(--space-6); }
 
-.hero-photo-wrap { position: relative; }
+/* Два снимка, 1986 и 2026, остаются в двух колонках на любой ширине:
+   сравнение и есть смысл блока, друг под другом оно пропадает. */
+.hero-photo-wrap {
+  position: relative; align-self: center;
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2);
+}
+.hero-shot { margin: 0; display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
 .hero-photo {
-  height: 100%; min-height: 420px; background: var(--color-surface) top center/cover no-repeat;
+  aspect-ratio: 4 / 5; background: var(--color-surface) top center/cover no-repeat;
   display: flex; align-items: center; justify-content: center;
   color: var(--color-text-muted); font-size: 13px; text-align: center; padding: var(--space-4);
 }
+.hero-shot-caption {
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--color-text-muted); text-align: center;
+  height: 16px; line-height: 16px;
+}
+/* Плашка стоит между снимками: она связывает две даты, а не подписывает одну.
+   Слой прижат к области фотографий, подписи в расчёт не идут. */
+.hero-badge-slot {
+  position: absolute; left: 0; right: 0; top: 0; bottom: 24px;
+  display: flex; align-items: center; justify-content: center; pointer-events: none;
+}
 .hero-badge {
-  position: absolute; left: 0; bottom: 0; background: var(--color-accent); color: var(--color-bg);
+  background: var(--color-accent); color: var(--color-bg);
   padding: var(--space-3) var(--space-4); display: flex; align-items: baseline; gap: var(--space-2);
 }
 .hero-badge-num { font-weight: 800; font-size: 40px; line-height: 1; }
 .hero-badge-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+
+/* ---------- посвящение ---------- */
+
+/* Письмо, а не карточка: ни рамки, ни фона, только воздух и одна колонка. */
+.dedication {
+  max-width: 620px; margin: 0 auto;
+  padding: var(--space-8) 0 var(--space-6);
+}
+.dedication p { margin: 0 0 var(--space-6); font-size: 17px; line-height: 1.75; }
+.dedication p:last-child { margin-bottom: 0; }
+.dedication-sign {
+  font-size: 24px; font-weight: 800; line-height: 1.2;
+  color: var(--color-accent); text-align: right;
+}
+
+/* ---------- древо в цифрах ---------- */
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+  padding: var(--space-6) 0 var(--space-8);
+  border-top: 2px solid var(--color-divider);
+}
+.stats-row:empty { display: none; }
+.stat-cell { min-width: 0; }
+.stat-number {
+  font-weight: 800; font-size: 28px; line-height: 1;
+  color: var(--color-accent); white-space: nowrap;
+}
+.stat-cell.is-wide .stat-number { font-size: 24px; }
+.stat-label {
+  margin-top: var(--space-3);
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--color-text-muted);
+}
 
 /* ---------- tree section ---------- */
 
@@ -389,6 +441,21 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
   .contribute-inner { grid-template-columns: 1fr; }
   .page, .nav, .hero { padding-left: var(--space-4); padding-right: var(--space-4); }
   .hero { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+  /* На телефоне имена занимали по три строки каждое и уводили фотографии
+     за первый экран. Кегль меньше, снимки поднимаются выше. */
+  .hero-couple { margin-top: var(--space-6); }
+  .hero-couple-name { font-size: 21px; }
+  .hero-lede { margin-top: var(--space-4); }
+  /* Снимки остаются рядом, а плашка уменьшается, чтобы не закрывать лица. */
+  .hero-photo-wrap { margin-top: var(--space-6); }
+  .hero-badge { padding: var(--space-2) var(--space-3); }
+  .hero-badge-num { font-size: 26px; }
+  .hero-badge-label { font-size: 10px; }
+  .dedication { padding: var(--space-6) 0 var(--space-4); }
+  .dedication p { font-size: 16px; }
+  .stats-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) var(--space-4); }
+  .stat-number { font-size: 24px; }
+  .stat-cell.is-wide .stat-number { font-size: 19px; }
 }
 
 
@@ -506,7 +573,7 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 .person-photo { border-radius: var(--radius-sm); }
 .tree-card.is-anchor .person-photo { border-radius: var(--radius-sm); }
 
-.hero-photo-wrap, .hero-photo { border-radius: var(--radius-lg); }
+.hero-photo { border-radius: var(--radius-lg); }
 .hero-badge { border-radius: var(--radius-md); }
 
 .route-legend { border-radius: var(--radius-md); }

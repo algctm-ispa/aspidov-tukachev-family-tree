@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Родословное древо Аспидовых и Тукачёвых · 40 лет вместе</title>
+
+<!-- Ссылку пересылают в мессенджерах, поэтому у неё своё превью. -->
+<meta property="og:title" content="40 лет вместе · Аспидовы и Тукачёвы">
+<meta property="og:description" content="Родословное древо двух семей: 49 человек, 12 мест на карте, самый ранний год рождения 1885.">
+<meta property="og:image" content="https://algctm-ispa.github.io/aspidov-tukachev-family-tree/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Владимир и Людмила в день свадьбы, 6 сентября 1986 года">
+<meta property="og:url" content="https://algctm-ispa.github.io/aspidov-tukachev-family-tree/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="40 лет вместе · Аспидовы и Тукачёвы">
+<meta name="twitter:description" content="Родословное древо двух семей: 49 человек, 12 мест на карте, самый ранний год рождения 1885.">
+<meta name="twitter:image" content="https://algctm-ispa.github.io/aspidov-tukachev-family-tree/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -33,17 +48,36 @@
         <div class="hero-couple-name" id="hero-name-a">Аспидов Владимир Витальевич</div>
         <div class="hero-couple-name" id="hero-name-b">Тукачёва Людмила Михайловна</div>
       </div>
-      <p class="hero-lede">Это древо наша семья собирает по крупицам: архивные записи, воспоминания, находки родственников. Нашли неточность или есть фотография? Нажмите на человека в древе и отправьте нам правку.</p>
+      <p class="hero-lede">Нажмите на любого человека в древе: там даты, места и то, откуда мы это знаем.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#tree">Смотреть древо</a>
         <a class="btn btn-secondary" href="#news">Вестник нашей семьи</a>
       </div>
     </div>
+    <!-- Два снимка рядом, и на телефоне тоже: сопоставление дат и есть смысл этого блока. -->
     <div class="hero-photo-wrap">
-      <div class="hero-photo" id="hero-photo"></div>
-      <div class="hero-badge"><span class="hero-badge-num">40</span><span class="hero-badge-label">лет</span></div>
+      <figure class="hero-shot">
+        <div class="hero-photo hero-photo-then" id="hero-photo-then"></div>
+        <figcaption class="hero-shot-caption">6 сентября 1986</figcaption>
+      </figure>
+      <figure class="hero-shot">
+        <div class="hero-photo hero-photo-now" id="hero-photo"></div>
+        <figcaption class="hero-shot-caption">6 сентября 2026</figcaption>
+      </figure>
+      <div class="hero-badge-slot"><div class="hero-badge"><span class="hero-badge-num">40</span><span class="hero-badge-label">лет</span></div></div>
     </div>
   </header>
+
+  <section class="dedication" aria-label="Посвящение">
+    <p>Мама и папа,</p>
+    <p>сорок лет назад в Перми две линии, которые до того шли порознь, сошлись в одну. Всё, что вы увидите на этой странице, началось с того дня.</p>
+    <p>Я искала этих людей по архивным карточкам, военным документам и названиям деревень, которые уже почти никто не помнит. Здесь есть те, кого не вернула война, и те, кого нашли через семьдесят лет. Все они стоят за вами двумя.</p>
+    <p>С рубиновой свадьбой. Люблю вас.</p>
+    <p class="dedication-sign">Алла</p>
+  </section>
+
+  <!-- Цифры считаются из данных при загрузке: новые люди меняют их сами. -->
+  <section id="stats" class="stats-row" aria-label="Древо в цифрах"></section>
 
   <section id="tree" class="section">
     <div class="section-header">

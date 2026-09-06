@@ -102,3 +102,69 @@ function renderChronicle(familyData) {
       <div class="chronicle-text">${escapeHtml(ev.text)}</div>
     </div>`).join("");
 }
+
+// ---------------------------------------------------------------------------
+// Древо в цифрах
+// ---------------------------------------------------------------------------
+
+// Русский счёт: 1 человек, 2 человека, 5 человек. Числа здесь считаются из
+// данных, поэтому окончание нельзя зашить в разметку.
+function pluralRu(n, forms) {
+  const abs = Math.abs(n) % 100;
+  const last = abs % 10;
+  if (abs > 10 && abs < 20) return forms[2];
+  if (last > 1 && last < 5) return forms[1];
+  if (last === 1) return forms[0];
+  return forms[2];
+}
+
+// Ничего не задано вручную: каждый показатель пересчитывается при загрузке,
+// поэтому новая выгрузка меняет цифры сама.
+function buildStats(familyData) {
+  const people = [...familyData.people.values()];
+  const stats = [];
+
+  const total = people.length;
+  stats.push({
+    value: String(total),
+    label: `${pluralRu(total, ["человек", "человека", "человек"])} в древе`
+  });
+
+  const years = people.map(p => p.birthYear).filter(y => typeof y === "number");
+  if (years.length) {
+    stats.push({
+      value: `с ${Math.min(...years)} по ${Math.max(...years)}`,
+      label: "годы рождения",
+      wide: true
+    });
+  }
+
+  const places = new Set(people.map(p => p.birthPlace).filter(Boolean));
+  if (places.size) {
+    stats.push({
+      value: String(places.size),
+      label: `${pluralRu(places.size, ["место", "места", "мест"])}, откуда мы`
+    });
+  }
+
+  const sources = familyData.sourcesById ? familyData.sourcesById.size : 0;
+  if (sources) {
+    stats.push({
+      value: String(sources),
+      label: `${pluralRu(sources, ["документ", "документа", "документов"])} и ${pluralRu(sources, ["свидетельство", "свидетельства", "свидетельств"])}`
+    });
+  }
+
+  return stats;
+}
+
+function renderStats(familyData) {
+  const container = document.getElementById("stats");
+  if (!container) return;
+  const stats = buildStats(familyData);
+  container.innerHTML = stats.map(s => `
+    <div class="stat-cell${s.wide ? " is-wide" : ""}">
+      <div class="stat-number">${escapeHtml(s.value)}</div>
+      <div class="stat-label">${escapeHtml(s.label)}</div>
+    </div>`).join("");
+}

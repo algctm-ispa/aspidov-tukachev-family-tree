@@ -40,14 +40,24 @@ async function main() {
       changeLink.href = SITE_CONFIG.correctionForm.baseUrl;
     }
 
-    const heroPhotoUrl = "assets/photos/hero.jpg";
-    if (await checkImageExists(heroPhotoUrl)) {
-      document.getElementById("hero-photo").style.backgroundImage = `url(${heroPhotoUrl})`;
-    } else {
-      document.getElementById("hero-photo").textContent = "Фотография Владимира и Людмилы";
+    // Слева день свадьбы, справа сегодняшний снимок. Свадебное фото уже есть
+    // в проекте, его же показывает «Вестник нашей семьи», второй копии не нужно.
+    const heroShots = [
+      { id: "hero-photo-then", url: "assets/photos/wedding.jpg", fallback: "Свадебная фотография, 6 сентября 1986 года" },
+      { id: "hero-photo", url: "assets/photos/hero.jpg", fallback: "Фотография Владимира и Людмилы" }
+    ];
+    for (const shot of heroShots) {
+      const el = document.getElementById(shot.id);
+      if (!el) continue;
+      if (await checkImageExists(shot.url)) {
+        el.style.backgroundImage = `url(${shot.url})`;
+      } else {
+        el.textContent = shot.fallback;
+      }
     }
 
     renderTree(familyData, openPerson, kinship, photoAvailability);
+    renderStats(familyData);
     renderChronicle(familyData);
     if (typeof renderNews === "function") renderNews("news-list", 3);
     if (typeof renderRouteMap === "function") renderRouteMap();
