@@ -8,6 +8,7 @@
 
 const ROUTE_PLACES = {
   tyuremka: { ll: [57.19, 55.62], name: "Тюремка", sub: "ныне Красные Горки, Осинский округ. Положение примерное", approx: true },
+  martely:  { ll: [58.06, 54.72], name: "Мартелы", sub: "деревня Политовых, Верещагинский округ. Положение примерное", approx: true },
   syrchiki: { ll: [58.52, 55.80], name: "Сырчики", sub: "Ильинский округ. Положение примерное", approx: true },
   chermoz:  { ll: [58.79, 56.17], name: "Чёрмоз", sub: "родина Людмилы" },
   perm:     { ll: [58.01, 56.25], name: "Пермь", sub: "здесь линии встретились" },
@@ -20,7 +21,7 @@ function renderRouteFallback(el) {
   const order = ["syrchiki", "chermoz", "tyuremka", "perm", "moscow"];
   const pts = {
     tyuremka: [70, 78], syrchiki: [22, 22], chermoz: [46, 34],
-    perm: [64, 50], moscow: [12, 88]
+    martely: [30, 62], perm: [64, 50], moscow: [12, 88]
   };
   void order;
   const line = (a, b, cls) => `<path class="${cls}" d="M ${pts[a][0]} ${pts[a][1]} L ${pts[b][0]} ${pts[b][1]}" />`;
@@ -29,6 +30,7 @@ function renderRouteFallback(el) {
   el.innerHTML = `<svg class="route-fallback" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="img"
       aria-label="Схема пути рода: Тюремка в Пермь, Сырчики в Чёрмоз и в Пермь, из Перми в Москву">
       ${line("tyuremka", "perm", "rf-solid")}
+      ${line("martely", "perm", "rf-solid")}
       ${line("syrchiki", "chermoz", "rf-dashed")}
       ${line("chermoz", "perm", "rf-dashed")}
       ${line("perm", "moscow", "rf-thick")}
@@ -53,11 +55,15 @@ function renderRouteMap() {
 
   const accent = getComputedStyle(document.documentElement).getPropertyValue("--color-accent").trim() || "#8e1c2c";
 
+  // Владимир's line reaches Пермь from two directions: Аспидовы out of Тюремка
+  // and Политовы out of Мартелы.
   const vladimir = [ROUTE_PLACES.tyuremka.ll, ROUTE_PLACES.perm.ll];
+  const politovy = [ROUTE_PLACES.martely.ll, ROUTE_PLACES.perm.ll];
   const lyudmila = [ROUTE_PLACES.syrchiki.ll, ROUTE_PLACES.chermoz.ll, ROUTE_PLACES.perm.ll];
   const together = [ROUTE_PLACES.perm.ll, ROUTE_PLACES.moscow.ll];
 
   L.polyline(vladimir, { color: accent, weight: 3 }).addTo(map);
+  L.polyline(politovy, { color: accent, weight: 3 }).addTo(map);
   L.polyline(lyudmila, { color: accent, weight: 3, dashArray: "8 7" }).addTo(map);
   L.polyline(together, { color: accent, weight: 5 }).addTo(map);
 
