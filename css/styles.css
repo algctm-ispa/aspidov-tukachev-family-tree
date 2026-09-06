@@ -560,7 +560,9 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
   .hero-copy { display: contents; }
   .hero .kicker { order: 1; margin-bottom: var(--space-3); }
   .hero-title { order: 2; }
-  .hero-photo-wrap { order: 3; }
+  /* align-self: center с десктопа ужимал пару снимков до ширины содержимого
+     и оставлял поля по бокам. В колонке они занимают всю ширину. */
+  .hero-photo-wrap { order: 3; align-self: center; width: 100%; max-width: 520px; }
   .hero-couple { order: 4; }
   .hero-lede { order: 5; }
   .hero-actions { order: 6; }
