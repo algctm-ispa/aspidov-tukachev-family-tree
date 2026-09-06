@@ -467,14 +467,16 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
   .dialog-photo img { max-height: 260px; margin: 0 auto; }
 }
 
-.card-title-row { display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
+.card-title-row { display: flex; align-items: baseline; gap: var(--space-2); flex-wrap: wrap; }
+/* A quiet text link beside the place name, not a button competing with it. */
 .card-map {
-  display: inline-block; margin-left: var(--space-3);
-  font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 700;
-  color: var(--color-accent); border: 1px solid var(--color-accent);
-  padding: 2px 8px; border-radius: 999px; white-space: nowrap; vertical-align: middle;
+  font-size: 12px; font-weight: 600; color: var(--color-accent);
+  text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-color: rgba(142,28,44,0.35);
+  white-space: nowrap;
 }
-.card-map:hover, .card-map:focus-visible { background: var(--color-accent); color: var(--color-bg); }
+.card-map::after { content: " ↗"; font-size: 10px; text-decoration: none; }
+.card-map:hover, .card-map:focus-visible { text-decoration-color: var(--color-accent); }
 
 
 /* ---------- rounded corners ---------- */
@@ -496,7 +498,7 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 .dialog-photo { border-radius: var(--radius-md); }
 .dialog-photo img { border-radius: calc(var(--radius-md) - 4px); }
 
-.tag, .military-status, .variant-type, .source-link, .card-map, .tree-chip { border-radius: var(--radius-pill); }
+.tag, .military-status, .variant-type, .source-link, .tree-chip { border-radius: var(--radius-pill); }
 
 .tree-card { border-radius: var(--radius-md); }
 .tree-couple-frame { border-radius: calc(var(--radius-md) + 3px); }
