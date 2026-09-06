@@ -15,12 +15,18 @@
 
 <nav class="nav">
   <a class="nav-brand" href="index.html">Аспидовы · Тукачёвы</a>
-  <a href="index.html#tree">Древо</a>
-  <a href="vestnik.html" aria-current="page">Вестник нашей семьи</a>
-  <a href="index.html#chronicle">Хроника</a>
-  <a href="index.html#places">Места</a>
-  <a href="index.html#route">Путь рода</a>
-  <a class="btn btn-primary nav-cta" href="index.html#contribute">Дополнить древо</a>
+  <button type="button" class="nav-burger" id="nav-burger" aria-expanded="false" aria-controls="nav-links" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html#tree">Древо</a>
+    <a href="vestnik.html" aria-current="page">Вестник нашей семьи</a>
+    <a href="index.html#chronicle">Хроника</a>
+    <a href="index.html#memorial">Не вернулись</a>
+    <a href="index.html#places">Места</a>
+    <a href="index.html#route">Путь рода</a>
+    <a class="btn btn-primary nav-cta" href="index.html#contribute">Дополнить древо</a>
+  </div>
 </nav>
 
 <div id="top" class="page">
@@ -43,6 +49,7 @@
   <span class="text-muted">Аспидовы · Тукачёвы · с 1986 по 2026 год</span>
 </footer>
 
+<script src="js/nav.js"></script>
 <script src="js/news.js"></script>
 <script>
   function escapeHtml(value) {

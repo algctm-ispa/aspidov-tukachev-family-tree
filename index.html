@@ -33,13 +33,18 @@
 
 <nav class="nav">
   <a class="nav-brand" href="#top">Аспидовы · Тукачёвы</a>
-  <a href="#tree" aria-current="page">Древо</a>
-  <a href="#news">Вестник нашей семьи</a>
-  <a href="#chronicle">Хроника</a>
-  <a href="#memorial">Не вернулись</a>
-  <a href="#places">Места</a>
-  <a href="#route">Путь рода</a>
-  <a class="btn btn-primary nav-cta" href="#contribute">Дополнить древо</a>
+  <button type="button" class="nav-burger" id="nav-burger" aria-expanded="false" aria-controls="nav-links" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="nav-links">
+    <a href="#tree" aria-current="page">Древо</a>
+    <a href="#news">Вестник нашей семьи</a>
+    <a href="#chronicle">Хроника</a>
+    <a href="#memorial">Не вернулись</a>
+    <a href="#places">Места</a>
+    <a href="#route">Путь рода</a>
+    <a class="btn btn-primary nav-cta" href="#contribute">Дополнить древо</a>
+  </div>
 </nav>
 
 <div id="top" class="page">
@@ -230,6 +235,7 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="js/nav.js"></script>
 <script src="js/config.js"></script>
 <script src="js/photos.js"></script>
 <script src="js/labels.js"></script>

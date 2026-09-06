@@ -1,14 +1,5 @@
-// Шапка липкая и на узком экране переносится на несколько строк, поэтому её
-// высота меряется, а не задаётся числом: на неё опираются якоря секций.
-function syncNavHeight() {
-  const nav = document.querySelector(".nav");
-  if (!nav) return;
-  document.documentElement.style.setProperty("--nav-h", Math.round(nav.getBoundingClientRect().height) + "px");
-}
-
 async function main() {
-  syncNavHeight();
-  window.addEventListener("resize", syncNavHeight);
+  // Шапка и её высота живут в js/nav.js: он нужен и вестнику тоже.
   const loading = document.getElementById("tree-loading");
   try {
     const familyData = await loadFamilyData();
