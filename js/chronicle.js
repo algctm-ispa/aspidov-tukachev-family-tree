@@ -17,6 +17,25 @@ const FIXED_EVENTS = [
   }
 ];
 
+// Where a loss happened, in the genitive the phrase needs. Only two wars occur
+// in this family's records, so their forms are spelled out; anything else is
+// appended as its own clause rather than forced into a case we cannot derive.
+const WAR_GENITIVE = {
+  "Великая Отечественная война": "Великой Отечественной войны",
+  "Первая мировая война": "Первой мировой войны"
+};
+
+function lossSetting(year, war) {
+  if (war) {
+    const genitive = WAR_GENITIVE[war];
+    return genitive ? `на фронте ${genitive}` : `на фронте, ${war}`;
+  }
+  // A loss recorded in these years is a loss at the front.
+  if (year >= 1941 && year <= 1945) return "на фронте Великой Отечественной войны";
+  if (year >= 1939 && year <= 1945) return "на фронте";
+  return "на службе";
+}
+
 function buildChronicleEvents(familyData) {
   const events = [];
 
@@ -31,18 +50,36 @@ function buildChronicleEvents(familyData) {
         text: `${female ? "Родилась" : "Родился"} ${person.displayName}${person.birthPlace ? `, ${person.birthPlace}` : ""}`
       });
     }
-    if (person.deathYear != null) {
+    // A wartime loss is told once, as a loss, not twice as a death and a
+    // separate line about service.
+    const lossYear = person.militaryLossYear != null ? person.militaryLossYear : person.deathYear;
+    const inWarYears = lossYear != null && lossYear >= 1939 && lossYear <= 1945;
+    const wasKilled = String(person.militaryOutcome || "").includes("killed");
+    const wentMissing = String(person.militaryOutcome || "").includes("missing")
+      || /пропал/i.test(person.deathStatusLabel || "");
+    // A military record settles it. Failing that, a man lost in the war years
+    // was almost certainly lost at the front, which is how the family reads it.
+    const isWartimeLoss = lossYear != null
+      && (person.hasMilitaryRecord || ((wentMissing || !female) && inWarYears));
+
+    if (isWartimeLoss) {
+      const where = lossSetting(lossYear, person.militaryWar);
+      // Only say how someone died when a record says so; otherwise the honest
+      // phrasing is that he did not come back.
+      const verb = wasKilled
+        ? (female ? "погибла" : "погиб")
+        : wentMissing
+          ? (female ? "пропала без вести" : "пропал без вести")
+          : (female ? "не вернулась с фронта" : "не вернулся с фронта");
+      const text = verb.includes("фронта")
+        ? `${person.displayName} ${verb}`
+        : `${person.displayName} ${verb} ${where}`;
+      events.push({ year: lossYear, tier: person.statusTier, text });
+    } else if (person.deathYear != null) {
       events.push({
         year: person.deathYear,
         tier: person.statusTier,
         text: `${female ? "Умерла" : "Умер"} ${person.displayName}`
-      });
-    }
-    if (person.militaryLossYear != null) {
-      events.push({
-        year: person.militaryLossYear,
-        tier: person.statusTier,
-        text: `${person.displayName} ${female ? "пропала" : "пропал"} без вести на службе`
       });
     }
   }
